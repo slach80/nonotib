@@ -478,6 +478,40 @@
     .guide-card.low h4    { color: var(--low); }
     .guide-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
+    /* ─── TEST TABLE ─── */
+    .test-table-wrap { overflow-x: auto; }
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .test-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .test-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .test-table td:first-child { color: var(--text); font-weight: 500; }
+    .test-table tr:last-child td { border-bottom: none; }
+    .test-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .tp-opt   { color: var(--d2) !important; }
+    .tp-blind { color: var(--accent) !important; }
+    .fit-strong { color: var(--high) !important; font-weight: 600; }
+    .fit-good   { color: var(--d2) !important; }
+    .fit-reach  { color: var(--low) !important; }
+
     /* ─── CONTACTS ─── */
     .contacts-grid {
       display: grid;
@@ -913,8 +947,8 @@
 <div class="region-section">
   <div class="region-header">
     <h2 class="region-title">Tampa Bay</h2>
-    <span class="region-sub">Florida &amp; Georgia</span>
-    <span class="region-count">4 programs</span>
+    <span class="region-sub">Florida</span>
+    <span class="region-count">3 programs</span>
 
   </div>
 
@@ -946,6 +980,10 @@
           <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Very High</div><div class="cc-stat-lbl">Soccer Level</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Roster Data</div>
+          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly for current roster and open spots: <strong>tampaspartans.com</strong></div>
         </div>
       </div>
       <div class="cc-footer">
@@ -1025,42 +1063,13 @@
           <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
+        <div class="cc-roster">
+          <div class="roster-title">Roster Data</div>
+          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff for open spots: <strong>seu.edu/athletics</strong></div>
+        </div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
-      </div>
-    </div>
-
-    <!-- Berry College -->
-    <div class="college-card">
-      <div class="cc-header">
-        <div>
-          <div class="cc-name">Berry College</div>
-          <div class="cc-meta">
-            <span class="div-badge d3">NCAA D3</span>
-            <span class="cc-conf">SAA</span>
-            <span class="cc-location">· Mount Berry, GA</span>
-          </div>
-        </div>
-        <span class="feasibility-pill medium">Medium</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-academics">
-          <h4>Academic Fit</h4>
-          <p><strong>B.S. Exercise Science</strong> with dedicated biomechanics facilities. Strong pre-professional advising and movement science labs. Closest D3 option for FL-targeting players; heavy FL recruiting pipeline.</p>
-        </div>
-        <div class="cc-soccer">
-          <h4>Soccer Program</h4>
-          <p>Competitive SAA conference — strong student-athlete culture on one of the largest campuses in the world (27,000 acres). D3 means no athletic aid but Berry offers strong merit-based scholarships — Noah's 3.5 GPA qualifies him well.</p>
-        </div>
-        <div class="cc-stats">
-          <div class="cc-stat"><div class="cc-stat-val">3.5+</div><div class="cc-stat-lbl">Avg GPA</div></div>
-          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
-          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — strong merit scholarships</span>
       </div>
     </div>
 
@@ -1236,6 +1245,10 @@
           <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
+        <div class="cc-roster">
+          <div class="roster-title">Roster Data</div>
+          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly: <strong>sdcc.edu/athletics</strong></div>
+        </div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
@@ -1269,6 +1282,10 @@
           <div class="cc-stat"><div class="cc-stat-val">3.6+</div><div class="cc-stat-lbl">Avg GPA</div></div>
           <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Exceptional</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Roster Data</div>
+          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly: <strong>chapmanathletics.com</strong></div>
         </div>
       </div>
       <div class="cc-footer">
@@ -1304,6 +1321,10 @@
           <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
           <div class="cc-stat"><div class="cc-stat-val">Exceptional</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
+        <div class="cc-roster">
+          <div class="roster-title">Roster Data</div>
+          <div class="roster-note" style="padding:4px 0;">Only 2026 future roster publicly posted — contact coaching staff for current open spots: <strong>goredlands.com</strong></div>
+        </div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — merit aid available</span>
@@ -1331,6 +1352,47 @@
       <p>Reach program — either soccer level significantly exceeds Noah's current exposure or academic standards are above average. Worth contacting but should not anchor the recruiting strategy.</p>
     </div>
   </div>
+</div>
+
+<!-- ═══ ACT / SAT TABLE ══════════════════════════════ -->
+<div class="region-section" style="padding-bottom:52px;">
+  <div class="region-header">
+    <h2 class="region-title">ACT / SAT Requirements</h2>
+    <span class="region-sub">Admissions Test Scores</span>
+  </div>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:24px; line-height:1.7;"><strong style="color:var(--accent)">Good news:</strong> All 16 schools are test-optional or test-blind. With a 3.5 GPA, Noah is a competitive applicant everywhere. Athletic recruitment status further strengthens any application.</p>
+  <div class="test-table-wrap">
+    <table class="test-table">
+      <thead>
+        <tr>
+          <th>School</th>
+          <th>ACT Middle 50%</th>
+          <th>SAT Middle 50%</th>
+          <th>Test Policy</th>
+          <th>3.5 GPA Fit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Rockhurst University</td><td>19–26</td><td>1110–1250</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>MidAmerica Nazarene</td><td>17–23</td><td>950–1090</td><td class="tp-opt">Optional</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>University of Saint Mary</td><td>18–24</td><td>926–1093</td><td class="tp-opt">Optional</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>Park University</td><td>20–24</td><td>1040–1180</td><td class="tp-opt">Optional</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>Drury University</td><td>22–29</td><td>1130–1290</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>Maryville University</td><td>18–25</td><td>960–1160</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>Webster University</td><td>18–25</td><td>1110–1310</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>University of Tampa</td><td>23–29</td><td>1100–1270</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>Florida Southern College</td><td>24–30</td><td>1170–1320</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>Southeastern University</td><td>19–25</td><td>960–1183</td><td class="tp-opt">Optional</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>Point Loma Nazarene</td><td>25–32</td><td>1175–1365</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+        <tr><td>Cal State San Marcos</td><td>N/A</td><td>N/A</td><td class="tp-blind">Test-Blind</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>Cal State East Bay</td><td>N/A</td><td>N/A</td><td class="tp-blind">Test-Blind</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>San Diego Christian</td><td>17–23</td><td>910–1120</td><td class="tp-opt">Optional</td><td class="fit-strong">Strong Fit</td></tr>
+        <tr><td>Chapman University</td><td>28–31</td><td>1260–1440</td><td class="tp-opt">Optional</td><td class="fit-reach">Reach</td></tr>
+        <tr><td>University of Redlands</td><td>21–28</td><td>1080–1320</td><td class="tp-opt">Optional</td><td class="fit-good">Good Fit</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:0.75rem; color:var(--muted); margin-top:14px; line-height:1.6;">⚠️ San Diego Christian College was on accreditation Warning status as of Spring 2025 — verify current status before applying. Chapman University avg GPA is ~3.7; apply test-optional with strong supplemental materials and athletic recruitment interest.</p>
 </div>
 
 <!-- ═══ COACH CONTACTS ═══════════════════════════════ -->

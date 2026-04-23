@@ -1020,6 +1020,48 @@
       text-transform: uppercase;
       margin-top: 24px;
     }
+    .coach-refs {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .coach-refs-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 9px 14px;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--border);
+    }
+    .coach-ref-item {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 12px;
+    }
+    .coach-ref-item:last-child { border-bottom: none; }
+    .cri-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .cri-role { font-size: 0.72rem; color: var(--muted); flex-basis: 100%; }
+    .cri-contact {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .cri-contact:hover { opacity: 1; }
     .contact-form {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -1664,11 +1706,6 @@
           <div class="sr-meta"><span class="sr-div naia">NAIA</span> Sun Conference · Lakeland, FL</div>
           <div class="sr-note">B.S. Kinesiology · Pre-PT concentration · Clinical observation hours · NAIA Tourney regular</div>
         </div>
-        <div class="school-real">
-          <div class="sr-name">Berry College</div>
-          <div class="sr-meta"><span class="sr-div d3">D3</span> SAA · Mount Berry, GA</div>
-          <div class="sr-note">B.S. Exercise Science · Biomechanics facilities · State-of-the-art athletic campus</div>
-        </div>
       </div>
       <div class="level-chips" style="margin-top:18px;">
         <span class="level-chip">NAIA</span>
@@ -1752,6 +1789,34 @@
       <div class="avail-badge">
         <span class="live-dot"></span>
         Sophomore · Class of 2028 · Available for Visits
+      </div>
+
+      <div class="coach-refs">
+        <div class="coach-refs-label">Coach References</div>
+        <div class="coach-ref-item">
+          <div class="cri-name">John Sosa</div>
+          <div class="cri-role">Sporting City Soccer MLS Next AD</div>
+        </div>
+        <div class="coach-ref-item">
+          <div class="cri-name">Jimmy J. Perez</div>
+          <div class="cri-role">KC Fusion ECNL-RL</div>
+          <a href="tel:8169165513" class="cri-contact">📞 (816) 916-5513</a>
+          <a href="mailto:jimmy.perez@kcfusion.com" class="cri-contact">✉ jimmy.perez@kcfusion.com</a>
+        </div>
+        <div class="coach-ref-item">
+          <div class="cri-name">Carlos Olivas</div>
+          <div class="cri-role">KC Fusion ECNL-RL</div>
+          <a href="tel:9137446769" class="cri-contact">📞 (913) 744-6769</a>
+          <a href="mailto:carlos.olivas@kcfusion.com" class="cri-contact">✉ carlos.olivas@kcfusion.com</a>
+        </div>
+        <div class="coach-ref-item">
+          <div class="cri-name">Matt Semkin</div>
+          <div class="cri-role">Park Hill South JV · Former Park University</div>
+        </div>
+        <div class="coach-ref-item">
+          <div class="cri-name">Hamid "Honka" Zlitni</div>
+          <div class="cri-role">Park University Women's HC · Former Unified Legacy</div>
+        </div>
       </div>
     </div>
 
