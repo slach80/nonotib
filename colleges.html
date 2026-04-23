@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Analysis — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #06090f;
+      --bg-2:      #0a1120;
+      --bg-card:   #0d1828;
+      --accent:    #b8ff2e;
+      --accent-lo: rgba(184,255,46,0.1);
+      --accent-md: rgba(184,255,46,0.22);
+      --text:      #eef2ff;
+      --muted:     #607090;
+      --border:    rgba(255,255,255,0.07);
+      --r:         10px;
+      --nav-h:     64px;
+
+      --naia:      #ffc844;
+      --naia-bg:   rgba(255,180,0,0.1);
+      --d2:        #7fc5ff;
+      --d2-bg:     rgba(100,180,255,0.1);
+      --d3:        #b899ff;
+      --d3-bg:     rgba(160,100,255,0.1);
+
+      --high:      #b8ff2e;
+      --high-bg:   rgba(184,255,46,0.1);
+      --med:       #ffc844;
+      --med-bg:    rgba(255,200,68,0.1);
+      --low:       #ff6b6b;
+      --low-bg:    rgba(255,107,107,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(6,9,15,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(18px, 5vw, 60px);
+      gap: 16px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .nav-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .nav-title span { color: var(--accent); }
+    .nav-badge {
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ─── HERO ─── */
+    .page-hero {
+      padding: 56px clamp(18px, 5vw, 60px) 44px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero p.label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      margin-bottom: 18px;
+    }
+    .page-hero p.sub {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+    .criteria-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cpill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    .cpill.active { background: var(--accent-lo); border-color: var(--accent-md); color: var(--accent); }
+
+    /* ─── LEGEND ─── */
+    .legend-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px clamp(18px, 5vw, 60px);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .legend-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .legend-items { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .li { display: flex; align-items: center; gap: 5px; font-size: 0.73rem; color: var(--muted); }
+    .li-dot { width: 8px; height: 8px; border-radius: 2px; }
+    .sep { width: 1px; height: 16px; background: var(--border); }
+
+    /* ─── REGION SECTION ─── */
+    .region-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 52px clamp(18px, 5vw, 60px) 0;
+    }
+    .region-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .region-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .region-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .region-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* ─── COLLEGE CARD ─── */
+    .college-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+    .college-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .college-card:hover { border-color: var(--accent-md); transform: translateY(-3px); }
+    .cc-header {
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .cc-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cc-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .div-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .div-badge.naia { background: var(--naia-bg); color: var(--naia); border: 1px solid rgba(255,180,0,0.2); }
+    .div-badge.d2   { background: var(--d2-bg);   color: var(--d2);   border: 1px solid rgba(100,180,255,0.2); }
+    .div-badge.d3   { background: var(--d3-bg);   color: var(--d3);   border: 1px solid rgba(160,100,255,0.2); }
+    .cc-conf {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .cc-location {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .feasibility-pill {
+      flex-shrink: 0;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .feasibility-pill.high   { background: var(--high-bg); color: var(--high); border: 1px solid rgba(184,255,46,0.2); }
+    .feasibility-pill.medium { background: var(--med-bg);  color: var(--med);  border: 1px solid rgba(255,200,68,0.2); }
+    .feasibility-pill.low    { background: var(--low-bg);  color: var(--low);  border: 1px solid rgba(255,107,107,0.2); }
+
+    .cc-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+
+    .cc-academics h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .cc-academics p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .cc-academics p strong { color: var(--text); font-weight: 500; }
+
+    .cc-soccer h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--d2);
+      margin-bottom: 5px;
+    }
+    .cc-soccer p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .cc-soccer p strong { color: var(--text); font-weight: 500; }
+
+    .cc-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .cc-stat {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 10px;
+      text-align: center;
+    }
+    .cc-stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .cc-stat-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cc-footer {
+      padding: 13px 22px;
+      background: rgba(255,255,255,0.018);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .scholarship-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .scholarship-note .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .scholarship-note .dot.no { background: var(--muted); }
+    .cc-connection {
+      background: rgba(184,255,46,0.07);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── ROSTER BLOCK ─── */
+    .cc-roster {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 13px 14px;
+    }
+    .roster-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .roster-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 9px;
+    }
+    .rs {
+      background: rgba(255,255,255,0.03);
+      border-radius: 5px;
+      padding: 7px 6px;
+      text-align: center;
+    }
+    .rs-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .rs-val.rs-open  { color: var(--accent); }
+    .rs-val.rs-local { color: var(--d2); }
+    .rs-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.56rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .roster-note {
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .roster-note strong { color: var(--text); font-weight: 500; }
+    @media (max-width: 500px) {
+      .roster-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── FEASIBILITY GUIDE ─── */
+    .feasibility-guide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px clamp(18px, 5vw, 60px) 60px;
+    }
+    .guide-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .guide-card {
+      border-radius: var(--r);
+      padding: 20px;
+      border: 1px solid;
+    }
+    .guide-card.high   { background: var(--high-bg); border-color: rgba(184,255,46,0.2); }
+    .guide-card.medium { background: var(--med-bg);  border-color: rgba(255,200,68,0.2); }
+    .guide-card.low    { background: var(--low-bg);  border-color: rgba(255,107,107,0.2); }
+    .guide-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .guide-card.high h4   { color: var(--high); }
+    .guide-card.medium h4 { color: var(--med); }
+    .guide-card.low h4    { color: var(--low); }
+    .guide-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 860px) {
+      .college-grid { grid-template-columns: 1fr; }
+      .guide-grid   { grid-template-columns: 1fr; }
+      .region-header { flex-wrap: wrap; }
+    }
+    @media (max-width: 500px) {
+      .cc-stats { grid-template-columns: repeat(2, 1fr); }
+      .legend-bar { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="back-link">← Back to Profile</a>
+    <div class="nav-title">NL<span>21</span> — College Analysis</div>
+  </div>
+  <span class="nav-badge">Class of 2028</span>
+</nav>
+
+<!-- ─── PAGE HERO ─── -->
+<div class="page-hero">
+  <p class="label">Recruiting Research</p>
+  <h1>College Target<br>Analysis</h1>
+  <p class="sub">In-depth breakdown of every target school — soccer program competitiveness, academic fit for Pre-PT/Kinesiology, admissions profile, and realistic recruiting feasibility for a Sporting City MLS Next Academy player with a 3.5 GPA.</p>
+  <div class="criteria-pills">
+    <span class="cpill active">MLS Next AD Background</span>
+    <span class="cpill active">3.5 GPA</span>
+    <span class="cpill active">Midfielder / Forward</span>
+    <span class="cpill active">Pre-PT / Kinesiology Required</span>
+    <span class="cpill">NAIA</span>
+    <span class="cpill">NCAA D2</span>
+    <span class="cpill">NCAA D3</span>
+  </div>
+</div>
+
+<!-- ─── LEGEND ─── -->
+<div class="legend-bar">
+  <span class="legend-label">Division</span>
+  <div class="legend-items">
+    <div class="li"><div class="li-dot" style="background:var(--naia)"></div> NAIA</div>
+    <div class="li"><div class="li-dot" style="background:var(--d2)"></div> NCAA D2</div>
+    <div class="li"><div class="li-dot" style="background:var(--d3)"></div> NCAA D3</div>
+  </div>
+  <div class="sep"></div>
+  <span class="legend-label">Recruiting Feasibility</span>
+  <div class="legend-items">
+    <div class="li"><div class="li-dot" style="background:var(--high)"></div> High — Strong fit, realistic offer</div>
+    <div class="li"><div class="li-dot" style="background:var(--med)"></div> Medium — Competitive, possible with visibility</div>
+    <div class="li"><div class="li-dot" style="background:var(--low)"></div> Low — Reach / Long shot</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- REGION 1: KC / MISSOURI -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">KC / Missouri</h2>
+    <span class="region-sub">Missouri &amp; Kansas</span>
+    <span class="region-count">7 programs</span>
+  </div>
+
+  <div class="college-grid">
+
+    <!-- Rockhurst -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Rockhurst University</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">GLVC</span>
+            <span class="cc-location">· Kansas City, MO</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Exercise Science</strong> with Pre-PT Early Assurance pathway into their own on-campus <strong>Doctor of Physical Therapy (DPT)</strong> program. One of the strongest direct pipelines in the region — Noah could complete undergrad and DPT without transferring.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Perennial D2 contender — <strong>10+ NCAA tournament appearances</strong>. GLVC is a competitive mid-level D2 conference. Local KC program actively recruits area players. MLS Next background is a strong differentiator at this level.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.5+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">33</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">18</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">5</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">24</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">72% of roster from KC/MO area — active local recruiting. 5 MF/FW spots open for 2027–28 class.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <span class="cc-connection">Local · Home Program</span>
+      </div>
+    </div>
+
+    <!-- MidAmerica Nazarene -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">MidAmerica Nazarene</div>
+          <div class="cc-meta">
+            <span class="div-badge naia">NAIA</span>
+            <span class="cc-conf">Heart of America</span>
+            <span class="cc-location">· Olathe, KS</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology</strong> with a partnership providing preferential DPT admissions. Designed for pre-professional health science students — strong advising pipeline into physical therapy graduate programs.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p><strong>2023 NAIA National Champions.</strong> Elite NAIA program — top-tier attacking style, heavily international roster. Extremely competitive but actively recruits top Midwest talent. KC proximity is a major plus.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.3+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Very High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">33</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">20</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">4</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">7</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">Heavily international roster — 4 MF/FW openings for 2027–28. Competitive for a roster spot but scout presence at MLS Next events is high.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+      </div>
+    </div>
+
+    <!-- University of Saint Mary -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">University of Saint Mary</div>
+          <div class="cc-meta">
+            <span class="div-badge naia">NAIA</span>
+            <span class="cc-conf">KCAC</span>
+            <span class="cc-location">· Leavenworth, KS</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Exercise Science</strong> with a Pre-PT track and early admission into their own <strong>on-campus DPT program</strong>. One of only a handful of NAIA schools with a true integrated BS→DPT pathway.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive KCAC program — a lower-intensity NAIA conference, making it a realistic landing spot with strong scholarship potential. Small campus culture with strong athletic focus. 30 minutes from Kansas City.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.2+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">42</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">32</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">10</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">11</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note"><strong>Most open spots on any KC program</strong> — 10 graduating MF/FW for 2027–28. Highest realistic chance of landing a starting role.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+        <span class="cc-connection">Most Open Spots</span>
+      </div>
+    </div>
+
+    <!-- Park University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Park University</div>
+          <div class="cc-meta">
+            <span class="div-badge naia">NAIA</span>
+            <span class="cc-conf">Heart of America</span>
+            <span class="cc-location">· Parkville, MO</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Sport &amp; Exercise Science</strong> with an Exercise Physiology concentration that satisfies standard PT school prerequisites. Strong pre-professional health science advising.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Consistently ranked in the <strong>NAIA Top 25</strong>. Key advantage: <strong>former coach Hamid Zlitni is Head of Women's Soccer</strong> at Park — a direct personal connection that significantly improves recruiting odds. Men's coaching staff is familiar with Noah's background.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.1+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">37</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">29</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">6</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">13</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">6 MF/FW openings plus a direct staff connection via Coach Zlitni — strongest combined soccer + relationship advantage on this list.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+        <span class="cc-connection">⭐ Coach Connection</span>
+      </div>
+    </div>
+
+    <!-- Drury University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Drury University</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">GLVC</span>
+            <span class="cc-location">· Springfield, MO</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Exercise Physiology</strong> with a dedicated Pre-PT advising track. Strong health science faculty and clinical observation placement within Springfield's large regional hospital network.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive GLVC D2 program with a strong MO recruiting history — <strong>22 of 43 players from the KC/MO area</strong>. Larger roster means more competition for spots, but also more scholarship flexibility. Consistent NCAA tournament contender.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.5+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Med–High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">43</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">26</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">6</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">22</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">51% MO-area roster — demonstrates strong local recruiting. 6 MF/FW openings for 2027–28.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+      </div>
+    </div>
+
+    <!-- Maryville University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Maryville University</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">Great Lakes Valley</span>
+            <span class="cc-location">· St. Louis, MO</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>Direct-entry DPT bridge program</strong> — one of the most streamlined BS→DPT pathways in the Midwest. Strong health science reputation and clinical connections throughout the St. Louis metro.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive D2 program in the GLVC. Roster is predominantly MO-area talent, so Noah's local background fits the recruiting profile well. 3 graduating MF/FW spots open for 2027–28 — competitive but realistic.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.7+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Exceptional</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">35</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">18</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">3</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">2</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">Note: GPA avg 3.7+ — Noah's 3.5 is slightly below average. Strong academics needed for admission. Best DPT pipeline in the region.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <span class="cc-connection">Best DPT Pipeline KC</span>
+      </div>
+    </div>
+
+    <!-- Webster University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Webster University</div>
+          <div class="cc-meta">
+            <span class="div-badge d3">NCAA D3</span>
+            <span class="cc-conf">SLIAC</span>
+            <span class="cc-location">· St. Louis, MO</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Exercise Science</strong> with a dedicated Pre-Physical Therapy track aligned to graduate school requirements. Strong academic environment for health science students.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Frequent <strong>NCAA D3 tournament appearances</strong> in the SLIAC. D3 means no athletic scholarships — but strong need-based and academic aid available. Competitive level is appropriate for MLS Next AD background.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — academic/need-based aid available</span>
+      </div>
+    </div>
+
+  </div><!-- end college-grid KC -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- REGION 2: TAMPA BAY / FL-GA -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">Tampa Bay</h2>
+    <span class="region-sub">Florida &amp; Georgia</span>
+    <span class="region-count">4 programs</span>
+
+  </div>
+
+  <div class="college-grid">
+
+    <!-- University of Tampa -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">University of Tampa</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">Sunshine State</span>
+            <span class="cc-location">· Tampa, FL</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Allied Health (Physical Therapy Sciences concentration)</strong> and B.S. Exercise Physiology. Strong pre-professional infrastructure and clinical connections in the Tampa Bay health corridor.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p><strong>3× NCAA D2 National Champions.</strong> The Sunshine State Conference is one of the toughest D2 conferences in the country. Highly competitive roster — Noah would need strong highlight tape and an elite showcase performance to get noticed. The program does recruit nationally.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Very High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <span class="cc-connection">Top Target</span>
+      </div>
+    </div>
+
+    <!-- Florida Southern -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Florida Southern College</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">Sunshine State</span>
+            <span class="cc-location">· Lakeland, FL</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p>CAAHEP-accredited <strong>B.S. Exercise Science</strong> with formal Pre-PT advising and an <strong>on-campus DPT program</strong>. One of the most direct BS→DPT pathways on this list — extremely strong fit academically.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive Sunshine State program — history of producing <strong>All-American midfielders</strong>, which is directly relevant to Noah's position. Lakeland FL is 30 min from Tampa. Less dominant than UT but more realistic recruiting target.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">31</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">17</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">1</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">3</div><div class="rs-lbl">MO/KC Players</div></div>
+          </div>
+          <div class="roster-note">Tight roster — only 1 MF/FW graduating. Limited immediate opening but worth building a relationship early for future spots. 3 MO-area players shows national recruiting appetite.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <span class="cc-connection">Best FL Academic Fit</span>
+      </div>
+    </div>
+
+    <!-- Southeastern University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Southeastern University</div>
+          <div class="cc-meta">
+            <span class="div-badge naia">NAIA</span>
+            <span class="cc-conf">Sun Conference</span>
+            <span class="cc-location">· Lakeland, FL</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology</strong> with a dedicated Pre-Physical Therapy concentration including required clinical observation hours. Structured pathway into PT graduate programs.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Regular <strong>NAIA National Tournament qualifier</strong> — reached Round of 16 in 2019 and 2021. The Sun Conference is competitive but more accessible than Sunshine State D2. Strong scholarship availability and player development focus.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.1+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+      </div>
+    </div>
+
+    <!-- Berry College -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Berry College</div>
+          <div class="cc-meta">
+            <span class="div-badge d3">NCAA D3</span>
+            <span class="cc-conf">SAA</span>
+            <span class="cc-location">· Mount Berry, GA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Exercise Science</strong> with dedicated biomechanics facilities. Strong pre-professional advising and movement science labs. Closest D3 option for FL-targeting players; heavy FL recruiting pipeline.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive SAA conference — strong student-athlete culture on one of the largest campuses in the world (27,000 acres). D3 means no athletic aid but Berry offers strong merit-based scholarships — Noah's 3.5 GPA qualifies him well.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.5+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — strong merit scholarships</span>
+      </div>
+    </div>
+
+  </div><!-- end college-grid Tampa -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- REGION 3: SAN JOSE / SAN DIEGO, CA -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">San Jose / San Diego</h2>
+    <span class="region-sub">California</span>
+    <span class="region-count">6 programs</span>
+  </div>
+
+  <div class="college-grid">
+
+    <!-- Point Loma Nazarene -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Point Loma Nazarene</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">PacWest</span>
+            <span class="cc-location">· San Diego, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Health Science and Sport Science</strong> with a dedicated Pre-PT and Allied Health advising program. Clinical placement network in San Diego's large healthcare ecosystem.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p><strong>2023 PacWest Champions · NCAA D2 Sweet 16.</strong> Rapidly ascending program — stadium sits on cliffs overlooking the Pacific. Actively recruits Midwest MLS Next talent. Competitive but accessible with Noah's background.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">28</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">17</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">7</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note"><strong>7 MF/FW spots opening</strong> — strong turnover creates real opportunity. No current KC/MO players means Noah would be a pioneer on the roster, valued for Midwest MLS Next pedigree.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <span class="cc-connection">Top CA Pick</span>
+      </div>
+    </div>
+
+    <!-- Cal State San Marcos -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Cal State San Marcos</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">CCAA</span>
+            <span class="cc-location">· San Marcos, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology (Movement Science option)</strong> specifically tailored for students entering PT or PA school. CSUSM is part of the CSU system with established clinical networks in Southern California.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competes in the <strong>CCAA — widely considered the most competitive D2 conference in the West</strong>. High level of play; roster typically features many CA club academy products. Good baseline for Midwest players who can demonstrate level via film.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.2+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">27</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">15</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">2</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">Lean roster with only 2 MF/FW graduating — fewer immediate openings. Best approach is early outreach and attending a CA showcase where their coaches are present.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+      </div>
+    </div>
+
+    <!-- Cal State East Bay -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Cal State East Bay</div>
+          <div class="cc-meta">
+            <span class="div-badge d2">NCAA D2</span>
+            <span class="cc-conf">CCAA</span>
+            <span class="cc-location">· Hayward, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology (Therapeutic Studies option)</strong> designed for graduate PT/OT preparation. One of the better Kinesiology programs in the Bay Area's CSU network, with strong clinical placement partnerships.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competes in the CCAA — strong defensive reputation. Bay Area location provides high exposure to professional scouts and club coaching networks. Midwest MLS Next players are valued for their development pedigree in the West.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.2+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+        <div class="cc-roster">
+          <div class="roster-title">Current Roster Snapshot</div>
+          <div class="roster-stats">
+            <div class="rs"><div class="rs-val">30</div><div class="rs-lbl">Total Players</div></div>
+            <div class="rs"><div class="rs-val">18</div><div class="rs-lbl">MF + FW</div></div>
+            <div class="rs"><div class="rs-val rs-open">3</div><div class="rs-lbl">Graduating MF/FW</div></div>
+            <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
+          </div>
+          <div class="roster-note">3 MF/FW openings. Bay Area market — strong local competition for spots. Noah's MLS Next AD credential carries significant weight with West Coast coaches evaluating Midwest talent.</div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+      </div>
+    </div>
+
+    <!-- San Diego Christian -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">San Diego Christian College</div>
+          <div class="cc-meta">
+            <span class="div-badge naia">NAIA</span>
+            <span class="cc-conf">GSAC</span>
+            <span class="cc-location">· Santee, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology and Rehabilitation Science</strong> with a Pre-Physical Therapy emphasis. One of the most targeted undergraduate PT pathways on the West Coast at the NAIA level.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Competitive NAIA GSAC program in the high-exposure Southern California market. Smaller program = higher chance of playing time and scholarship. A realistic starting-roster opportunity for a player of Noah's level in a great location.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.0+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+        <span class="cc-connection">Best NAIA CA Fit</span>
+      </div>
+    </div>
+
+    <!-- Chapman University -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">Chapman University</div>
+          <div class="cc-meta">
+            <span class="div-badge d3">NCAA D3</span>
+            <span class="cc-conf">SCIAC</span>
+            <span class="cc-location">· Orange, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill medium">Medium</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Applied Human Physiology</strong> with an accelerated bridge program providing priority consideration for their own <strong>Doctor of Physical Therapy program</strong>. Outstanding integrated pathway — one of the best on this entire list.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Highly competitive SCIAC — routinely produces All-Americans. State-of-the-art stadium. D3 means no athletic scholarships, but Chapman's academic aid is generous and Noah's 3.5 GPA is right at their average for merit awards.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.6+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Exceptional</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — strong merit scholarships available</span>
+        <span class="cc-connection">Best DPT Pipeline CA</span>
+      </div>
+    </div>
+
+    <!-- University of Redlands -->
+    <div class="college-card">
+      <div class="cc-header">
+        <div>
+          <div class="cc-name">University of Redlands</div>
+          <div class="cc-meta">
+            <span class="div-badge d3">NCAA D3</span>
+            <span class="cc-conf">SCIAC</span>
+            <span class="cc-location">· Redlands, CA</span>
+          </div>
+        </div>
+        <span class="feasibility-pill high">High</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-academics">
+          <h4>Academic Fit</h4>
+          <p><strong>B.S. Kinesiology (Allied Health focus)</strong> with an accelerated/preferred acceptance pathway into <strong>Loma Linda University's DPT program</strong> — one of the top PT schools in California. A nationally recognized agreement.</p>
+        </div>
+        <div class="cc-soccer">
+          <h4>Soccer Program</h4>
+          <p>Perennial SCIAC contender — regularly produces <strong>All-Americans</strong> and NCAA D3 tournament qualifiers. 60 miles east of San Diego. D3 culture with D1 facilities. Noah's MLS Next background would be a standout credential for this program.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div>
+          <div class="cc-stat"><div class="cc-stat-val">Exceptional</div><div class="cc-stat-lbl">PT Pipeline</div></div>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — merit aid available</span>
+        <span class="cc-connection">Loma Linda DPT Agreement</span>
+      </div>
+    </div>
+
+  </div><!-- end college-grid CA -->
+</div>
+
+<!-- ─── FEASIBILITY GUIDE ─── -->
+<div class="feasibility-guide">
+  <h3 class="guide-title">Recruiting Feasibility — What It Means</h3>
+  <div class="guide-grid">
+    <div class="guide-card high">
+      <h4>High Feasibility</h4>
+      <p>Noah's MLS Next AD background, 3.5 GPA, and KC area profile make him a realistic recruiting target. With a highlight reel and direct coach outreach, expect interest and likely scholarship conversation.</p>
+    </div>
+    <div class="guide-card medium">
+      <h4>Medium Feasibility</h4>
+      <p>Program is competitive — Noah is in range but needs strong showcase appearances, good film, and early outreach (by sophomore fall). Getting a trial or ID camp invite is the key first step.</p>
+    </div>
+    <div class="guide-card low">
+      <h4>Low Feasibility</h4>
+      <p>Reach program — either soccer level significantly exceeds Noah's current exposure or academic standards are above average. Worth contacting but should not anchor the recruiting strategy.</p>
+    </div>
+  </div>
+</div>
+
+<footer style="border-top:1px solid var(--border); padding:24px clamp(18px,5vw,60px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--muted); opacity:0.4;">NL<span style="color:var(--accent);opacity:1;">21</span></div>
+  <div style="font-size:0.72rem; color:var(--muted); opacity:0.3;">Noah Lach · Class of 2028 · MLS Next Academy Division · Kansas City, MO</div>
+</footer>
+
+</body>
+</html>

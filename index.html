@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noah Lach — #21 | Midfielder · Forward | Class of 2028</title>
+  <meta name="description" content="Noah Lach — Midfielder/Forward, Sporting City MLS Next Academy Division, Park Hill South. Class of 2028. Kansas City, MO.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #06090f;
+      --bg-2:      #0a1120;
+      --bg-card:   #0d1828;
+      --accent:    #b8ff2e;
+      --accent-lo: rgba(184,255,46,0.12);
+      --accent-md: rgba(184,255,46,0.25);
+      --accent-glow: rgba(184,255,46,0.35);
+      --text:      #eef2ff;
+      --muted:     #607090;
+      --border:    rgba(255,255,255,0.07);
+      --nav-h:     68px;
+      --max:       1180px;
+      --r:         12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 60px);
+      transition: background 0.35s, border-color 0.35s, backdrop-filter 0.35s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.solid {
+      background: rgba(6,9,15,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #06090f;
+      padding: 9px 22px;
+      border-radius: 5px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+
+    /* ─── HERO ────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 72% 50%, #0c1e3d 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 15% 80%, #07190e 0%, transparent 55%),
+        linear-gradient(150deg, #06090f 0%, #0b1422 100%);
+    }
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    }
+    .hero-field {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      pointer-events: none;
+      opacity: 0.09;
+    }
+    .hero-field svg {
+      width: 60%;
+      height: 90%;
+    }
+    .hero-ghost-num {
+      position: absolute;
+      right: -3vw;
+      top: 50%;
+      transform: translateY(-52%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(220px, 38vw, 580px);
+      color: var(--accent);
+      opacity: 0.028;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.02em;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px clamp(24px, 6vw, 80px);
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 5px 13px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(0.7); }
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(68px, 11.5vw, 155px);
+      line-height: 0.88;
+      letter-spacing: 0.025em;
+      color: var(--text);
+      margin-bottom: 26px;
+    }
+    .hero-name .hl { color: var(--accent); }
+    .hero-positions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .pos-chip {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .pos-sep {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      padding: 0 20px 0 0;
+      margin-right: 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .hero-meta-item:last-child { border-right: none; }
+    .hero-meta-item strong { display: block; color: var(--text); font-weight: 500; font-size: 0.9rem; }
+    .hero-bio {
+      font-size: 0.95rem;
+      color: rgba(238,242,255,0.65);
+      line-height: 1.75;
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+    .hero-bio strong { color: var(--accent); font-weight: 500; }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-p {
+      background: var(--accent);
+      color: #06090f;
+      padding: 15px 34px;
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--accent-glow); }
+    .btn-s {
+      background: transparent;
+      color: var(--text);
+      padding: 15px 34px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-s:hover { border-color: var(--accent); background: var(--accent-lo); }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .scroll-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+    .scroll-bar {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: drop 2.2s ease-in-out infinite;
+    }
+    @keyframes drop {
+      0%   { transform:scaleY(0); transform-origin:top; opacity:1; }
+      50%  { transform:scaleY(1); transform-origin:top; opacity:1; }
+      100% { transform:scaleY(1); transform-origin:bottom; opacity:0; }
+    }
+
+    /* ─── DIVIDER ──────────────────────────────── */
+    .full-divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ─── STATS ────────────────────────────────── */
+    #stats { padding: 0; }
+    .stats-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 6vw, 80px);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      background: var(--border);
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin: 60px 0;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      padding: 32px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .stat-card:hover { background: #101f35; }
+    .stat-icon { font-size: 1.3rem; margin-bottom: 4px; }
+    .stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .stat-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── SECTION SHARED ────────────────────────── */
+    .section {
+      padding: 96px clamp(24px, 6vw, 80px);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .sec-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(38px, 5.5vw, 68px);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      margin-bottom: 52px;
+      color: var(--text);
+    }
+
+    /* ─── JOURNEY ────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--border) 8%,
+        var(--border) 92%,
+        transparent 100%
+      );
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+      padding-left: 28px;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -29px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2.5px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 0 14px rgba(184,255,46,0.45);
+    }
+    .tl-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 28px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .tl-card:hover { border-color: var(--accent-md); transform: translateX(4px); }
+    .tl-year {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .tl-org {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .tl-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .tl-coach {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 9px 13px;
+      background: rgba(184,255,46,0.05);
+      border: 1px solid rgba(184,255,46,0.14);
+      border-radius: 6px;
+      flex-wrap: wrap;
+    }
+    .coach-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .coach-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .coach-title {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .tl-coach-bio {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 8px;
+      padding: 8px 13px;
+      background: rgba(255,255,255,0.02);
+      border-left: 2px solid var(--accent-md);
+      border-radius: 0 4px 4px 0;
+    }
+    .tl-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .tl-link {
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .tl-link:hover {
+      background: var(--accent-lo);
+      border-color: var(--accent-md);
+      color: var(--accent);
+    }
+    .tl-badge {
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .tl-badge.neutral {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    /* ─── DEV BLOCK ─────────────────────────────── */
+    .dev-block {
+      margin-top: 44px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .dev-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .dev-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .dev-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .dev-card:hover { border-color: var(--accent-md); }
+    .dev-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .dev-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .dev-desc {
+      font-size: 0.77rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 7px;
+    }
+    .dev-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      opacity: 0.7;
+      text-decoration: none;
+    }
+    .dev-link:hover { opacity: 1; text-decoration: underline; }
+    @media (max-width: 700px) {
+      .dev-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ─── HIGHLIGHTS ────────────────────────────── */
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .reel-card {
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+      transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
+    }
+    .reel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.55), 0 0 0 1px var(--accent-md);
+      border-color: var(--accent-md);
+    }
+    .reel-thumb {
+      aspect-ratio: 9/14;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .reel-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(6,9,15,0.95) 0%, transparent 50%);
+    }
+    .reel-ball {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.12;
+      user-select: none;
+    }
+    .reel-play-btn {
+      position: relative;
+      z-index: 2;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      border: 2px solid rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      transition: transform 0.22s, background 0.22s, border-color 0.22s;
+    }
+    .reel-card:hover .reel-play-btn {
+      transform: scale(1.12);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .reel-card:hover .play-tri { border-left-color: #06090f; }
+    .play-tri {
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 14px solid rgba(255,255,255,0.9);
+      margin-left: 3px;
+      transition: border-left-color 0.22s;
+    }
+    .reel-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      padding: 0 14px 14px;
+    }
+    .reel-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .reel-caption {
+      font-size: 0.8rem;
+      color: rgba(238,242,255,0.75);
+      line-height: 1.4;
+    }
+    .reel-info {
+      padding: 14px 14px 16px;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .reel-ig {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+    .reel-card:hover .reel-ig { color: var(--accent); }
+    .reel-arrow {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .reel-card:hover .reel-arrow { transform: translateX(3px); color: var(--accent); }
+
+    /* ─── ACADEMICS ──────────────────────────────── */
+    .academics-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 44px;
+      align-items: start;
+    }
+    .gpa-tower {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 44px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .gpa-tower::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    }
+    .gpa-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 9vw, 110px);
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .gpa-denom {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .gpa-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .acad-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.05;
+    }
+    .acad-text p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.78;
+      margin-bottom: 28px;
+    }
+    .acad-goals {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+    .acad-goals li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .goal-arr {
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .acad-goals li strong { color: var(--text); font-weight: 500; }
+    .acad-activities { margin-top: 24px; }
+    .activity-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .activity-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .activity-chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .ref-chip {
+      background: var(--accent-lo);
+      border-color: var(--accent-md);
+      color: var(--accent);
+    }
+
+    /* ─── SCHOOLS ────────────────────────────────── */
+    .regions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .region-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 30px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .region-card:hover { border-color: var(--accent-md); }
+    .region-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .region-card:hover::after { transform: scaleX(1); }
+    .region-pin {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .region-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .region-state {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+    }
+    .school-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .school-slot {
+      height: 34px;
+      background: rgba(255,255,255,0.025);
+      border: 1px dashed rgba(255,255,255,0.07);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 11px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+    .colleges-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .colleges-link:hover {
+      background: var(--accent-md);
+      box-shadow: 0 4px 18px var(--accent-glow);
+    }
+    .region-note {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+      opacity: 0.5;
+    }
+    .school-real {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 7px;
+      padding: 10px 13px;
+    }
+    .sr-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .sr-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      opacity: 0.8;
+    }
+    .sr-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .sr-div {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    .sr-div.naia { background: rgba(255,180,0,0.15); color: #ffc844; border: 1px solid rgba(255,180,0,0.25); }
+    .sr-div.d2   { background: rgba(100,180,255,0.12); color: #7fc5ff; border: 1px solid rgba(100,180,255,0.22); }
+    .sr-div.d3   { background: rgba(160,100,255,0.12); color: #b899ff; border: 1px solid rgba(160,100,255,0.22); }
+    .level-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .level-chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: var(--muted);
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.45fr;
+      gap: 52px;
+      align-items: start;
+    }
+    .contact-left h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3.5vw, 50px);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .contact-left p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.72;
+      margin-bottom: 30px;
+    }
+    .contact-links { display: flex; flex-direction: column; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .cl-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .avail-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      color: var(--accent);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 24px;
+    }
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 36px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .fg {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .fg label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .fg input, .fg select, .fg textarea {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,0.18); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--accent-md);
+      background: rgba(184,255,46,0.03);
+    }
+    .fg select option { background: #0d1828; color: var(--text); }
+    .fg textarea { resize: vertical; min-height: 96px; }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #06090f;
+      border: none;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-top: 6px;
+    }
+    .form-submit:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px var(--accent-glow);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px clamp(24px, 6vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      opacity: 0.5;
+    }
+    .footer-logo span { color: var(--accent); opacity: 1; }
+    .footer-txt {
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.35;
+    }
+
+    /* ─── SCROLL ANIMATIONS ─────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ─── MOBILE ──────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .reels-grid { grid-template-columns: repeat(2, 1fr); }
+      .academics-grid { grid-template-columns: 1fr; }
+      .regions-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .section { padding: 72px clamp(18px, 5vw, 40px); }
+      .gpa-tower { padding: 28px 20px; }
+      .tl-card { padding: 20px 20px; }
+      .tl-coach { flex-direction: column; gap: 3px; }
+    }
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .reels-grid { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .btn-p, .btn-s { text-align: center; width: 100%; }
+      .hero-name { font-size: clamp(58px, 15vw, 90px); }
+      .hero-meta { gap: 0; }
+      .hero-meta-item { padding: 0 12px 0 0; margin-right: 12px; font-size: 0.78rem; }
+      .hero-meta-item strong { font-size: 0.82rem; }
+      .hero-positions { gap: 8px; }
+      .sec-title { margin-bottom: 32px; }
+      .contact-form { padding: 24px 18px; }
+      .reel-thumb { aspect-ratio: 9/12; }
+      .stats-wrap { padding: 0 18px; }
+      .stats-grid { margin: 36px 0; }
+      .stat-card { padding: 22px 14px; }
+      .footer-txt { font-size: 0.68rem; text-align: center; width: 100%; }
+      footer { justify-content: center; }
+    }
+    @media (max-width: 400px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .hero-meta { flex-wrap: wrap; row-gap: 10px; }
+      .hero-meta-item { border-right: none; padding-right: 0; margin-right: 0; min-width: 45%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">NL<span>21</span></a>
+  <ul class="nav-links">
+    <li><a href="#stats">Profile</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#academics">Academics</a></li>
+    <li><a href="#schools">Schools</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Recruit Me</a>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+
+  <!-- Soccer field SVG lines -->
+  <div class="hero-field">
+    <svg viewBox="0 0 560 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="8" width="544" height="424" stroke="white" stroke-width="1.5"/>
+      <line x1="8" y1="220" x2="552" y2="220" stroke="white" stroke-width="1.5"/>
+      <circle cx="280" cy="220" r="66" stroke="white" stroke-width="1.5"/>
+      <circle cx="280" cy="220" r="4" fill="white" opacity="0.5"/>
+      <!-- Penalty box top -->
+      <rect x="160" y="8" width="240" height="110" stroke="white" stroke-width="1.5"/>
+      <!-- Goal box top -->
+      <rect x="210" y="8" width="140" height="48" stroke="white" stroke-width="1.5"/>
+      <!-- Penalty arc top -->
+      <path d="M242 118 A 66 66 0 0 1 318 118" stroke="white" stroke-width="1.5"/>
+      <!-- Penalty spot top -->
+      <circle cx="280" cy="86" r="3.5" fill="white" opacity="0.5"/>
+      <!-- Penalty box bottom -->
+      <rect x="160" y="322" width="240" height="110" stroke="white" stroke-width="1.5"/>
+      <!-- Goal box bottom -->
+      <rect x="210" y="384" width="140" height="48" stroke="white" stroke-width="1.5"/>
+      <!-- Penalty arc bottom -->
+      <path d="M242 322 A 66 66 0 0 0 318 322" stroke="white" stroke-width="1.5"/>
+      <!-- Penalty spot bottom -->
+      <circle cx="280" cy="354" r="3.5" fill="white" opacity="0.5"/>
+      <!-- Corner arcs -->
+      <path d="M8 30 A22 22 0 0 1 30 8" stroke="white" stroke-width="1.5"/>
+      <path d="M522 8 A22 22 0 0 1 544 30" stroke="white" stroke-width="1.5"/>
+      <path d="M544 410 A22 22 0 0 1 522 432" stroke="white" stroke-width="1.5"/>
+      <path d="M30 432 A22 22 0 0 1 8 410" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="hero-ghost-num">21</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      Sporting City MLS Next Academy Division
+    </div>
+    <h1 class="hero-name">
+      NOAH<br><span class="hl">LACH</span>
+    </h1>
+    <div class="hero-positions">
+      <span class="pos-chip">Midfielder</span>
+      <span class="pos-sep">/</span>
+      <span class="pos-chip">Forward</span>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Class of 2028</strong>Sophomore</div>
+      <div class="hero-meta-item"><strong>3.5 GPA</strong>Academic Standing</div>
+      <div class="hero-meta-item"><strong>Jersey #21</strong>Park Hill South</div>
+      <div class="hero-meta-item"><strong>Kansas City, MO</strong>Hometown</div>
+    </div>
+    <div class="hero-bio">
+      Noah is a two-way midfielder with a forward's instinct — comfortable carrying the ball into dangerous areas, pressing high, and finishing. Developed through three years with Unified Legacy Premiere before earning a spot with <strong>Sporting City Soccer's MLS Next Academy Division</strong> under former KC Comets pro John Sosa. He brings the discipline of a 3.5 student, Missouri A+ Program completion, and the ambition of someone who wants to play at the next level while building a career in Physical Therapy.
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-p">Recruit Me</a>
+      <a href="#highlights" class="btn-s">Watch Highlights</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- ═══ STATS ══════════════════════════════════════ -->
+<div id="stats">
+  <div class="stats-wrap">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-icon">🎓</div>
+        <div class="stat-val">2028</div>
+        <div class="stat-lbl">Grad Year</div>
+      </div>
+      <div class="stat-card reveal reveal-d1">
+        <div class="stat-icon">📚</div>
+        <div class="stat-val">3.5</div>
+        <div class="stat-lbl">GPA</div>
+      </div>
+      <div class="stat-card reveal reveal-d2">
+        <div class="stat-icon">⚽</div>
+        <div class="stat-val">MF/FW</div>
+        <div class="stat-lbl">Position</div>
+      </div>
+      <div class="stat-card reveal reveal-d1">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-val">MLS Next</div>
+        <div class="stat-lbl">Academy Level</div>
+      </div>
+      <div class="stat-card reveal reveal-d2">
+        <div class="stat-icon">🔢</div>
+        <div class="stat-val">#21</div>
+        <div class="stat-lbl">Jersey</div>
+      </div>
+      <div class="stat-card reveal reveal-d3">
+        <div class="stat-icon">📍</div>
+        <div class="stat-val">KC, MO</div>
+        <div class="stat-lbl">Hometown</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ═══ JOURNEY ════════════════════════════════════ -->
+<div class="section" id="journey">
+  <p class="sec-label reveal">Career Path</p>
+  <h2 class="sec-title reveal">Soccer Journey</h2>
+
+  <div class="timeline">
+
+    <!-- 1. Sporting City — most current -->
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2025 — Present</div>
+        <div class="tl-org">Sporting City Soccer — MLS Next AD</div>
+        <div class="tl-desc">Competing in the MLS Next Academy Division (2010 group) with Sporting City Soccer — one of the top development academies in the Midwest, affiliated with Sporting Kansas City.</div>
+        <div class="tl-coach">
+          <span class="coach-label">Coach</span>
+          <span class="coach-name">John Sosa</span>
+          <span class="coach-title">U17/U19 Head Coach, Sporting City Soccer MLS Next AD · USSF B License</span>
+        </div>
+        <div class="tl-coach-bio">
+          Former KC Comets MASL pro (12 seasons, 2011–2024) · 2014 MISL Champion · U.S. Futsal National Team (2013 Four Nations Cup) · Former Head Coach Benedictine College (2018–2026) · UMKC Summit League MVP 2010
+        </div>
+        <div class="tl-badges">
+          <span class="tl-badge">MLS Next</span>
+          <span class="tl-badge">Academy Division</span>
+          <span class="tl-badge">2010 Group</span>
+          <span class="tl-badge neutral">@sportingcitysoccer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Park Hill South -->
+    <div class="tl-item reveal reveal-d2">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2024 — Present</div>
+        <div class="tl-org">Park Hill South Soccer</div>
+        <div class="tl-desc">Earned a starting role on the JV squad at Park Hill South High School, Kansas City, MO. Jersey #21 in the Midwest's competitive high school soccer circuit.</div>
+        <div class="tl-badges">
+          <span class="tl-badge">JV Starter</span>
+          <span class="tl-badge">Jersey #21</span>
+          <span class="tl-badge neutral">Kansas City, MO</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Unified Legacy — oldest -->
+    <div class="tl-item reveal reveal-d2">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2022 — 2025</div>
+        <div class="tl-org">Unified Legacy 2010 Premiere Wizards</div>
+        <div class="tl-desc">Three years as a midfielder with Unified Legacy's 2010 Premiere Wizards — a competitive club environment that laid the foundation for high-level play and developed the technical and tactical game that led to MLS Next.</div>
+        <div class="tl-coach">
+          <span class="coach-label">Coach</span>
+          <span class="coach-name">Hamid "Honka" Zlitni</span>
+          <span class="coach-title">Head Coach, Park University Women's Soccer</span>
+        </div>
+        <div class="tl-badges">
+          <span class="tl-badge">Premiere Level</span>
+          <span class="tl-badge">2010 Group</span>
+          <span class="tl-badge neutral">Midfielder</span>
+          <span class="tl-badge neutral">Kansas City, MO</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Development & Exposure -->
+  <div class="dev-block reveal">
+    <div class="dev-label">Development &amp; Exposure</div>
+    <div class="dev-cards">
+      <div class="dev-card">
+        <div class="dev-icon">🏟️</div>
+        <div class="dev-info">
+          <div class="dev-name">Sporting KC — MLS Exposure</div>
+          <div class="dev-desc">Trained within the Sporting Kansas City MLS environment — exposure to the professional level game.</div>
+          <div class="dev-tag">@sportingkc</div>
+        </div>
+      </div>
+      <div class="dev-card">
+        <div class="dev-icon">⚡</div>
+        <div class="dev-info">
+          <div class="dev-name">Elite Serie A Camp</div>
+          <div class="dev-desc">Selected for regional camp — competing against top talent under @mtrapcoach and Atletas Performance Center staff.</div>
+          <div class="dev-tag">@eliteseriea · @mtrapcoach</div>
+        </div>
+      </div>
+      <div class="dev-card">
+        <div class="dev-icon">🎯</div>
+        <div class="dev-info">
+          <div class="dev-name">Atletas Performance Center</div>
+          <div class="dev-desc">Advanced technical and tactical development program under professional coaching staff.</div>
+          <a href="https://atletasperformancecenter.com/" target="_blank" rel="noopener" class="dev-tag dev-link">atletasperformancecenter.com ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ═══ HIGHLIGHTS ════════════════════════════════ -->
+<div class="section" id="highlights">
+  <p class="sec-label reveal">Game Film</p>
+  <h2 class="sec-title reveal">Highlight Reels</h2>
+
+  <div class="reels-grid">
+
+    <!-- Reel 1 -->
+    <a class="reel-card reveal" href="https://www.instagram.com/noahlach16/reel/DXK66z_EVY6/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #071422 0%, #0c3040 60%, #081e12 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">MLS Next 2 · 4–1 W</div>
+          <div class="reel-caption">Surgical finish into the far corner 🤑</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reel 2 -->
+    <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DSGK-c7EtSg/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #0a0f22 0%, #101a40 60%, #0c0f20 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">MLS Next Fest · 3–3</div>
+          <div class="reel-caption">Sporting City vs Ginga FC — level on the big stage</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reel 3 -->
+    <a class="reel-card reveal reveal-d2" href="https://www.instagram.com/noahlach16/reel/DPQGS2uDL6A/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #091222 0%, #0a2818 60%, #0f1420 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">HS Soccer · 1–0 W</div>
+          <div class="reel-caption">Park Hill South vs LHS Jays — shutout win</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reel 4 -->
+    <a class="reel-card reveal" href="https://www.instagram.com/noahlach16/reel/DONHhmCDESC/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #0d0f1a 0%, #261618 60%, #0d1220 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">Season Opener · 2–0 W</div>
+          <div class="reel-caption">The assist to break the stalemate 💪 vs Staley</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reel 5 -->
+    <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DKpInvzuylc/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #0c1018 0%, #1e1a08 60%, #0a1220 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">Sporting City Signing</div>
+          <div class="reel-caption">Grateful for family, coaches, teammates — new chapter</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reel 6 -->
+    <a class="reel-card reveal reveal-d2" href="https://www.instagram.com/noahlach16/reel/DLyBep3uYNm/" target="_blank" rel="noopener">
+      <div class="reel-thumb" style="background: linear-gradient(145deg, #090d1a 0%, #0d2438 60%, #08140c 100%);">
+        <span class="reel-ball">⚽</span>
+        <div class="reel-play-btn"><div class="play-tri"></div></div>
+        <div class="reel-label">
+          <div class="reel-tag">Elite Serie A Camp</div>
+          <div class="reel-caption">Top-notch coaching, elite regional competition</div>
+        </div>
+      </div>
+      <div class="reel-info">
+        <span class="reel-ig">▷ Watch on Instagram</span>
+        <span class="reel-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ═══ ACADEMICS ══════════════════════════════════ -->
+<div class="section" id="academics">
+  <p class="sec-label reveal">Off the Pitch</p>
+  <h2 class="sec-title reveal">Academics &amp; Goals</h2>
+
+  <div class="academics-grid">
+    <div class="gpa-tower reveal">
+      <div class="gpa-num">3.5</div>
+      <div class="gpa-denom">/ 4.0</div>
+      <div class="gpa-lbl">Cumulative GPA</div>
+    </div>
+    <div class="acad-text reveal reveal-d1">
+      <h3>Strong Academics.<br>Clear Purpose.</h3>
+      <p>
+        Noah maintains a 3.5 GPA while competing at the MLS Next Academy level —
+        a balance that reflects both discipline and drive. He's looking for programs
+        that can challenge him on the field and set him up for a career in
+        Physical Therapy or Kinesiology.
+      </p>
+      <ul class="acad-goals">
+        <li>
+          <span class="goal-arr">→</span>
+          <span>Completed Missouri's <strong>A+ Scholarship Program</strong> — qualifying for state-funded tuition assistance at eligible Missouri colleges</span>
+        </li>
+        <li>
+          <span class="goal-arr">→</span>
+          <span>Seeking programs with <strong>strong Kinesiology, Exercise Science, or Pre-PT tracks</strong> paired with competitive college soccer</span>
+        </li>
+        <li>
+          <span class="goal-arr">→</span>
+          <span>Interested in the <strong>science of athletic performance</strong> — injury prevention, recovery, and biomechanics</span>
+        </li>
+        <li>
+          <span class="goal-arr">→</span>
+          <span>Long-term goal: <strong>Licensed Physical Therapist</strong> working with athletes at the professional or collegiate level</span>
+        </li>
+        <li>
+          <span class="goal-arr">→</span>
+          <span>Targeting <strong>NAIA, NCAA Division II, and NCAA Division III programs</strong> where soccer and academics both receive serious investment — athletic scholarships available at NAIA and D2 level</span>
+        </li>
+      </ul>
+      <div class="acad-activities">
+        <div class="activity-label">Activities &amp; Leadership</div>
+        <div class="activity-chips">
+          <span class="activity-chip">Student Council</span>
+          <span class="activity-chip">Varsity Esports</span>
+          <span class="activity-chip">Missouri A+ Program</span>
+          <span class="activity-chip ref-chip">⚑ Certified Youth Soccer Referee · 4 yrs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ═══ TARGET SCHOOLS ════════════════════════════ -->
+<div class="section" id="schools">
+  <p class="sec-label reveal">Recruiting Targets</p>
+  <h2 class="sec-title reveal">Target Regions</h2>
+  <a href="colleges.html" class="colleges-link reveal">View In-Depth College Analysis — Roster Data, Feasibility &amp; Academic Fit →</a>
+
+  <div class="regions-grid">
+
+    <div class="region-card reveal">
+      <span class="region-pin">📍</span>
+      <div class="region-name">KC / Missouri</div>
+      <div class="region-state">Missouri &amp; Kansas</div>
+      <div class="school-slots" style="gap:10px; display:flex; flex-direction:column;">
+        <div class="school-real">
+          <div class="sr-name">Rockhurst University</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> GLVC · Kansas City, MO</div>
+          <div class="sr-note">Direct DPT pipeline on campus · 10+ NCAA tourney appearances</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">MidAmerica Nazarene</div>
+          <div class="sr-meta"><span class="sr-div naia">NAIA</span> Heart of America · Olathe, KS</div>
+          <div class="sr-note">2023 NAIA National Champions · Kinesiology/DPT track</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">University of Saint Mary</div>
+          <div class="sr-meta"><span class="sr-div naia">NAIA</span> KCAC · Leavenworth, KS</div>
+          <div class="sr-note">B.S. Exercise Science · On-campus DPT early admission pathway</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Park University</div>
+          <div class="sr-meta"><span class="sr-div naia">NAIA</span> Heart of America · Parkville, MO</div>
+          <div class="sr-note">B.S. Sport &amp; Exercise Science · Exercise Physiology concentration · Hamid Zlitni on staff</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Webster University</div>
+          <div class="sr-meta"><span class="sr-div d3">D3</span> SLIAC · St. Louis, MO</div>
+          <div class="sr-note">B.S. Exercise Science · Dedicated Pre-PT track · Frequent NCAA D3 tourney appearances</div>
+        </div>
+      </div>
+      <div class="level-chips" style="margin-top:18px;">
+        <span class="level-chip">NAIA</span>
+        <span class="level-chip">NCAA D2</span>
+        <span class="level-chip">NCAA D3</span>
+      </div>
+      <p class="region-note">Home region — strong local ties &amp; family support</p>
+    </div>
+
+    <div class="region-card reveal reveal-d1">
+      <span class="region-pin">📍</span>
+      <div class="region-name">Tampa Bay</div>
+      <div class="region-state">Florida</div>
+      <div class="school-slots" style="gap:10px; display:flex; flex-direction:column;">
+        <div class="school-real">
+          <div class="sr-name">University of Tampa</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> Sunshine State · Tampa, FL</div>
+          <div class="sr-note">3× D2 National Champions · Allied Health / Exercise Physiology</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Florida Southern College</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> Sunshine State · Lakeland, FL</div>
+          <div class="sr-note">On-campus DPT program · Exercise Science</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Southeastern University</div>
+          <div class="sr-meta"><span class="sr-div naia">NAIA</span> Sun Conference · Lakeland, FL</div>
+          <div class="sr-note">B.S. Kinesiology · Pre-PT concentration · Clinical observation hours · NAIA Tourney regular</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Berry College</div>
+          <div class="sr-meta"><span class="sr-div d3">D3</span> SAA · Mount Berry, GA</div>
+          <div class="sr-note">B.S. Exercise Science · Biomechanics facilities · State-of-the-art athletic campus</div>
+        </div>
+      </div>
+      <div class="level-chips" style="margin-top:18px;">
+        <span class="level-chip">NAIA</span>
+        <span class="level-chip">NCAA D2</span>
+        <span class="level-chip">NCAA D3</span>
+      </div>
+      <p class="region-note">Year-round training climate &amp; top-tier PT programs</p>
+    </div>
+
+    <div class="region-card reveal reveal-d2">
+      <span class="region-pin">📍</span>
+      <div class="region-name">San Jose / San Diego</div>
+      <div class="region-state">California</div>
+      <div class="school-slots" style="gap:10px; display:flex; flex-direction:column;">
+        <div class="school-real">
+          <div class="sr-name">Point Loma Nazarene</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> PacWest · San Diego, CA</div>
+          <div class="sr-note">2023 PacWest Champs · NCAA Sweet 16 · Kinesiology/Pre-PT</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Cal State San Marcos</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> CCAA · San Marcos, CA</div>
+          <div class="sr-note">Kinesiology · CCAA: most competitive D2 conference in West</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Cal State East Bay</div>
+          <div class="sr-meta"><span class="sr-div d2">D2</span> CCAA · Hayward, CA</div>
+          <div class="sr-note">Kinesiology (Therapeutic Studies) · Bay Area exposure</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">San Diego Christian College</div>
+          <div class="sr-meta"><span class="sr-div naia">NAIA</span> GSAC · Santee, CA</div>
+          <div class="sr-note">Kinesiology · High-exposure Southern California market</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">Chapman University</div>
+          <div class="sr-meta"><span class="sr-div d3">D3</span> SCIAC · Orange, CA</div>
+          <div class="sr-note">Applied Human Physiology · Accelerated DPT bridge program on campus</div>
+        </div>
+        <div class="school-real">
+          <div class="sr-name">University of Redlands</div>
+          <div class="sr-meta"><span class="sr-div d3">D3</span> SCIAC · Redlands, CA</div>
+          <div class="sr-note">Kinesiology (Allied Health focus) · Perennial SCIAC contender · All-Americans</div>
+        </div>
+      </div>
+      <div class="level-chips" style="margin-top:18px;">
+        <span class="level-chip">NAIA</span>
+        <span class="level-chip">NCAA D2</span>
+        <span class="level-chip">NCAA D3</span>
+      </div>
+      <p class="region-note">Elite soccer culture &amp; top-tier health science programs</p>
+    </div>
+
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- ═══ CONTACT ════════════════════════════════════ -->
+<div class="section" id="contact">
+  <p class="sec-label reveal">Get In Touch</p>
+  <h2 class="sec-title reveal">Contact &amp;<br>Recruit Me</h2>
+
+  <div class="contact-grid">
+    <div class="contact-left reveal">
+      <h3>Coaches &amp; Programs —<br>Let's Connect.</h3>
+      <p>
+        Noah is a sophomore (Class of 2028) actively exploring college soccer programs at the NAIA, NCAA D2, and NCAA D3 level.
+        Available for campus visits, ID camps, and official visits. Reach out to start a conversation.
+      </p>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/noahlach16/" target="_blank" rel="noopener" class="contact-link">
+          <span class="cl-icon">📷</span>
+          @noahlach16 on Instagram
+        </a>
+        <a href="mailto:noahlach@gmail.com" class="contact-link">
+          <span class="cl-icon">✉️</span>
+          noahlach@gmail.com
+        </a>
+      </div>
+      <div class="avail-badge">
+        <span class="live-dot"></span>
+        Sophomore · Class of 2028 · Available for Visits
+      </div>
+    </div>
+
+    <div class="contact-form reveal reveal-d1">
+      <div class="form-row">
+        <div class="fg">
+          <label>Your Name</label>
+          <input type="text" placeholder="Coach Smith">
+        </div>
+        <div class="fg">
+          <label>School / Program</label>
+          <input type="text" placeholder="University of Tampa">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" placeholder="coach@university.edu">
+        </div>
+        <div class="fg">
+          <label>Division Level</label>
+          <select>
+            <option value="">Select level…</option>
+            <option>NAIA</option>
+            <option>NCAA D2</option>
+            <option>NCAA D3</option>
+            <option>NJCAA</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your program, upcoming ID camps, or schedule a visit…"></textarea>
+      </div>
+      <button class="form-submit" type="submit">Send Message →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">NL<span>21</span></div>
+  <div class="footer-txt">Noah Lach · Class of 2028 · Kansas City, MO · MLS Next Academy Division</div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 30);
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Form submit (no backend — just UX feedback)
+  const form = document.querySelector('.contact-form');
+  const btn = form.querySelector('.form-submit');
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#4ade80';
+    btn.style.cursor = 'default';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.cursor = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
