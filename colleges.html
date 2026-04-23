@@ -383,6 +383,50 @@
       text-transform: uppercase;
     }
 
+    /* ─── COACH CONTACT ─── */
+    .cc-coach-contact {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      margin-top: 10px;
+    }
+    .ccc-left { flex: 1; min-width: 0; }
+    .ccc-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .ccc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+    .ccc-links { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+    .ccc-link {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .ccc-link:hover { opacity: 1; }
+    .ccc-na { font-size: 0.72rem; color: var(--muted); font-style: italic; }
+
     /* ─── TEST ROW ─── */
     .cc-test-row {
       display: grid;
@@ -720,6 +764,16 @@
           <div class="roster-note">72% of roster from KC/MO area — active local recruiting. 5 MF/FW spots open for 2027–28 class. <strong>Note:</strong> Noah graduates in 2028 — coaches should be evaluating the 2028–29 class spots now. Early outreach in sophomore year is key.</div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Tony Tocco</div>
+          <div class="ccc-links">
+            <a href="mailto:anthony.tocco@rockhurst.edu" class="ccc-link">✉ anthony.tocco@rockhurst.edu</a>
+            <a href="tel:8165014852" class="ccc-link">📞 816-501-4852</a>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
         <span class="cc-connection">Local · Home Program</span>
@@ -770,6 +824,16 @@
           <div class="roster-note">Heavily international roster — 4 MF/FW openings for 2027–28. Competitive for a roster spot but scout presence at MLS Next events is high.</div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Kevin Wardlaw</div>
+          <div class="ccc-links">
+            <a href="mailto:kpwardlaw@mnu.edu" class="ccc-link">✉ kpwardlaw@mnu.edu</a>
+            <a href="tel:9139713262" class="ccc-link">📞 913-971-3262</a>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
       </div>
@@ -817,6 +881,16 @@
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
           <div class="roster-note"><strong>Most open spots on any KC program</strong> — 10 graduating MF/FW for 2027–28. Highest realistic chance of landing a starting role.</div>
+        </div>
+      </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Derek Mazeitis</div>
+          <div class="ccc-links">
+            <a href="mailto:derek.mazeitis@stmary.edu" class="ccc-link">✉ derek.mazeitis@stmary.edu</a>
+            <a href="tel:9137586164" class="ccc-link">📞 913-758-6164</a>
+          </div>
         </div>
       </div>
       <div class="cc-footer">
@@ -869,6 +943,16 @@
           <div class="roster-note">6 MF/FW openings plus a direct staff connection via Coach Zlitni — strongest combined soccer + relationship advantage on this list.</div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Efrem Shimlis</div>
+          <div class="ccc-links">
+            <a href="mailto:eshimlis@park.edu" class="ccc-link">✉ eshimlis@park.edu</a>
+            <a href="tel:8165846487" class="ccc-link">📞 816-584-6487</a>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
         <span class="cc-connection">⭐ Coach Connection</span>
@@ -917,6 +1001,16 @@
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div>
           </div>
           <div class="roster-note">51% MO-area roster — demonstrates strong local recruiting. 6 MF/FW openings for 2027–28.</div>
+        </div>
+      </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Ben Taylor</div>
+          <div class="ccc-links">
+            <a href="mailto:btaylor03@drury.edu" class="ccc-link">✉ btaylor03@drury.edu</a>
+            <a href="tel:4178737830" class="ccc-link">📞 417-873-7830</a>
+          </div>
         </div>
       </div>
       <div class="cc-footer">
@@ -968,6 +1062,16 @@
           <div class="roster-note">Note: GPA avg 3.7+ — Noah's 3.5 is slightly below average. Strong academics needed for admission. Best DPT pipeline in the region.</div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Adam Hall</div>
+          <div class="ccc-links">
+            <a href="mailto:ahall26@maryville.edu" class="ccc-link">✉ ahall26@maryville.edu</a>
+            <a href="tel:3145299475" class="ccc-link">📞 314-529-9475</a>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
         <span class="cc-connection">Best DPT Pipeline KC</span>
@@ -1010,6 +1114,16 @@
           <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div>
         </div>
         <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — academic/need-based aid available</span>
+        <div class="cc-coach-contact" style="margin-top:10px;">
+          <div class="ccc-left">
+            <div class="ccc-label">Athletics Contact</div>
+            <div class="ccc-name">Webster Athletics</div>
+            <div class="ccc-links">
+              <a href="tel:8009819801" class="ccc-link">📞 800-981-9801</a>
+              <span class="ccc-na">Coach email not publicly listed</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1067,6 +1181,16 @@
           <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly for current roster and open spots: <strong>tampaspartans.com</strong></div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Athletics Contact</div>
+          <div class="ccc-name">Tampa Spartans Athletics</div>
+          <div class="ccc-links">
+            <a href="https://tampaspartans.com/sports/msoc/coaches" class="ccc-link" target="_blank">tampaspartans.com/sports/msoc/coaches ↗</a>
+            <span class="ccc-na">Coach contact not publicly listed — contact via athletics site</span>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
         <span class="cc-connection">Top Target</span>
@@ -1117,6 +1241,16 @@
           <div class="roster-note">Tight roster — only 1 MF/FW graduating. Limited immediate opening but worth building a relationship early for future spots. 3 MO-area players shows national recruiting appetite.</div>
         </div>
       </div>
+      <div class="cc-coach-contact">
+        <div class="ccc-left">
+          <div class="ccc-label">Head Coach</div>
+          <div class="ccc-name">Ashley Holmes</div>
+          <div class="ccc-links">
+            <a href="mailto:aholmes@flsouthern.edu" class="ccc-link">✉ aholmes@flsouthern.edu</a>
+            <a href="tel:8636804258" class="ccc-link">📞 863-680-4258</a>
+          </div>
+        </div>
+      </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
         <span class="cc-connection">Best FL Academic Fit</span>
@@ -1160,12 +1294,12 @@
           </div>
           <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff for open spots: <strong>seu.edu/athletics</strong></div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SEU Fire Athletics</div><div class="ccc-links"><a href="https://seu.edu/athletics" class="ccc-link" target="_blank">seu.edu/athletics ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
       </div>
     </div>
-
 
     <!-- Saint Leo University -->
     <div class="college-card">
@@ -1204,6 +1338,7 @@
           </div>
           <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>saintleoathletics.com</strong></div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Saint Leo Athletics</div><div class="ccc-links"><a href="https://saintleoathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">saintleoathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
@@ -1247,6 +1382,7 @@
           </div>
           <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>eckerdathletics.com</strong></div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Eckerd Tritons Athletics</div><div class="ccc-links"><a href="https://eckerdathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">eckerdathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
@@ -1291,6 +1427,7 @@
           </div>
           <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>lynnathletics.com</strong></div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Lynn Fighting Knights Athletics</div><div class="ccc-links"><a href="https://lynnathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">lynnathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
@@ -1334,6 +1471,7 @@
           </div>
           <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>warneathletics.com</strong></div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Warner Royals Athletics</div><div class="ccc-links"><a href="https://warneathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">warneathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA — up to 12 full equiv.)</span>
@@ -1402,6 +1540,7 @@
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Head Coach</div><div class="ccc-name">Phil Wolf</div><div class="ccc-links"><a href="mailto:msoccer@pointloma.edu" class="ccc-link">✉ msoccer@pointloma.edu</a><a href="tel:6198492327" class="ccc-link">📞 619-849-2327</a></div></div></div>
         <span class="cc-connection">Top CA Pick</span>
       </div>
     </div>
@@ -1449,6 +1588,7 @@
           </div>
           <div class="roster-note">Lean roster with only 2 MF/FW graduating — fewer immediate openings. Best approach is early outreach and attending a CA showcase where their coaches are present.</div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Head Coach</div><div class="ccc-name">Ron Pulvers</div><div class="ccc-links"><a href="mailto:rpulvers@csusm.edu" class="ccc-link">✉ rpulvers@csusm.edu</a><a href="tel:7607507112" class="ccc-link">📞 760-750-7112</a></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
@@ -1498,6 +1638,7 @@
           </div>
           <div class="roster-note">3 MF/FW openings. Bay Area market — strong local competition for spots. Noah's MLS Next AD credential carries significant weight with West Coast coaches evaluating Midwest talent.</div>
         </div>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">CSUEB Pioneers Athletics</div><div class="ccc-links"><a href="https://eastbaypioneers.com/sports/msoc/coaches" class="ccc-link" target="_blank">eastbaypioneers.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
@@ -1544,6 +1685,7 @@
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SDCC Athletics</div><div class="ccc-links"><a href="https://sdcc.edu/athletics" class="ccc-link" target="_blank">sdcc.edu/athletics ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
         <span class="cc-connection">Best NAIA CA Fit</span>
       </div>
     </div>
@@ -1588,6 +1730,7 @@
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — strong merit scholarships available</span>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Head Coach</div><div class="ccc-name">Eddie Carrillo</div><div class="ccc-links"><a href="mailto:carrillo@chapman.edu" class="ccc-link">✉ carrillo@chapman.edu</a><a href="tel:7149976502" class="ccc-link">📞 714-997-6502</a></div></div></div>
         <span class="cc-connection">Best DPT Pipeline CA</span>
       </div>
     </div>
@@ -1632,6 +1775,7 @@
       </div>
       <div class="cc-footer">
         <span class="scholarship-note"><span class="dot no"></span> No athletic aid (D3) — merit aid available</span>
+        <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Head Coach</div><div class="ccc-name">Alex Ortega</div><div class="ccc-links"><a href="mailto:alex_ortega@redlands.edu" class="ccc-link">✉ alex_ortega@redlands.edu</a><a href="https://goredlands.com/sports/msoc/coaches" class="ccc-link" target="_blank">goredlands.com ↗</a></div></div></div>
         <span class="cc-connection">Loma Linda DPT Agreement</span>
       </div>
     </div>
