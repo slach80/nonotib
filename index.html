@@ -1128,6 +1128,86 @@
       box-shadow: 0 8px 28px var(--accent-glow);
     }
 
+    /* ─── COACH CARDS ─────────────────────────────── */
+    .coach-cards-section {
+      margin-top: 52px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .coach-cards-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .coach-cards-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .coach-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .coach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 18px 18px 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .coach-card:hover { border-color: var(--accent-md); transform: translateY(-2px); }
+    .coach-card-org {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+    .coach-card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .coach-card-role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .coach-card-creds {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .coach-card-contacts { display: flex; flex-direction: column; gap: 4px; }
+    .coach-card-contact {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .coach-card-link { color: var(--accent); opacity: 0.8; transition: opacity 0.2s; }
+    .coach-card-link:hover { opacity: 1; }
+    @media (max-width: 860px) { .coach-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .coach-cards-grid { grid-template-columns: 1fr; } }
+
     /* ─── FOOTER ──────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
@@ -1376,7 +1456,7 @@
         <div class="tl-coach">
           <span class="coach-label">Incoming HC</span>
           <span class="coach-name">Chris Lawson</span>
-          <span class="coach-title">Incoming 2026-27 Head Coach · Former Rockhurst High School Head Coach · Kansas City, MO</span>
+          <span class="coach-title">Incoming 2026-27 Head Coach · Teacher &amp; HC at Rockhurst HS · Park University Alum</span>
         </div>
         <div class="tl-coach">
           <span class="coach-label">JV Coach</span>
@@ -1769,6 +1849,7 @@
   <p class="sec-label reveal">Get In Touch</p>
   <h2 class="sec-title reveal">Contact &amp;<br>Recruit Me</h2>
 
+  <!-- Top row: contact info + form -->
   <div class="contact-grid">
     <div class="contact-left reveal">
       <h3>Coaches &amp; Programs —<br>Let's Connect.</h3>
@@ -1789,34 +1870,6 @@
       <div class="avail-badge">
         <span class="live-dot"></span>
         Sophomore · Class of 2028 · Available for Visits
-      </div>
-
-      <div class="coach-refs">
-        <div class="coach-refs-label">Coach References</div>
-        <div class="coach-ref-item">
-          <div class="cri-name">John Sosa</div>
-          <div class="cri-role">Sporting City Soccer MLS Next AD</div>
-        </div>
-        <div class="coach-ref-item">
-          <div class="cri-name">Jimmy J. Perez</div>
-          <div class="cri-role">KC Fusion ECNL-RL</div>
-          <a href="tel:8169165513" class="cri-contact">📞 (816) 916-5513</a>
-          <a href="mailto:jimmy.perez@kcfusion.com" class="cri-contact">✉ jimmy.perez@kcfusion.com</a>
-        </div>
-        <div class="coach-ref-item">
-          <div class="cri-name">Carlos Olivas</div>
-          <div class="cri-role">KC Fusion ECNL-RL</div>
-          <a href="tel:9137446769" class="cri-contact">📞 (913) 744-6769</a>
-          <a href="mailto:carlos.olivas@kcfusion.com" class="cri-contact">✉ carlos.olivas@kcfusion.com</a>
-        </div>
-        <div class="coach-ref-item">
-          <div class="cri-name">Matt Semkin</div>
-          <div class="cri-role">Park Hill South JV · Former Park University</div>
-        </div>
-        <div class="coach-ref-item">
-          <div class="cri-name">Hamid "Honka" Zlitni</div>
-          <div class="cri-role">Park University Women's HC · Former Unified Legacy</div>
-        </div>
       </div>
     </div>
 
@@ -1853,6 +1906,77 @@
         <textarea placeholder="Tell us about your program, upcoming ID camps, or schedule a visit…"></textarea>
       </div>
       <button class="form-submit" type="submit">Send Message →</button>
+    </div>
+  </div>
+
+  <!-- Coach reference cards -->
+  <div class="coach-cards-section reveal">
+    <div class="coach-cards-label">Coach References &amp; Network</div>
+    <p class="coach-cards-sub">College coaches are encouraged to reach out directly to any of Noah's coaches for a reference or recruiting conversation.</p>
+    <div class="coach-cards-grid">
+
+      <div class="coach-card">
+        <div class="coach-card-org">Sporting City Soccer — MLS Next AD</div>
+        <div class="coach-card-name">John Sosa</div>
+        <div class="coach-card-role">U17/U19 Head Coach · USSF B License</div>
+        <div class="coach-card-creds">Former KC Comets MASL Pro · 2014 MISL Champion · Former HC Benedictine College</div>
+        <div class="coach-card-contacts">
+          <span class="coach-card-contact">@sportingcitysoccer</span>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card-org">KC Fusion Soccer Club — ECNL-RL</div>
+        <div class="coach-card-name">Jimmy J. Perez</div>
+        <div class="coach-card-role">Head Coach · Coerver Certified</div>
+        <div class="coach-card-creds">Park University Alum · Former KC Kings Pro Indoor · JCCC Record Holder</div>
+        <div class="coach-card-contacts">
+          <a href="tel:8169165513" class="coach-card-contact coach-card-link">📞 (816) 916-5513</a>
+          <a href="mailto:jimmy.perez@kcfusion.com" class="coach-card-contact coach-card-link">✉ jimmy.perez@kcfusion.com</a>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card-org">KC Fusion Soccer Club — ECNL-RL</div>
+        <div class="coach-card-name">Carlos Olivas</div>
+        <div class="coach-card-role">Assistant Coach · USSF Licensed</div>
+        <div class="coach-card-creds">KC Fusion long-term competitive staff · 2012 &amp; 2013 Boys teams</div>
+        <div class="coach-card-contacts">
+          <a href="tel:9137446769" class="coach-card-contact coach-card-link">📞 (913) 744-6769</a>
+          <a href="mailto:carlos.olivas@kcfusion.com" class="coach-card-contact coach-card-link">✉ carlos.olivas@kcfusion.com</a>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card-org">Park Hill South HS — Incoming Varsity HC</div>
+        <div class="coach-card-name">Chris Lawson</div>
+        <div class="coach-card-role">Incoming Head Coach 2026-27</div>
+        <div class="coach-card-creds">Teacher &amp; Head Soccer Coach at Rockhurst High School · Park University Alum (1987–1991) · Kansas City, MO</div>
+        <div class="coach-card-contacts">
+          <span class="coach-card-contact">Park Hill South Athletics</span>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card-org">Park Hill South HS — JV</div>
+        <div class="coach-card-name">Matt Semkin</div>
+        <div class="coach-card-role">JV Head Coach</div>
+        <div class="coach-card-creds">Former Park University Soccer Player · All-District PHSS Alum · MCC-Maple Woods coaching background</div>
+        <div class="coach-card-contacts">
+          <span class="coach-card-contact">Park Hill South Athletics</span>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card-org">Unified Legacy FC — Premiere Wizards</div>
+        <div class="coach-card-name">Hamid "Honka" Zlitni</div>
+        <div class="coach-card-role">Former Head Coach · Now Park University Women's HC</div>
+        <div class="coach-card-creds">3 years coaching Noah at Unified Legacy · Direct Park University staff connection</div>
+        <div class="coach-card-contacts">
+          <span class="coach-card-contact">Park University Athletics</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
