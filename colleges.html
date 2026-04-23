@@ -478,6 +478,69 @@
     .guide-card.low h4    { color: var(--low); }
     .guide-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
+    /* ─── CONTACTS ─── */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 20px 16px;
+      transition: border-color 0.2s;
+    }
+    .contact-card:hover { border-color: var(--accent-md); }
+    .cc-org {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+    .cc-person {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .cc-role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .cc-creds {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cc-contacts { display: flex; flex-direction: column; gap: 5px; }
+    .cc-contact-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cc-phone::before { content: '📞 '; }
+    .cc-email::before { content: '✉ '; }
+    .cc-phone:hover, .cc-email:hover { color: var(--accent); }
+    @media (max-width: 860px) { .contacts-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .contacts-grid { grid-template-columns: 1fr; } }
+
     /* ─── MOBILE ─── */
     @media (max-width: 860px) {
       .college-grid { grid-template-columns: 1fr; }
@@ -505,12 +568,12 @@
 <div class="page-hero">
   <p class="label">Recruiting Research</p>
   <h1>College Target<br>Analysis</h1>
-  <p class="sub">In-depth breakdown of every target school — soccer program competitiveness, academic fit for Pre-PT/Kinesiology, admissions profile, and realistic recruiting feasibility for a Sporting City MLS Next Academy player with a 3.5 GPA.</p>
+  <p class="sub">In-depth breakdown of every target school — soccer program competitiveness, academic fit for Pre-PT / Athletic Training / Sports Medicine / Kinesiology, admissions profile, and realistic recruiting feasibility for a Sporting City MLS Next Academy player with a 3.5 GPA.</p>
   <div class="criteria-pills">
     <span class="cpill active">MLS Next AD Background</span>
     <span class="cpill active">3.5 GPA</span>
     <span class="cpill active">Midfielder / Forward</span>
-    <span class="cpill active">Pre-PT / Kinesiology Required</span>
+    <span class="cpill active">Pre-PT / Kinesiology / Athletic Training / Sports Medicine</span>
     <span class="cpill">NAIA</span>
     <span class="cpill">NCAA D2</span>
     <span class="cpill">NCAA D3</span>
@@ -581,7 +644,7 @@
             <div class="rs"><div class="rs-val rs-open">5</div><div class="rs-lbl">Graduating MF/FW</div></div>
             <div class="rs"><div class="rs-val rs-local">24</div><div class="rs-lbl">KC/MO Players</div></div>
           </div>
-          <div class="roster-note">72% of roster from KC/MO area — active local recruiting. 5 MF/FW spots open for 2027–28 class.</div>
+          <div class="roster-note">72% of roster from KC/MO area — active local recruiting. 5 MF/FW spots open for 2027–28 class. <strong>Note:</strong> Noah graduates in 2028 — coaches should be evaluating the 2028–29 class spots now. Early outreach in sophomore year is key.</div>
         </div>
       </div>
       <div class="cc-footer">
@@ -1267,6 +1330,80 @@
       <h4>Low Feasibility</h4>
       <p>Reach program — either soccer level significantly exceeds Noah's current exposure or academic standards are above average. Worth contacting but should not anchor the recruiting strategy.</p>
     </div>
+  </div>
+</div>
+
+<!-- ═══ COACH CONTACTS ═══════════════════════════════ -->
+<div class="region-section" style="padding-bottom:52px;">
+  <div class="region-header">
+    <h2 class="region-title">Noah's Coach Contacts</h2>
+    <span class="region-sub">References &amp; Network</span>
+  </div>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:28px; line-height:1.7;">College coaches are encouraged to reach out directly to any of Noah's coaches for a reference or recruiting conversation.</p>
+  <div class="contacts-grid">
+
+    <div class="contact-card">
+      <div class="cc-org">Sporting City Soccer — MLS Next AD</div>
+      <div class="cc-person">John Sosa</div>
+      <div class="cc-role">U17/U19 Head Coach · USSF B License</div>
+      <div class="cc-creds">Former KC Comets MASL Pro · 2014 MISL Champion · Former HC Benedictine College</div>
+      <div class="cc-contacts">
+        <span class="cc-contact-item">@sportingcitysoccer</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-org">KC Fusion Soccer Club — ECNL-RL</div>
+      <div class="cc-person">Jimmy J. Perez</div>
+      <div class="cc-role">Head Coach · Coerver Certified</div>
+      <div class="cc-creds">Park University Alum · Former KC Kings Pro Indoor · JCCC Record Holder</div>
+      <div class="cc-contacts">
+        <a href="tel:8169165513" class="cc-contact-item cc-phone">(816) 916-5513</a>
+        <a href="mailto:jimmy.perez@kcfusion.com" class="cc-contact-item cc-email">jimmy.perez@kcfusion.com</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-org">KC Fusion Soccer Club — ECNL-RL</div>
+      <div class="cc-person">Carlos Olivas</div>
+      <div class="cc-role">Assistant Coach · USSF Licensed</div>
+      <div class="cc-creds">KC Fusion long-term competitive staff · 2012 &amp; 2013 Boys teams</div>
+      <div class="cc-contacts">
+        <a href="tel:9137446769" class="cc-contact-item cc-phone">(913) 744-6769</a>
+        <a href="mailto:carlos.olivas@kcfusion.com" class="cc-contact-item cc-email">carlos.olivas@kcfusion.com</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-org">Park Hill South HS — Varsity</div>
+      <div class="cc-person">Bridger Pretz</div>
+      <div class="cc-role">Incoming Head Coach 2026-27 · GK Specialist</div>
+      <div class="cc-creds">Former Moberly HS HC · Multiple District Titles · @mosoccerguy · William Woods University</div>
+      <div class="cc-contacts">
+        <span class="cc-contact-item">Park Hill South Athletics</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-org">Park Hill South HS — JV</div>
+      <div class="cc-person">Matt Semkin</div>
+      <div class="cc-role">JV Head Coach</div>
+      <div class="cc-creds">Former Park University Soccer Player · All-District PHSS Alum · MCC-Maple Woods coaching background</div>
+      <div class="cc-contacts">
+        <span class="cc-contact-item">Park Hill South Athletics</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-org">Unified Legacy FC — Premiere Wizards</div>
+      <div class="cc-person">Hamid "Honka" Zlitni</div>
+      <div class="cc-role">Former Head Coach · Now Park University Women's HC</div>
+      <div class="cc-creds">3 years coaching Noah at Unified Legacy · Direct Park University staff connection</div>
+      <div class="cc-contacts">
+        <span class="cc-contact-item">Park University Athletics</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
