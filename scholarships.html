@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarships & Grants — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #06090f; --bg-card: #0d1828; --accent: #b8ff2e;
+      --accent-lo: rgba(184,255,46,0.1); --accent-md: rgba(184,255,46,0.22);
+      --text: #eef2ff; --muted: #607090; --border: rgba(255,255,255,0.07);
+      --r: 10px; --nav-h: 64px;
+      --gold: #ffc844; --gold-bg: rgba(255,200,68,0.1);
+      --blue: #7fc5ff; --blue-bg: rgba(127,197,255,0.1);
+      --purple: #b899ff; --purple-bg: rgba(184,153,255,0.1);
+      --red: #ff6b6b; --red-bg: rgba(255,107,107,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100; height: var(--nav-h);
+      background: rgba(6,9,15,0.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(18px, 5vw, 60px); gap: 16px;
+    }
+    .back-link {
+      display: flex; align-items: center; gap: 7px; color: var(--muted);
+      text-decoration: none; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .nav-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; }
+    .nav-title span { color: var(--accent); }
+    .nav-badge {
+      background: var(--accent-lo); border: 1px solid var(--accent-md);
+      color: var(--accent); padding: 4px 10px; border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    /* PAGE HERO */
+    .page-hero { padding: 56px clamp(18px,5vw,60px) 44px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,6vw,72px); line-height: 0.95; letter-spacing: 0.03em; margin-bottom: 18px; }
+    .page-hero p.sub { color: var(--muted); font-size: 0.9rem; line-height: 1.7; max-width: 680px; margin-bottom: 24px; }
+    .profile-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pchip {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--muted); padding: 5px 12px; border-radius: 20px;
+      font-size: 0.76rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.08em;
+    }
+    .pchip.on { background: var(--accent-lo); border-color: var(--accent-md); color: var(--accent); }
+
+    /* ACTION BANNER */
+    .action-banner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 20px clamp(18px,5vw,60px);
+      border-bottom: 1px solid var(--border);
+    }
+    .action-inner {
+      background: linear-gradient(135deg, rgba(184,255,46,0.08) 0%, rgba(184,255,46,0.03) 100%);
+      border: 1px solid var(--accent-md);
+      border-radius: var(--r); padding: 20px 24px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    .action-item { display: flex; gap: 10px; align-items: flex-start; }
+    .action-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; flex-shrink: 0; }
+    .action-text h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); margin-bottom: 3px; }
+    .action-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .action-text a { color: var(--accent); text-decoration: none; }
+    .action-text a:hover { text-decoration: underline; }
+
+    /* SECTION */
+    .sec { max-width: 1200px; margin: 0 auto; padding: 52px clamp(18px,5vw,60px) 0; }
+    .sec-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px; }
+    .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,48px); letter-spacing: 0.03em; margin-bottom: 28px; }
+    .sec-note { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px; max-width: 780px; }
+
+    /* SCHOLARSHIP GRID */
+    .sch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 52px; }
+
+    /* SCHOLARSHIP CARD */
+    .sch-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      transition: border-color 0.22s, transform 0.22s;
+    }
+    .sch-card:hover { border-color: var(--accent-md); transform: translateY(-2px); }
+    .sch-card-top { padding: 18px 20px 14px; }
+    .sch-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .sch-tag {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+    }
+    .tag-asian { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(184,153,255,0.2); }
+    .tag-merit { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(127,197,255,0.2); }
+    .tag-need  { background: rgba(255,107,107,0.1); color: var(--red); border: 1px solid rgba(255,107,107,0.2); }
+    .tag-state { background: var(--accent-lo); color: var(--accent); border: 1px solid var(--accent-md); }
+    .tag-sport { background: rgba(68,255,180,0.08); color: #44ffb4; border: 1px solid rgba(68,255,180,0.2); }
+    .tag-health { background: var(--gold-bg); color: var(--gold); border: 1px solid rgba(255,200,68,0.2); }
+    .tag-employer { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+    .tag-priority { background: var(--accent); color: #06090f; }
+    .sch-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.03em; color: var(--text); line-height: 1.05; margin-bottom: 4px; }
+    .sch-org { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+    .sch-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 10px; }
+    .sch-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .sch-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .sch-meta-item { background: rgba(255,255,255,0.025); border-radius: 5px; padding: 7px 10px; }
+    .sch-meta-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .sch-meta-val { font-size: 0.78rem; color: var(--text); font-weight: 500; }
+    .sch-card-footer {
+      padding: 10px 20px; background: rgba(255,255,255,0.018); border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .sch-url { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+    .sch-url:hover { opacity: 1; }
+    .sch-status { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .status-now { color: var(--accent); }
+    .status-junior { color: var(--gold); }
+    .status-senior { color: var(--blue); }
+    .status-verify { color: var(--muted); }
+    .sch-note {
+      font-size: 0.74rem; color: var(--muted); font-style: italic;
+      padding: 8px 10px; background: rgba(255,165,0,0.05);
+      border-left: 2px solid rgba(255,165,0,0.3); border-radius: 0 4px 4px 0; margin-top: 8px;
+    }
+
+    /* TIMELINE / PRIORITY PLAN */
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 52px; }
+    .plan-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r);
+      padding: 22px 20px; position: relative; overflow: hidden;
+    }
+    .plan-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .plan-card.now::before   { background: var(--accent); }
+    .plan-card.junior::before { background: var(--gold); }
+    .plan-card.senior::before { background: var(--blue); }
+    .plan-when { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
+    .plan-card.now .plan-when   { color: var(--accent); }
+    .plan-card.junior .plan-when { color: var(--gold); }
+    .plan-card.senior .plan-when { color: var(--blue); }
+    .plan-items { display: flex; flex-direction: column; gap: 10px; }
+    .plan-item { display: flex; gap: 10px; align-items: flex-start; }
+    .pi-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 6px; }
+    .plan-card.now .pi-dot   { color: var(--accent); }
+    .plan-card.junior .pi-dot { color: var(--gold); }
+    .plan-card.senior .pi-dot { color: var(--blue); }
+    .pi-text { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .pi-text strong { color: var(--text); font-weight: 500; }
+
+    /* BRIGHT FLIGHT CALLOUT */
+    .bf-callout {
+      background: linear-gradient(135deg, rgba(184,255,46,0.07) 0%, transparent 60%);
+      border: 1px solid var(--accent-md); border-radius: var(--r); padding: 24px 28px;
+      margin-bottom: 28px; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .bf-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .bf-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 6px; }
+    .bf-text p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+    .bf-text strong { color: var(--text); font-weight: 500; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      max-width: 1200px; margin: 40px auto 0; padding: 20px clamp(18px,5vw,60px) 52px;
+      font-size: 0.74rem; color: var(--muted); line-height: 1.65; opacity: 0.6;
+    }
+
+    /* MOBILE */
+    @media (max-width: 860px) { .action-inner { grid-template-columns: 1fr; } .plan-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .sch-grid { grid-template-columns: 1fr; } .sch-meta { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="index.html" class="back-link">← Back to Profile</a>
+    <div class="nav-title">NL<span>21</span> — Scholarships</div>
+  </div>
+  <span class="nav-badge">Class of 2028</span>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="label">Financial Planning</p>
+  <h1>Scholarships<br>&amp; Grants</h1>
+  <p class="sub">Curated scholarships, grants, and financial aid opportunities matching Noah's full profile — Asian-American heritage, MLS Next athletics, Missouri residency, Pre-PT/Kinesiology academic track, and 3.5 GPA. All deadlines and amounts should be verified annually before applying.</p>
+  <div class="profile-chips">
+    <span class="pchip on">Asian-American (Cambodian &amp; Vietnamese)</span>
+    <span class="pchip on">Missouri Resident</span>
+    <span class="pchip on">3.5 GPA</span>
+    <span class="pchip on">MLS Next Athlete</span>
+    <span class="pchip on">USSF Certified Referee</span>
+    <span class="pchip on">Pre-PT / Kinesiology / Sports Med</span>
+    <span class="pchip on">A+ Program Complete</span>
+    <span class="pchip">Financial Need (FAFSA)</span>
+  </div>
+</div>
+
+<!-- ACTION BANNER -->
+<div class="action-banner">
+  <div class="action-inner">
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div class="action-text">
+        <h4>Take the ACT Now</h4>
+        <p>ACT 31+ unlocks <strong>Missouri Bright Flight ($3,000/yr)</strong> — highest ROI action available. Register at <a href="https://www.act.org" target="_blank">act.org</a></p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div class="action-text">
+        <h4>File FAFSA Early</h4>
+        <p>Opens October 1 each year. Unlocks <strong>Access Missouri</strong>, Pell Grant, and institutional aid. Do NOT wait — file on Day 1.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div class="action-text">
+        <h4>Check Employer Benefits</h4>
+        <p>Contact <strong>SS&amp;C Technologies HR</strong> and <strong>AmeriLife HR</strong> directly — ask about dependent scholarship or tuition assistance programs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRIORITY PLAN ════════════════════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:var(--accent)">When to Apply</p>
+  <h2 class="sec-title">Action Timeline</h2>
+  <div class="plan-grid">
+
+    <div class="plan-card now">
+      <div class="plan-when">Now — Sophomore Year</div>
+      <div class="plan-items">
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Take the ACT</strong> — aim for 31+ for Bright Flight eligibility</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Register NCAA Eligibility Center</strong> (free) — start recruiting clock</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Contact SS&amp;C &amp; AmeriLife HR</strong> — ask about dependent scholarship benefits</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Research APIASF</strong> — applications open annually in January; begin essay prep</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Research OCA-UPS Foundation</strong> — March deadline; start profile</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Build recruiting highlight reel</strong> — essential for athletic scholarship conversations</div></div>
+      </div>
+    </div>
+
+    <div class="plan-card junior">
+      <div class="plan-when">Junior Year</div>
+      <div class="plan-items">
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>QuestBridge</strong> — applications open junior year (if income-eligible)</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>APIASF</strong> — submit application (January deadline)</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>OCA-UPS Foundation</strong> — submit (March deadline)</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Vietnamese American Scholarship Foundation (VASF)</strong> — spring deadline</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>SEARAC / CamANC</strong> — Cambodian community scholarships</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Begin official college visits</strong> — athletic scholarship conversations begin</div></div>
+      </div>
+    </div>
+
+    <div class="plan-card senior">
+      <div class="plan-when">Senior Year</div>
+      <div class="plan-items">
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>File FAFSA October 1</strong> — Access Missouri, Pell Grant, institutional aid</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Coca-Cola Scholars</strong> — October deadline</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Elks Most Valuable Student</strong> — November deadline</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Horatio Alger AAPI Scholarship</strong> — October deadline ($25,000)</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>RMHC / Asia Scholarship</strong> — January deadline</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Gates Scholarship</strong> — September deadline (if Pell-eligible)</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>Missouri Bright Flight</strong> — July 31 after receiving test scores</div></div>
+        <div class="plan-item"><div class="pi-dot"></div><div class="pi-text"><strong>NATA / SHAPE America</strong> — once enrolled in Kinesiology/AT program</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ BRIGHT FLIGHT CALLOUT ════════════════════════ -->
+<div class="sec" style="padding-top:0;">
+  <div class="bf-callout">
+    <div class="bf-icon">🎯</div>
+    <div class="bf-text">
+      <h3>Missouri Bright Flight — Priority #1</h3>
+      <p>Bright Flight is the single highest-value scholarship Noah can unlock with effort. Missouri awards up to <strong>$3,000/year (renewable 4 years = $12,000 total)</strong> to Missouri residents who score in the <strong>top 3% of all Missouri ACT test-takers</strong> — approximately <strong>ACT 31+</strong>. Noah has not yet taken the ACT, meaning this is fully attainable. A strong ACT score also strengthens every other scholarship application and college admissions package. Register at <a href="https://www.act.org" target="_blank" style="color:var(--accent)">act.org</a> — next available test dates should be booked as soon as possible.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ASIAN-AMERICAN SCHOLARSHIPS ═════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:var(--purple)">Heritage Scholarships</p>
+  <h2 class="sec-title">Asian-American /<br>Cambodian / Vietnamese</h2>
+  <p class="sec-note">Noah's Cambodian and Vietnamese heritage opens access to multiple targeted scholarships. These are among the most under-applied categories — competition is lower than general merit pools.</p>
+
+  <div class="sch-grid">
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Asian-American</span><span class="sch-tag tag-need">Need-Based</span><span class="sch-tag tag-priority">Apply Now</span></div>
+        <div class="sch-name">APIASF Scholarship</div>
+        <div class="sch-org">Asian &amp; Pacific Islander American Scholarship Fund</div>
+        <div class="sch-amount">$2,500 – $15,000</div>
+        <div class="sch-desc">One of the largest and most prestigious scholarships for APIA students. Requires financial need and minimum 2.7 GPA — Noah's 3.5 GPA is well above the bar. Includes mentorship, leadership development, and a national network of scholars.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">January (annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">GPA Min</div><div class="sch-meta-val">2.7 (Noah: 3.5 ✓)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">APIA heritage, financial need, US citizen/PR</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Junior / Senior</div></div>
+        </div>
+        <div class="sch-note">⚡ Start essay prep now. This is Noah's strongest heritage scholarship given size and prestige.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://apiasf.org" target="_blank" class="sch-url">apiasf.org ↗</a>
+        <span class="sch-status status-now">Start Prep Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Asian-American</span><span class="sch-tag tag-need">Need-Based</span></div>
+        <div class="sch-name">Horatio Alger AAPI Scholarship</div>
+        <div class="sch-org">Horatio Alger Association</div>
+        <div class="sch-amount">$25,000</div>
+        <div class="sch-desc">One of the largest scholarships for AAPI students demonstrating financial need and personal adversity. Minimum 2.0 GPA (Noah easily qualifies). Looks for students who have overcome significant challenges.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">October (senior year)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">GPA Min</div><div class="sch-meta-val">2.0 (Noah: 3.5 ✓)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Need</div><div class="sch-meta-val">Household income ≤$55K</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://scholars.horatioalger.org" target="_blank" class="sch-url">scholars.horatioalger.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Asian-American</span><span class="sch-tag tag-merit">Merit</span></div>
+        <div class="sch-name">OCA-UPS Foundation Scholarship</div>
+        <div class="sch-org">Organization of Chinese Americans + UPS Foundation</div>
+        <div class="sch-amount">$2,000 – $5,000</div>
+        <div class="sch-desc">For Asian Pacific American students entering their first year of college. Based on academic achievement and financial need. Strong match for Noah's profile — APA heritage, solid GPA, community involvement through soccer and student council.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">March (annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">APA students, freshman year, financial need</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year (for freshman year)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Verify URL</div><div class="sch-meta-val">ocanational.org/scholarships</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.ocanational.org/scholarships" target="_blank" class="sch-url">ocanational.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Vietnamese Heritage</span><span class="sch-tag tag-merit">Merit + Need</span></div>
+        <div class="sch-name">Vietnamese American Scholarship Foundation</div>
+        <div class="sch-org">VASF</div>
+        <div class="sch-amount">$500 – $2,000</div>
+        <div class="sch-desc">Specifically for Vietnamese-American undergraduate students. Combines GPA review with financial need assessment. Noah's Vietnamese heritage and strong academics are a direct match.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">Spring (verify annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">Vietnamese-American undergrad, GPA + need</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Junior / Senior</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Notes</div><div class="sch-meta-val">Verify URL annually — vasf.org</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.vasf.org" target="_blank" class="sch-url">vasf.org ↗</a>
+        <span class="sch-status status-junior">Junior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Cambodian Heritage</span><span class="sch-tag tag-merit">Community</span></div>
+        <div class="sch-name">SEARAC — Southeast Asian Scholarships</div>
+        <div class="sch-org">Southeast Asia Resource Action Center</div>
+        <div class="sch-amount">Varies by partner org</div>
+        <div class="sch-desc">SEARAC connects Southeast Asian Americans (Cambodian, Vietnamese, Lao, Hmong) with partner scholarships and funding opportunities. Noah's Cambodian and Vietnamese heritage both qualify. Check their scholarship database for current openings.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">Rolling / varies by program</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">SE Asian American students</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Start Now</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Action</div><div class="sch-meta-val">Register on SEARAC database</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.searac.org" target="_blank" class="sch-url">searac.org ↗</a>
+        <span class="sch-status status-now">Start Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-asian">Asian-American</span><span class="sch-tag tag-need">Need-Based</span></div>
+        <div class="sch-name">RMHC / Asia Scholarship</div>
+        <div class="sch-org">Ronald McDonald House Charities</div>
+        <div class="sch-amount">$1,000 – $2,500</div>
+        <div class="sch-desc">For students of Asian heritage with financial need. Minimum 2.7 GPA. Noah's GPA (3.5) and Asian-American background are a clear fit. One of the more accessible national scholarships in this category.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">January (annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">GPA Min</div><div class="sch-meta-val">2.7 (Noah: 3.5 ✓)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Need</div><div class="sch-meta-val">Financial need required</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://rmhc.org/rmhc-us-scholarships" target="_blank" class="sch-url">rmhc.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ MISSOURI STATE SCHOLARSHIPS ═════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:var(--accent)">State Programs</p>
+  <h2 class="sec-title">Missouri Scholarships</h2>
+  <div class="sch-grid">
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-state">Missouri</span><span class="sch-tag tag-merit">Merit</span><span class="sch-tag tag-priority">ACT Required</span></div>
+        <div class="sch-name">Bright Flight Scholarship</div>
+        <div class="sch-org">Missouri Department of Higher Education</div>
+        <div class="sch-amount">Up to $3,000/year (4 years)</div>
+        <div class="sch-desc">Missouri's flagship merit scholarship for top-scoring test-takers. Requires scoring in the top 3% of all Missouri ACT/SAT takers — approximately ACT 31+. Noah has NOT yet taken the ACT, making this fully attainable with preparation. Renewable all 4 years = up to $12,000 total.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">July 31 after test scores received</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">ACT Req</div><div class="sch-meta-val">~31+ (top 3% of MO)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Amount</div><div class="sch-meta-val">$3,000/yr × 4 years</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">School</div><div class="sch-meta-val">Must attend MO institution</div></div>
+        </div>
+        <div class="sch-note">🎯 Most impactful scholarship Noah can earn with effort. Take the ACT as soon as possible.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://dhe.mo.gov/ppc/brightflight.php" target="_blank" class="sch-url">dhe.mo.gov ↗</a>
+        <span class="sch-status status-now">Take ACT Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-state">Missouri</span><span class="sch-tag tag-need">Need-Based</span></div>
+        <div class="sch-name">Access Missouri Financial Assistance</div>
+        <div class="sch-org">Missouri Department of Higher Education</div>
+        <div class="sch-amount">$300 – $2,850/year</div>
+        <div class="sch-desc">Need-based state grant for Missouri residents attending Missouri institutions. Requires FAFSA filed by February 1 priority deadline. Amount depends on Expected Family Contribution (EFC) and type of school. Stackable with other awards.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">FAFSA by Feb 1 priority</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Need</div><div class="sch-meta-val">EFC ≤ $12,000</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">School</div><div class="sch-meta-val">Must attend MO institution</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">File FAFSA October senior year</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://dhe.mo.gov/ppc/accessmo.php" target="_blank" class="sch-url">dhe.mo.gov ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ ATHLETIC SCHOLARSHIPS ════════════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:#44ffb4">Athletic</p>
+  <h2 class="sec-title">Soccer &amp; Athletic Scholarships</h2>
+  <div class="sch-grid">
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-sport">Athletic</span><span class="sch-tag tag-priority">Register Now</span></div>
+        <div class="sch-name">NCAA Athletic Scholarship (D2)</div>
+        <div class="sch-org">NCAA — Division II Men's Soccer</div>
+        <div class="sch-amount">Partial — up to full tuition</div>
+        <div class="sch-desc">D2 programs have 9.9 scholarship equivalencies split across the roster — typically 18-26 players receive partial aid. Noah's MLS Next Academy background is strong D2 recruiting currency. Must register with the NCAA Eligibility Center (free). Begin reaching out to coaches now.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Register</div><div class="sch-meta-val">NCAA Eligibility Center (free)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Timeline</div><div class="sch-meta-val">Coaches can contact Sept 1 of sophomore year</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Level</div><div class="sch-meta-val">NCAA D2 — all target schools</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Action</div><div class="sch-meta-val">Register + send highlight film to coaches</div></div>
+        </div>
+        <div class="sch-note">⚡ Most college coaches expect early contact. Noah should email target coaches with his profile and reel link now.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://web3.ncaa.org/ecwr3" target="_blank" class="sch-url">NCAA Eligibility Center ↗</a>
+        <span class="sch-status status-now">Register Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-sport">Athletic</span><span class="sch-tag tag-priority">Register Now</span></div>
+        <div class="sch-name">NAIA Athletic Scholarship</div>
+        <div class="sch-org">NAIA — Men's Soccer</div>
+        <div class="sch-amount">Flexible — up to full ride</div>
+        <div class="sch-desc">NAIA programs can offer up to 12 full equivalency scholarships — often more generous per-player than D2. Noah's MLS Next Academy background stands out at the NAIA level. Register with the NAIA Eligibility Center. Target programs: Park University, MidAmerica Nazarene, Saint Mary, Southeastern.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Register</div><div class="sch-meta-val">NAIA Eligibility Center (free)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Equivalencies</div><div class="sch-meta-val">Up to 12 full per team</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Advantage</div><div class="sch-meta-val">More per-player $ than D2 typically</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Stackable</div><div class="sch-meta-val">Can combine with academic/merit aid</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.naia.org/eligibility" target="_blank" class="sch-url">naia.org/eligibility ↗</a>
+        <span class="sch-status status-now">Register Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-sport">Soccer</span><span class="sch-tag tag-merit">Merit</span></div>
+        <div class="sch-name">United Soccer Coaches Scholarship</div>
+        <div class="sch-org">United Soccer Coaches (formerly NSCAA)</div>
+        <div class="sch-amount">$1,000 – $2,000</div>
+        <div class="sch-desc">For high school seniors involved in soccer with demonstrated community service and academic achievement. Good fit for Noah's profile — MLS Next athlete, USSF referee, student council. Apply during senior year.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">January (verify annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">HS senior, soccer involvement, community service</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Strength</div><div class="sch-meta-val">USSF referee credential is a major differentiator</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.unitedsoccercoaches.org/scholarships" target="_blank" class="sch-url">unitedsoccercoaches.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-sport">Soccer</span><span class="sch-tag tag-merit">Merit</span></div>
+        <div class="sch-name">National Soccer Hall of Fame Scholarship</div>
+        <div class="sch-org">National Soccer Hall of Fame</div>
+        <div class="sch-amount">$5,000</div>
+        <div class="sch-desc">For college-bound soccer players demonstrating academic excellence and athletic achievement. Noah's MLS Next Academy background and 3.5 GPA are strong qualifiers. Verify current scholarship program status as it has varied year to year.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">Spring (verify annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">College-bound soccer player, academic + athletic</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Note</div><div class="sch-meta-val">Verify scholarship section is active</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.nationalsoccerhof.com" target="_blank" class="sch-url">nationalsoccerhof.com ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ HEALTH SCIENCE SCHOLARSHIPS ═════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:var(--gold)">Academic Field</p>
+  <h2 class="sec-title">Pre-PT / Kinesiology /<br>Sports Medicine</h2>
+  <p class="sec-note">Most PT-specific national scholarships target students already enrolled in DPT programs. Apply these now to build the profile; most field-specific awards open up in undergrad years 2-4.</p>
+  <div class="sch-grid">
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-health">Health Science</span><span class="sch-tag tag-sport">Athletic Training</span></div>
+        <div class="sch-name">NATA Scholarship Program</div>
+        <div class="sch-org">National Athletic Trainers' Association</div>
+        <div class="sch-amount">~$2,300</div>
+        <div class="sch-desc">For students enrolled in accredited Athletic Training programs (CAATE). Available once Noah is enrolled in a college AT program. Given his USSF referee background and soccer career, the personal statement writes itself.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">February (annually)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">Enrolled in CAATE-accredited AT program</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Once enrolled in college AT program</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Differentiator</div><div class="sch-meta-val">USSF referee background is highly relevant</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.nata.org/professional-development/scholarships" target="_blank" class="sch-url">nata.org ↗</a>
+        <span class="sch-status status-verify">After Enrollment</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-health">Kinesiology</span><span class="sch-tag tag-merit">Merit</span></div>
+        <div class="sch-name">SHAPE America Scholarship</div>
+        <div class="sch-org">Society of Health and Physical Educators</div>
+        <div class="sch-amount">$1,000 – $1,500</div>
+        <div class="sch-desc">For students pursuing physical education, kinesiology, or health sciences. Applicable once enrolled. Noah's background in competitive soccer and USSF refereeing directly demonstrates commitment to health and physical activity fields.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">December – January</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">Kinesiology / health science major</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">After college enrollment</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">URL</div><div class="sch-meta-val">shapeamerica.org/awards/scholarships</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.shapeamerica.org/awards/scholarships" target="_blank" class="sch-url">shapeamerica.org ↗</a>
+        <span class="sch-status status-verify">After Enrollment</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ GENERAL MERIT / NEED ══════════════════════════ -->
+<div class="sec">
+  <p class="sec-label" style="color:var(--blue)">General</p>
+  <h2 class="sec-title">Merit &amp; Need-Based</h2>
+  <div class="sch-grid">
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-need">Need-Based</span><span class="sch-tag tag-asian">Minority</span></div>
+        <div class="sch-name">Gates Scholarship</div>
+        <div class="sch-org">Bill &amp; Melinda Gates Foundation</div>
+        <div class="sch-amount">Full cost of attendance (4 years)</div>
+        <div class="sch-desc">Full-ride scholarship for Pell-eligible minority students (includes Asian-American). Requires 3.3+ GPA and demonstrated leadership. ~300 awarded nationally per year — extremely competitive but life-changing. Noah's athletic leadership, USSF referee, and student council involvement build a strong application.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">September (senior year)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">GPA Min</div><div class="sch-meta-val">3.3 (Noah: 3.5 ✓)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Need</div><div class="sch-meta-val">Must be Pell Grant eligible</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+        </div>
+        <div class="sch-note">Extremely competitive (~300/yr nationally) but worth applying given the full-ride value.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.thegatesscholarship.org" target="_blank" class="sch-url">thegatesscholarship.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-merit">Merit</span><span class="sch-tag tag-need">Leadership</span></div>
+        <div class="sch-name">Coca-Cola Scholars Program</div>
+        <div class="sch-org">Coca-Cola Scholars Foundation</div>
+        <div class="sch-amount">$20,000</div>
+        <div class="sch-desc">For high school seniors demonstrating leadership, service, and academic achievement. 3.0+ GPA required — Noah's 3.5 qualifies. Student Council and MLS Next athletic leadership are strong credentials. ~150 Scholars selected nationally.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">October (senior year)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">GPA Min</div><div class="sch-meta-val">3.0 (Noah: 3.5 ✓)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Focus</div><div class="sch-meta-val">Leadership + community service</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.coca-colascholarsfoundation.org" target="_blank" class="sch-url">coca-colascholarsfoundation.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-merit">Merit</span><span class="sch-tag tag-need">Need-Based</span></div>
+        <div class="sch-name">Elks Most Valuable Student</div>
+        <div class="sch-org">Benevolent and Protective Order of Elks</div>
+        <div class="sch-amount">$1,000 – $12,500</div>
+        <div class="sch-desc">One of the largest merit-based scholarship programs in the country. Combines financial need with academic achievement and community involvement. US citizen required. Applications processed through local Elks lodge — the Kansas City area has active lodges.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">November (senior year)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Eligibility</div><div class="sch-meta-val">US citizen, HS senior, need + merit</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Via</div><div class="sch-meta-val">Local Elks lodge (KC area)</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Apply Year</div><div class="sch-meta-val">Senior Year</div></div>
+        </div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.elks.org/scholars/scholarships/mvs.cfm" target="_blank" class="sch-url">elks.org ↗</a>
+        <span class="sch-status status-senior">Senior Year</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-employer">Employer</span><span class="sch-tag tag-priority">Check Now</span></div>
+        <div class="sch-name">SS&amp;C Technologies Dependent Scholarship</div>
+        <div class="sch-org">SS&amp;C Technologies (if parent is employee)</div>
+        <div class="sch-amount">Varies — typically $2,000–$5,000</div>
+        <div class="sch-desc">SS&C does not publicly advertise a dependent scholarship but many large financial services firms offer this through HR. The employee/parent should log into the SS&C benefits portal (Workday) and ask HR directly: "Do we have an employee dependent scholarship or tuition assistance for dependents?"</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Action</div><div class="sch-meta-val">Contact SS&amp;C HR directly</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Platform</div><div class="sch-meta-val">May use Scholarship America portal</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">Internal — check HR immediately</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">URL</div><div class="sch-meta-val">SS&amp;C employee benefits portal</div></div>
+        </div>
+        <div class="sch-note">⚡ Check this ASAP — employer dependent scholarships often have early-year deadlines and are underutilized.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://www.ssctech.com/about/careers" target="_blank" class="sch-url">ssctech.com ↗</a>
+        <span class="sch-status status-now">Check Now</span>
+      </div>
+    </div>
+
+    <div class="sch-card">
+      <div class="sch-card-top">
+        <div class="sch-tags"><span class="sch-tag tag-employer">Employer</span><span class="sch-tag tag-priority">Check Now</span></div>
+        <div class="sch-name">AmeriLife Dependent Scholarship</div>
+        <div class="sch-org">AmeriLife (if parent is employee)</div>
+        <div class="sch-amount">Varies</div>
+        <div class="sch-desc">AmeriLife does not publicly advertise a dependent scholarship program. The employee/parent should contact AmeriLife HR or People Operations directly. Also check if AmeriLife participates in insurance industry scholarship programs through NAIFA or similar associations.</div>
+        <div class="sch-meta">
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Action</div><div class="sch-meta-val">Contact AmeriLife HR directly</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Also Check</div><div class="sch-meta-val">NAIFA insurance industry scholarships</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">Deadline</div><div class="sch-meta-val">Internal — check HR immediately</div></div>
+          <div class="sch-meta-item"><div class="sch-meta-lbl">URL</div><div class="sch-meta-val">amerilife.com/careers</div></div>
+        </div>
+        <div class="sch-note">⚡ Also ask: does AmeriLife offer NAIFA membership? NAIFA has a $2,500 scholarship for dependents of members.</div>
+      </div>
+      <div class="sch-card-footer">
+        <a href="https://amerilife.com/careers" target="_blank" class="sch-url">amerilife.com ↗</a>
+        <span class="sch-status status-now">Check Now</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> Scholarship details, deadlines, and amounts change annually. All information on this page should be verified directly at the source URL before applying. This page was compiled from knowledge through 2025 and live web search where available. Some programs may have been discontinued or modified. Always check official scholarship websites for current requirements. This page is for research and tracking purposes only.
+</div>
+
+<footer style="border-top:1px solid var(--border); padding:24px clamp(18px,5vw,60px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:0;">
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--muted); opacity:0.4;">NL<span style="color:var(--accent);opacity:1;">21</span></div>
+  <div style="font-size:0.72rem; color:var(--muted); opacity:0.3;">Noah Lach · Class of 2028 · Kansas City, MO</div>
+</footer>
+
+</body>
+</html>
