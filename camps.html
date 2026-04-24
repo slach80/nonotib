@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Camps & Showcases — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f4f6fb; --bg-card: #ffffff; --text: #0f1a2e; --muted: #6b7fa8;
+      --border: rgba(0,0,0,0.09); --r: 10px; --nav-h: 64px;
+      --accent: #b8ff2e; --accent-dark: #4a7a00;
+      --accent-lo: rgba(74,122,0,0.08); --accent-md: rgba(74,122,0,0.2);
+      --d1: #b71c1c; --d1-bg: rgba(183,28,28,0.08);
+      --d2: #0060c0; --d2-bg: rgba(0,100,200,0.09);
+      --naia: #9a6800; --naia-bg: rgba(180,120,0,0.09);
+      --confirmed: #4a7a00; --confirmed-bg: rgba(74,122,0,0.08);
+      --tbd: #9a6800; --tbd-bg: rgba(154,104,0,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #3a4a6b; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100; height: var(--nav-h);
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(18px,5vw,60px); gap: 16px;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; flex-shrink: 0; }
+    .nav-logo span { color: #4a7a00; }
+    .nav-links { display: flex; gap: clamp(14px,2vw,28px); list-style: none; }
+    .nav-links a { color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.active { color: #4a7a00; }
+    .nav-cta { background: #4a7a00; color: #fff; padding: 8px 16px; border-radius: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: #0f1a2e; border-radius: 2px; }
+    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 199; padding: 16px 0 20px; flex-direction: column; }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a { padding: 12px clamp(18px,5vw,60px); color: #3a4a6b; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.15s; }
+    .nav-mobile-menu a:hover, .nav-mobile-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    @media (max-width: 960px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+    .page-hero { padding: 52px clamp(18px,5vw,60px) 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #4a7a00; margin-bottom: 10px; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px,5.5vw,66px); line-height: 0.95; letter-spacing: 0.03em; color: #0f1a2e; margin-bottom: 14px; }
+    .page-hero p { color: #3a4a6b; font-size: 0.88rem; line-height: 1.72; max-width: 680px; margin-bottom: 20px; }
+    .hero-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hchip { background: rgba(74,122,0,0.08); border: 1px solid rgba(74,122,0,0.2); color: #4a7a00; padding: 5px 12px; border-radius: 20px; font-size: 0.74rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; }
+    .hchip.warn { background: rgba(183,28,28,0.06); border-color: rgba(183,28,28,0.2); color: #b71c1c; }
+
+    .notice-bar { max-width: 1200px; margin: 0 auto; padding: 16px clamp(18px,5vw,60px); }
+    .notice { background: rgba(0,96,192,0.06); border: 1px solid rgba(0,96,192,0.18); border-radius: 8px; padding: 12px 16px; font-size: 0.82rem; color: #3a4a6b; line-height: 1.6; }
+    .notice strong { color: #0060c0; }
+
+    .region-section { max-width: 1200px; margin: 0 auto; padding: 48px clamp(18px,5vw,60px) 0; }
+    .region-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+    .region-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px,4vw,44px); letter-spacing: 0.04em; color: #0f1a2e; }
+    .region-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #4a7a00; }
+    .region-count { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; color: #6b7fa8; margin-left: auto; }
+
+    .camps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 52px; }
+
+    .camp-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
+      transition: box-shadow 0.22s, transform 0.22s;
+    }
+    .camp-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .camp-card.priority { border-left: 3px solid #4a7a00; }
+    .camp-card.tbd { border-left: 3px solid #9a6800; }
+    .camp-card.no-info { border-left: 3px solid rgba(0,0,0,0.12); opacity: 0.75; }
+
+    .camp-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .camp-school { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: 0.04em; color: #0f1a2e; line-height: 1; margin-bottom: 5px; }
+    .camp-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .div-badge { display: inline-block; padding: 2px 7px; border-radius: 3px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; }
+    .div-badge.d1 { background: var(--d1-bg); color: var(--d1); border: 1px solid rgba(183,28,28,0.2); }
+    .div-badge.d2 { background: var(--d2-bg); color: var(--d2); border: 1px solid rgba(0,100,200,0.2); }
+    .div-badge.naia { background: var(--naia-bg); color: var(--naia); border: 1px solid rgba(180,120,0,0.2); }
+    .date-badge {
+      flex-shrink: 0; padding: 5px 10px; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-align: center; white-space: nowrap;
+    }
+    .date-badge.confirmed { background: var(--confirmed-bg); color: var(--confirmed); border: 1px solid rgba(74,122,0,0.2); }
+    .date-badge.tbd { background: var(--tbd-bg); color: var(--tbd); border: 1px solid rgba(154,104,0,0.2); }
+    .date-badge.none { background: #f0f2f8; color: #6b7fa8; border: 1px solid var(--border); }
+
+    .camp-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .camp-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0f1a2e; letter-spacing: 0.03em; }
+    .camp-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .cd { background: #f8fafc; border-radius: 5px; padding: 7px 9px; }
+    .cd-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7fa8; margin-bottom: 2px; }
+    .cd-val { font-size: 0.8rem; color: #0f1a2e; font-weight: 500; }
+    .camp-note { font-size: 0.78rem; color: #6b7fa8; line-height: 1.55; font-style: italic; }
+    .camp-note.hot { color: #4a7a00; font-style: normal; font-weight: 500; }
+
+    .camp-footer { padding: 10px 18px; background: #f8fafc; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .camp-link { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; color: #4a7a00; text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
+    .camp-link:hover { opacity: 1; text-decoration: underline; }
+    .camp-type { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+    .camp-type.id-camp { color: #4a7a00; }
+    .camp-type.skills { color: #0060c0; }
+    .camp-type.contact { color: #6b7fa8; }
+
+    .disclaimer { max-width: 1200px; margin: 0 auto; padding: 28px clamp(18px,5vw,60px) 52px; font-size: 0.74rem; color: #6b7fa8; line-height: 1.65; opacity: 0.7; }
+
+    @media (max-width: 860px) { .camps-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 500px) { .camp-details { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NL<span>21</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#stats">Profile</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="index.html#highlights">Highlights</a></li>
+    <li><a href="index.html#academics">Academics</a></li>
+    <li><a href="index.html#schools">Schools</a></li>
+    <li><a href="colleges.html">Analysis</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+    <li><a href="camps.html" class="active">Camps</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Recruit Me</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="index.html#stats">Profile</a>
+  <a href="index.html#journey">Journey</a>
+  <a href="index.html#highlights">Highlights</a>
+  <a href="index.html#academics">Academics</a>
+  <a href="index.html#schools">Schools</a>
+  <a href="colleges.html">Analysis</a>
+  <a href="scholarships.html">Scholarships</a>
+  <a href="camps.html" class="active">Camps</a>
+  <a href="index.html#contact">Recruit Me</a>
+</div>
+
+<div class="page-hero">
+  <p class="label">Recruiting Events</p>
+  <h1>ID Camps &amp;<br>Showcases</h1>
+  <p>Upcoming men's soccer ID camps, recruiting clinics, and showcase events at Noah's target schools. ID camps are the primary way college coaches evaluate recruits directly — attending is one of the most impactful steps in the recruiting process. Dates and costs are estimates — always verify at the official registration link before registering.</p>
+  <div class="hero-chips">
+    <span class="hchip">Class of 2028 — Sophomore</span>
+    <span class="hchip">Summer / Fall 2026</span>
+    <span class="hchip warn">⚠ Verify all dates at registration URL before booking</span>
+  </div>
+</div>
+
+<div class="notice-bar">
+  <div class="notice"><strong>Pro tip:</strong> Fill out each school's official recruit questionnaire on their athletics site — you'll get direct email notifications when ID camps open for registration. For D1 schools, contact the coach directly first so they know to expect you at their camp.</div>
+</div>
+
+<!-- ═══ MISSOURI / KANSAS ══════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">Missouri / Kansas</h2>
+    <span class="region-sub">Home Region</span>
+    <span class="region-count">14 schools</span>
+  </div>
+  <div class="camps-grid">
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Saint Louis University</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">Atlantic 10 · St. Louis, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">April 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Billiken Soccer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">St. Louis, MO</div></div>
+          <div class="cd"><div class="cd-lbl">Contact</div><div class="cd-val">Kevin Stoll · 314-435-7669</div></div>
+        </div>
+        <div class="camp-note hot">⭐ Kevin Stoll (asst. coach) has already reached out to Park Hill South. This is an ACTIVE recruiting contact — register and call Kevin directly.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://billikensoccercamps.com" target="_blank" class="camp-link">billikensoccercamps.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">William Jewell College</div>
+          <div class="camp-meta"><span class="div-badge naia">NAIA</span><span style="font-size:0.7rem;color:#6b7fa8">Heart of America · Liberty, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">June 6, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Cardinal Soccer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">June 6, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$125</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Liberty, MO (20 min from KC)</div></div>
+          <div class="cd"><div class="cd-lbl">Type</div><div class="cd-val">ID / Recruiting</div></div>
+        </div>
+        <div class="camp-note">One of the lowest-cost ID camps in the region. 20 min from Sporting City training grounds.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://jewellcardinals.com/sports/msoc/coaches" target="_blank" class="camp-link">jewellcardinals.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Missouri State University</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">Missouri Valley · Springfield, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">June 6–7, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Boys Elite ID Showcase</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">June 6–7, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$325</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Springfield, MO</div></div>
+          <div class="cd"><div class="cd-lbl">Also nearby</div><div class="cd-val">Drury University (D2)</div></div>
+        </div>
+        <div class="camp-note">D1 ID showcase — MLS Next background stands out. Can visit Drury (D2) same trip.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://missouristatebears.com/sports/msoc/coaches" target="_blank" class="camp-link">missouristatebears.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">UMKC</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">WAC · Kansas City, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">June 29 – July 2</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Kansas City Soccer Prospect ID</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">June 29 – July 2, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$450</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Kansas City, MO</div></div>
+          <div class="cd"><div class="cd-lbl">Type</div><div class="cd-val">D1 ID / Prospect</div></div>
+        </div>
+        <div class="camp-note">Local D1 — coaches know the KC club landscape. Sporting City players are a natural pipeline.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://umkcroos.com/sports/msoc/coaches" target="_blank" class="camp-link">umkcroos.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Truman State University</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">GLVC · Kirksville, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">July 10–12, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Summer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">July 10–12, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$275</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Kirksville, MO</div></div>
+          <div class="cd"><div class="cd-lbl">Type</div><div class="cd-val">ID Camp</div></div>
+        </div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://trumanbulldogs.com/sports/msoc/coaches" target="_blank" class="camp-link">trumanbulldogs.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Drury University</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">GLVC · Springfield, MO</span></div>
+        </div>
+        <div class="date-badge confirmed">July 24–26, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">SW Missouri Showcase</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">July 24–26, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$350</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Springfield, MO</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Ben Taylor · btaylor03@drury.edu</div></div>
+        </div>
+        <div class="camp-note">Multi-coach showcase format — good for exposure to multiple programs in one trip to Springfield.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://drurypanthers.com/sports/msoc/coaches" target="_blank" class="camp-link">drurypanthers.com ↗</a>
+        <span class="camp-type id-camp">Showcase</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">MidAmerica Nazarene</div>
+          <div class="camp-meta"><span class="div-badge naia">NAIA</span><span style="font-size:0.7rem;color:#6b7fa8">Heart of America · Olathe, KS</span></div>
+        </div>
+        <div class="date-badge confirmed">June 22–26, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Nike Youth / Prospect Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">June 22–26, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$350</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Olathe, KS</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Kevin Wardlaw · kpwardlaw@mnu.edu</div></div>
+        </div>
+        <div class="camp-note">2023 NAIA National Champions — elite NAIA program. Get on their radar early.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://mnusports.com/sports/mens-soccer/coaches" target="_blank" class="camp-link">mnusports.com ↗</a>
+        <span class="camp-type id-camp">ID / Skills</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Rockhurst University</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">GLVC · Kansas City, MO</span></div>
+        </div>
+        <div class="date-badge tbd">July / Aug TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Rockhurst Hawks ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">Summer 2026 (TBD)</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$150</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Tony Tocco · 816-501-4852</div></div>
+          <div class="cd"><div class="cd-lbl">Email</div><div class="cd-val">anthony.tocco@rockhurst.edu</div></div>
+        </div>
+        <div class="camp-note">Local KC D2 — direct DPT pipeline on campus. Email Tony Tocco to get on the camp waitlist.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://rockhursthawks.com/sports/mens-soccer/coaches" target="_blank" class="camp-link">rockhursthawks.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Park University</div>
+          <div class="camp-meta"><span class="div-badge naia">NAIA</span><span style="font-size:0.7rem;color:#6b7fa8">Heart of America · Parkville, MO</span></div>
+        </div>
+        <div class="date-badge tbd">TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Park Pirates ID Clinic</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$100</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Efrem Shimlis · 816-584-6487</div></div>
+          <div class="cd"><div class="cd-lbl">Advantage</div><div class="cd-val">Coach Zlitni connection on staff</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Parkville, MO</div></div>
+        </div>
+        <div class="camp-note hot">⭐ Hamid Zlitni (Noah's former coach) is on Park's women's staff — a direct connection. Contact Efrem Shimlis directly.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://parkathletics.com/sports/mens-soccer/coaches" target="_blank" class="camp-link">parkathletics.com ↗</a>
+        <span class="camp-type id-camp">ID Clinic</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">University of Saint Mary</div>
+          <div class="camp-meta"><span class="div-badge naia">NAIA</span><span style="font-size:0.7rem;color:#6b7fa8">KCAC · Leavenworth, KS</span></div>
+        </div>
+        <div class="date-badge tbd">Summer TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">USM Prospect Showcase</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$100</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Derek Mazeitis</div></div>
+          <div class="cd"><div class="cd-lbl">Email</div><div class="cd-val">derek.mazeitis@stmary.edu</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Leavenworth, KS</div></div>
+        </div>
+        <div class="camp-note">10 graduating MF/FW spots — most open roster on the KC list. Great scholarship opportunity.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://gospires.com/sports/mens-soccer/coaches" target="_blank" class="camp-link">gospires.com ↗</a>
+        <span class="camp-type id-camp">Prospect Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Maryville University</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">GLVC · St. Louis, MO</span></div>
+        </div>
+        <div class="date-badge tbd">Summer TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Maryville Boys ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$150</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Adam Hall · ahall26@maryville.edu</div></div>
+          <div class="cd"><div class="cd-lbl">Phone</div><div class="cd-val">314-529-9475</div></div>
+        </div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://maryvillesaints.com/sports/mens-soccer/coaches" target="_blank" class="camp-link">maryvillesaints.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Southwest Baptist · Evangel · Missouri Western</div>
+          <div class="camp-meta"><span class="div-badge d2">D2</span><span class="div-badge naia">NAIA</span></div>
+        </div>
+        <div class="date-badge tbd">TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Contact Coaching Staff Directly</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">SBU</div><div class="cd-val">sbubears.com/sports/mens-soccer</div></div>
+          <div class="cd"><div class="cd-lbl">Evangel</div><div class="cd-val">evangelusports.com</div></div>
+          <div class="cd"><div class="cd-lbl">MO Western</div><div class="cd-val">mwsugriffons.com</div></div>
+        </div>
+        <div class="camp-note">Camp dates not yet posted for 2026. Email coaches directly to get on notification list when registration opens.</div>
+      </div>
+      <div class="camp-footer">
+        <span class="camp-link" style="color:#6b7fa8">Check athletics sites</span>
+        <span class="camp-type contact">Contact Direct</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FLORIDA ══════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">Tampa Bay / Florida</h2>
+    <span class="region-sub">Florida</span>
+    <span class="region-count">8 schools</span>
+  </div>
+  <p style="font-size:0.82rem;color:#6b7fa8;margin-bottom:20px;line-height:1.7;padding:10px 14px;background:rgba(0,96,192,0.05);border-left:3px solid #0060c0;border-radius:0 6px 6px 0;"><strong style="color:#0f1a2e">Tampa trip strategy:</strong> USF + University of Tampa + Florida Southern + Eckerd are all within 45 min of each other. One trip can cover 4 schools and 4 ID camps. Plan for June or July.</p>
+  <div class="camps-grid">
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">University of South Florida</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">AAC · Tampa, FL</span></div>
+        </div>
+        <div class="date-badge confirmed">June 6–7 / July 25–26</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Southeast Elite ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Dates</div><div class="cd-val">June 6–7 or July 25–26, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$395</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Tampa, FL</div></div>
+        </div>
+        <div class="camp-note">D1 camp — contact coach first so they know to watch you. Pair with UT/FSC camps same week.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://gousfbulls.com/sports/msoc/coaches" target="_blank" class="camp-link">gousfbulls.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">University of Tampa</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">Sunshine State · Tampa, FL</span></div>
+        </div>
+        <div class="date-badge confirmed">June 7 / July 12</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Elite Summer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Dates</div><div class="cd-val">June 7 or July 12, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$175</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Tampa, FL</div></div>
+        </div>
+        <div class="camp-note">3× D2 National Champions — highly competitive but valuable exposure. Pair with USF same trip.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://tampaspartans.com/sports/msoc/coaches" target="_blank" class="camp-link">tampaspartans.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Florida Southern College</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">Sunshine State · Lakeland, FL</span></div>
+        </div>
+        <div class="date-badge confirmed">June 6 / July 25</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Moccasin ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Dates</div><div class="cd-val">June 6 or July 25, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$200</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Ashley Holmes · 863-680-4258</div></div>
+        </div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://fscmocs.com/sports/msoc/coaches" target="_blank" class="camp-link">fscmocs.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Eckerd College</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">Sunshine State · St. Petersburg, FL</span></div>
+        </div>
+        <div class="date-badge confirmed">August 2, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Summer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">August 2, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$90</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">St. Petersburg, FL (Tampa Bay)</div></div>
+        </div>
+        <div class="camp-note">Lowest-cost FL ID camp. Waterfront campus — worth pairing with Tampa/FSC trips.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://eckerdathletics.com/sports/msoc/coaches" target="_blank" class="camp-link">eckerdathletics.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Southeastern University</div>
+          <div class="camp-meta"><span class="div-badge naia">NAIA</span><span style="font-size:0.7rem;color:#6b7fa8">Sun Conference · Lakeland, FL</span></div>
+        </div>
+        <div class="date-badge confirmed">May 31 – June 4</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Nike Boys Soccer Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">May 31 – June 4, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$500</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">Lakeland, FL</div></div>
+        </div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://seu.edu/athletics" target="_blank" class="camp-link">seu.edu/athletics ↗</a>
+        <span class="camp-type id-camp">ID / Skills</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Saint Leo · Lynn · Warner</div>
+          <div class="camp-meta"><span class="div-badge d2">D2</span><span class="div-badge naia">NAIA</span></div>
+        </div>
+        <div class="date-badge tbd">Summer TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Contact Coaching Staff Directly</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Saint Leo</div><div class="cd-val">saintleoathletics.com</div></div>
+          <div class="cd"><div class="cd-lbl">Lynn University</div><div class="cd-val">lynnathletics.com</div></div>
+          <div class="cd"><div class="cd-lbl">Warner</div><div class="cd-val">warneathletics.com</div></div>
+        </div>
+        <div class="camp-note">Fill out recruit questionnaire on each athletics site to get camp notifications when registration opens.</div>
+      </div>
+      <div class="camp-footer">
+        <span class="camp-link" style="color:#6b7fa8">Check athletics sites</span>
+        <span class="camp-type contact">Contact Direct</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ CALIFORNIA ════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-header">
+    <h2 class="region-title">San Jose / San Diego</h2>
+    <span class="region-sub">California</span>
+    <span class="region-count">7 schools</span>
+  </div>
+  <p style="font-size:0.82rem;color:#6b7fa8;margin-bottom:20px;line-height:1.7;padding:10px 14px;background:rgba(0,96,192,0.05);border-left:3px solid #0060c0;border-radius:0 6px 6px 0;"><strong style="color:#0f1a2e">California trip strategy:</strong> SDSU + USD + Cal State San Marcos are all San Diego-area (within 30 min). SJSU is a separate Bay Area trip. Consider one San Diego trip in late May/early June to hit 3–4 schools.</p>
+  <div class="camps-grid">
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">San Diego State University</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">Mountain West · San Diego, CA</span></div>
+        </div>
+        <div class="date-badge confirmed">May 30–31 / July 11–12</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Aztec Men's Soccer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Dates</div><div class="cd-val">May 30–31 or July 11–12, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$395</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">San Diego, CA</div></div>
+        </div>
+        <div class="camp-note">Pair with USD + CSUSM camps. San Diego D1 — test-blind admissions, strong Kinesiology program.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://goaztecs.com/sports/msoc/coaches" target="_blank" class="camp-link">goaztecs.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">University of San Diego</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">WCC · San Diego, CA</span></div>
+        </div>
+        <div class="date-badge confirmed">June 15–18 / July 13–16</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Nike Boys Soccer Elite Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Dates</div><div class="cd-val">June 15–18 or July 13–16, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$600+</div></div>
+          <div class="cd"><div class="cd-lbl">Via</div><div class="cd-val">ussportscamps.com</div></div>
+        </div>
+        <div class="camp-note">WCC D1 private school — Nike camp format with elite college coaching. Worth the investment given San Diego target region.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://ussportscamps.com" target="_blank" class="camp-link">ussportscamps.com ↗</a>
+        <span class="camp-type id-camp">Nike ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Cal State San Marcos</div>
+          <div class="camp-meta"><span class="div-badge d2">NCAA D2</span><span style="font-size:0.7rem;color:#6b7fa8">CCAA · San Marcos, CA</span></div>
+        </div>
+        <div class="date-badge confirmed">July 13–16, 2026</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Nike Soccer Elite Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">July 13–16, 2026</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$545</div></div>
+          <div class="cd"><div class="cd-lbl">Coach</div><div class="cd-val">Ron Pulvers · rpulvers@csusm.edu</div></div>
+        </div>
+        <div class="camp-note">North San Diego — pair with SDSU/USD same trip. CCAA is the top D2 conference in the West.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://csusmcougars.com/sports/msoc/coaches" target="_blank" class="camp-link">csusmcougars.com ↗</a>
+        <span class="camp-type id-camp">Nike ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card priority">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">San Jose State University</div>
+          <div class="camp-meta"><span class="div-badge d1">NCAA D1</span><span style="font-size:0.7rem;color:#6b7fa8">Mountain West · San Jose, CA</span></div>
+        </div>
+        <div class="date-badge tbd">June / July TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Spartan Soccer ID Camp</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Date</div><div class="cd-val">June / July 2026 (TBD)</div></div>
+          <div class="cd"><div class="cd-lbl">Cost (est.)</div><div class="cd-val">~$225</div></div>
+          <div class="cd"><div class="cd-lbl">Location</div><div class="cd-val">San Jose, CA</div></div>
+        </div>
+        <div class="camp-note">Target city D1. Test-blind CSU system. Register early and contact coaching staff directly.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://sjsuspartans.com/sports/msoc/coaches" target="_blank" class="camp-link">sjsuspartans.com ↗</a>
+        <span class="camp-type id-camp">ID Camp</span>
+      </div>
+    </div>
+
+    <div class="camp-card tbd">
+      <div class="camp-header">
+        <div>
+          <div class="camp-school">Point Loma Nazarene · Cal State East Bay · SD Christian</div>
+          <div class="camp-meta"><span class="div-badge d2">D2</span><span class="div-badge naia">NAIA</span></div>
+        </div>
+        <div class="date-badge tbd">TBD</div>
+      </div>
+      <div class="camp-body">
+        <div class="camp-name">Contact Coaching Staff Directly</div>
+        <div class="camp-details">
+          <div class="cd"><div class="cd-lbl">Point Loma</div><div class="cd-val">plnusealions.com · Phil Wolf</div></div>
+          <div class="cd"><div class="cd-lbl">CSUEB</div><div class="cd-val">eastbaypioneers.com</div></div>
+          <div class="cd"><div class="cd-lbl">SD Christian</div><div class="cd-val">Verify accreditation status first</div></div>
+        </div>
+        <div class="camp-note">Fill out recruit questionnaire on each athletics site. Point Loma had 7 MF/FW spots graduating — high priority contact.</div>
+      </div>
+      <div class="camp-footer">
+        <a href="https://plnusealions.com/sports/msoc/coaches" target="_blank" class="camp-link">plnusealions.com ↗</a>
+        <span class="camp-type contact">Contact Direct</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="disclaimer">
+  <strong>Important:</strong> All camp dates, costs, and details are estimates based on research through April 2026. Verify all information at each school's official registration URL before booking travel or paying fees. Some 2026 camp registrations may not yet be open — fill out the recruit questionnaire on each school's athletics site to receive direct notification when camps open. Costs do not include travel or lodging.
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:24px clamp(18px,5vw,60px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#6b7fa8;opacity:0.5;">NL<span style="color:#4a7a00;opacity:1;">21</span></div>
+  <div style="font-size:0.72rem;color:#6b7fa8;opacity:0.4;">Noah Lach · Class of 2028 · Kansas City, MO</div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('navMobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) mobileMenu.classList.remove('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  }
+</script>
+</body>
+</html>
