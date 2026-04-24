@@ -23,26 +23,45 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: #3a4a6b; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
+    /* ─── NAV ─── */
     nav {
-      position: sticky; top: 0; z-index: 100; height: var(--nav-h);
-      background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky; top: 0; z-index: 200; height: var(--nav-h, 64px);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(18px,5vw,60px); gap: 16px;
+      padding: 0 clamp(20px, 5vw, 60px); gap: 16px;
     }
     .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; flex-shrink: 0; }
     .nav-logo span { color: #4a7a00; }
-    .nav-links { display: flex; gap: clamp(14px,2vw,28px); list-style: none; }
-    .nav-links a { color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; }
-    .nav-links a:hover, .nav-links a.active { color: #4a7a00; }
-    .nav-cta { background: #4a7a00; color: #fff; padding: 8px 16px; border-radius: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+    .nav-links { display: flex; gap: clamp(14px, 2vw, 26px); list-style: none; }
+    .nav-links > li > a { color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+    .nav-links > li > a:hover { color: #0f1a2e; }
+    .nav-links > li > a.active { color: #4a7a00; }
+    .nav-cta { background: #4a7a00; color: #fff; padding: 8px 16px; border-radius: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(74,122,0,0.3); }
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: '▾'; font-size: 0.55rem; opacity: 0.6; transition: transform 0.2s; display: inline-block; }
+    .nav-dropdown:hover > a::after, .nav-dropdown:focus-within > a::after { transform: rotate(180deg); }
+    .nav-dropdown::after { content: ''; position: absolute; top: 100%; left: -10px; right: -10px; height: 10px; background: transparent; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; box-shadow: 0 12px 36px rgba(0,0,0,0.15); min-width: 170px; z-index: 300; overflow: hidden; padding-top: 6px; }
+    .nav-dropdown-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #fff; border-left: 1px solid rgba(0,0,0,0.1); border-top: 1px solid rgba(0,0,0,0.1); rotate: 45deg; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 10px 18px; color: #3a4a6b; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    /* Hamburger */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: #0f1a2e; border-radius: 2px; }
-    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 199; padding: 16px 0 20px; flex-direction: column; }
+    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h, 64px); left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 199; padding: 16px 0 20px; flex-direction: column; }
     .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-menu a { padding: 12px clamp(18px,5vw,60px); color: #3a4a6b; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.15s; }
+    .nav-mobile-menu a { padding: 12px clamp(18px,5vw,60px); color: #3a4a6b; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.15s, color 0.15s; }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
     .nav-mobile-menu a:hover, .nav-mobile-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
-    @media (max-width: 960px) { .nav-links { display: none; } .nav-hamburger { display: flex; } }
+    .nav-mobile-menu .mob-group-label { padding: 10px clamp(18px,5vw,60px) 4px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #9baec8; }
+    @media (max-width: 960px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-dropdown-menu { display: none !important; } }
 
     .page-hero { padding: 52px clamp(18px,5vw,60px) 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
     .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #4a7a00; margin-bottom: 10px; }
@@ -115,17 +134,29 @@
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <a href="index.html" class="nav-logo">NL<span>21</span></a>
   <ul class="nav-links">
-    <li><a href="index.html#stats">Profile</a></li>
-    <li><a href="index.html#journey">Journey</a></li>
-    <li><a href="index.html#highlights">Highlights</a></li>
-    <li><a href="index.html#academics">Academics</a></li>
-    <li><a href="index.html#schools">Schools</a></li>
-    <li><a href="colleges.html">Analysis</a></li>
-    <li><a href="scholarships.html">Scholarships</a></li>
-    <li><a href="camps.html" class="active">Camps</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#stats">Noah</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#stats">Profile</a>
+        <a href="index.html#journey">Journey</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#references">References</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="index.html#schools">Recruiting</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#schools">Target Schools</a>
+        <a href="colleges.html">College Analysis</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="camps.html" class="active">ID Camps</a>
+      </div>
+    </li>
   </ul>
   <a href="index.html#contact" class="nav-cta">Recruit Me</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
@@ -133,15 +164,20 @@
   </button>
 </nav>
 <div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="index.html#stats">Profile</a>
-  <a href="index.html#journey">Journey</a>
-  <a href="index.html#highlights">Highlights</a>
-  <a href="index.html#academics">Academics</a>
-  <a href="index.html#schools">Schools</a>
-  <a href="colleges.html">Analysis</a>
-  <a href="scholarships.html">Scholarships</a>
-  <a href="camps.html" class="active">Camps</a>
-  <a href="index.html#contact">Recruit Me</a>
+    <span class="mob-group-label">Noah</span>
+    <a href="index.html#stats">Profile</a>
+    <a href="index.html#journey">Journey</a>
+    <a href="index.html#highlights">Highlights</a>
+    <a href="index.html#academics">Academics</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#references">References</a>
+    <span class="mob-group-label">Recruiting</span>
+    <a href="index.html#schools">Target Schools</a>
+    <a href="colleges.html">College Analysis</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="camps.html" class="active">ID Camps</a>
+    <span class="mob-group-label">Connect</span>
+    <a href="index.html#contact">Contact · Recruit Me</a>
 </div>
 
 <div class="page-hero">
@@ -740,6 +776,13 @@
 </footer>
 
 <script>
+  // Nav scroll — switches to scrolled class when past top
+  const nav = document.getElementById('nav');
+  if (nav) {
+    // Child pages start in light mode (no hero)
+    nav.classList.add('scrolled');
+  }
+  // Hamburger menu
   const hamburger = document.getElementById('navHamburger');
   const mobileMenu = document.getElementById('navMobileMenu');
   if (hamburger && mobileMenu) {
