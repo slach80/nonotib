@@ -1425,7 +1425,7 @@
     .nav-dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 2px);
       left: 50%;
       transform: translateX(-50%);
       background: #fff;
@@ -1435,7 +1435,8 @@
       min-width: 170px;
       z-index: 300;
       overflow: hidden;
-      /* Triangle pointer */
+      /* Invisible bridge fills gap between trigger and menu so mouse doesn't lose hover */
+      padding-top: 6px;
     }
     .nav-dropdown-menu::before {
       content: '';
@@ -1449,6 +1450,16 @@
       border-left: 1px solid rgba(0,0,0,0.1);
       border-top: 1px solid rgba(0,0,0,0.1);
       rotate: 45deg;
+    }
+    /* Bridge above menu catches mouse movement between trigger and menu */
+    .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: -10px;
+      right: -10px;
+      height: 10px;
+      background: transparent;
     }
     .nav-dropdown:hover .nav-dropdown-menu,
     .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
