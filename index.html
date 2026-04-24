@@ -1385,8 +1385,65 @@
     }
     .nav-mobile-menu a:last-child { border-bottom: none; }
     .nav-mobile-menu a:hover, .nav-mobile-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    .nav-mobile-menu .mob-group-label {
+      padding: 10px clamp(18px,5vw,60px) 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9baec8;
+      border-bottom: none;
+    }
+    /* ─── DROPDOWN ─── */
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-dropdown > a::after {
+      content: '▾';
+      font-size: 0.6rem;
+      opacity: 0.5;
+      transition: transform 0.2s;
+    }
+    .nav-dropdown:hover > a::after { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.98);
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+      min-width: 160px;
+      z-index: 300;
+      overflow: hidden;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      color: #3a4a6b;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover { background: rgba(74,122,0,0.07); color: #4a7a00; }
     @media (max-width: 960px) {
       .nav-hamburger { display: flex; }
+      .nav-dropdown-menu { display: none !important; }
     }
 
   </style>
@@ -1397,14 +1454,27 @@
 <nav id="nav">
   <a href="#hero" class="nav-logo">NL<span>21</span></a>
   <ul class="nav-links">
-    <li><a href="#stats">Profile</a></li>
-    <li><a href="#journey">Journey</a></li>
-    <li><a href="#highlights">Highlights</a></li>
-    <li><a href="#academics">Academics</a></li>
-    <li><a href="#schools">Schools</a></li>
-    <li><a href="colleges.html">Analysis</a></li>
-    <li><a href="scholarships.html">Scholarships</a></li>
-    <li><a href="camps.html">Camps</a></li>
+    <li class="nav-dropdown">
+      <a href="#stats">Noah ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="#stats">Profile</a>
+        <a href="#journey">Journey</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#academics">Academics</a>
+        <a href="#references">References</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#schools">Recruiting ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="#schools">Target Schools</a>
+        <a href="colleges.html">College Analysis</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="camps.html">ID Camps</a>
+      </div>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Recruit Me</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
@@ -1412,15 +1482,20 @@
   </button>
 </nav>
 <div class="nav-mobile-menu" id="navMobileMenu">
+    <span class="mob-group-label">Noah</span>
     <a href="#stats">Profile</a>
     <a href="#journey">Journey</a>
     <a href="#highlights">Highlights</a>
     <a href="#academics">Academics</a>
-    <a href="#schools">Schools</a>
-    <a href="colleges.html">Analysis</a>
+    <a href="#references">References</a>
+    <span class="mob-group-label">Recruiting</span>
+    <a href="#schools">Target Schools</a>
+    <a href="colleges.html">College Analysis</a>
     <a href="scholarships.html">Scholarships</a>
-    <a href="camps.html">Camps</a>
-    <a href="#contact">Recruit Me</a>
+    <a href="camps.html">ID Camps</a>
+    <span class="mob-group-label">Connect</span>
+    <a href="#contact">Contact</a>
+    <a href="#contact" style="background:#4a7a00;color:#fff;">Recruit Me</a>
 </div>
 
 <!-- ═══ HERO ══════════════════════════════════════ -->
@@ -1626,7 +1701,7 @@
       <div class="tl-dot"></div>
       <div class="tl-card">
         <div class="tl-year">2022 — 2025</div>
-        <div class="tl-org">Unified Legacy 2010 Premiere Wizards</div>
+        <div class="tl-org">Unified Legacy FC 2010 Premiere Wizards</div>
         <div class="tl-desc">Three years as a midfielder with Unified Legacy's 2010 Premiere Wizards — a competitive club environment that laid the foundation for high-level play and developed the technical and tactical game that led to MLS Next.</div>
         <div class="tl-coach">
           <span class="coach-label">Coach</span>
@@ -2036,11 +2111,15 @@
       <button class="form-submit" type="submit">Send Message →</button>
     </div>
   </div>
+</div>
 
-  <!-- Coach reference cards -->
-  <div class="coach-cards-section reveal">
-    <div class="coach-cards-label">Coach References &amp; Network</div>
-    <p class="coach-cards-sub">College coaches are encouraged to reach out directly to any of Noah's coaches for a reference or recruiting conversation.</p>
+<hr class="full-divider">
+
+<!-- ═══ REFERENCES ══════════════════════════════════ -->
+<div class="section" id="references">
+  <p class="sec-label reveal">Coach Network</p>
+  <h2 class="sec-title reveal">References</h2>
+  <p class="coach-cards-sub reveal">College coaches are encouraged to reach out directly to any of Noah's coaches for a reference or recruiting conversation.</p>
     <div class="coach-cards-grid">
 
       <div class="coach-card">
@@ -2116,7 +2195,6 @@
       </div>
 
     </div>
-  </div>
 </div>
 
 <!-- ═══ FOOTER ════════════════════════════════════ -->
