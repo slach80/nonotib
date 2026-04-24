@@ -218,6 +218,7 @@
       border-color: rgba(74,122,0,0.25);
       transform: translateY(-3px);
     }
+    .college-card--priority { border-top: 3px solid var(--accent-dark); }
     .cc-header {
       padding: 20px 22px 16px;
       border-bottom: 1px solid rgba(0,0,0,0.07);
@@ -436,6 +437,7 @@
       border: 1px solid rgba(0,0,0,0.07);
       border-radius: 7px;
       padding: 10px 12px;
+      margin-bottom: 8px;
     }
     .ct { display: flex; flex-direction: column; gap: 2px; }
     .ct-lbl {
@@ -512,11 +514,22 @@
       font-size: 0.74rem;
       color: #6b7fa8;
       line-height: 1.5;
+      padding: 4px 0;
     }
     .roster-note strong { color: #0f1a2e; font-weight: 500; }
     @media (max-width: 500px) {
       .roster-stats { grid-template-columns: repeat(2, 1fr); }
     }
+    .d1-note {
+      font-size: 0.82rem;
+      color: #6b7fa8;
+      margin-bottom: 20px;
+      padding: 10px 14px;
+      background: rgba(183,28,28,0.05);
+      border-left: 3px solid #b71c1c;
+      border-radius: 0 6px 6px 0;
+    }
+    .d1-note strong { color: #0f1a2e; }
 
     /* ─── FEASIBILITY GUIDE ─── */
     .feasibility-guide {
@@ -696,7 +709,7 @@
     .nav-mobile-menu {
       display: none;
       position: fixed;
-      top: var(--nav-h, 68px);
+      top: var(--nav-h, 64px);
       left: 0;
       right: 0;
       background: rgba(255,255,255,0.98);
@@ -822,7 +835,13 @@
     <span class="region-count">15 programs</span>
   </div>
 
-  <p style="font-size:0.82rem;color:#6b7fa8;margin-bottom:20px;padding:10px 14px;background:rgba(183,28,28,0.05);border-left:3px solid #b71c1c;border-radius:0 6px 6px 0;">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong style="color:#0f1a2e">Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
+  <!-- TEST PREP CROSSLINK -->
+  <div style="background:rgba(74,122,0,0.07);border:1px solid rgba(74,122,0,0.2);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+    <span style="font-size:0.82rem;color:#3a4a6b;line-height:1.6;">📐 Each school card below shows its <strong style="color:#0f1a2e;">ACT/SAT middle 50% range</strong>. Use those ranges to set a score target — then head to the Test Prep page for the full resource guide, test dates, and score tracker.</span>
+    <a href="testprep.html" style="background:#4a7a00;color:#fff;padding:9px 18px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0;">Test Prep Guide →</a>
+  </div>
 
   <div class="college-grid">
 
@@ -1086,13 +1105,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster &amp; Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">19–25</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">970–1170</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for roster and open spots: <strong>evangelusports.com</strong></div>
+          <div class="roster-note">Contact coaching staff for roster and open spots: <strong>evangelusports.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Evangel Crusaders Athletics</div><div class="ccc-links"><a href="https://evangelusports.com/sports/msoc/coaches" class="ccc-link" target="_blank">evangelusports.com ↗</a><span class="ccc-na">Verify current coach at athletics site</span></div></div></div>
       </div>
@@ -1118,8 +1137,8 @@
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–24</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">940–1150</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff: <strong>mwsugriffons.com</strong></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–24</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">940–1150</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="roster-note">Contact coaching staff: <strong>mwsugriffons.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">MWSU Griffons Athletics</div><div class="ccc-links"><a href="https://mwsugriffons.com/sports/msoc/coaches" class="ccc-link" target="_blank">mwsugriffons.com ↗</a></div></div></div>
       </div>
@@ -1142,8 +1161,8 @@
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">21–28</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1060–1310</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff: <strong>jewellcardinals.com</strong></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">21–28</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1060–1310</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="roster-note">Contact coaching staff: <strong>jewellcardinals.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Jewell Cardinals Athletics</div><div class="ccc-links"><a href="https://jewellcardinals.com/sports/msoc/coaches" class="ccc-link" target="_blank">jewellcardinals.com ↗</a></div></div></div>
       </div>
@@ -1160,7 +1179,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>WAC D1 — solid scholarship distribution. Local proximity is a major recruiting advantage. Coaching staff is familiar with the KC club soccer landscape and Sporting City players.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.2+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">20–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1040–1290</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">20–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1040–1290</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">UMKC Roos Athletics</div><div class="ccc-links"><a href="https://umkcroos.com/sports/msoc/coaches" class="ccc-link" target="_blank">umkcroos.com ↗</a></div></div></div>
       </div>
@@ -1309,13 +1328,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster &amp; Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">20–25</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1010–1200</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for roster and open spots: <strong>sbubears.com/sports/mens-soccer</strong></div>
+          <div class="roster-note">Contact coaching staff for roster and open spots: <strong>sbubears.com/sports/mens-soccer</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SBU Bearcats Athletics</div><div class="ccc-links"><a href="https://sbubears.com/sports/mens-soccer/coaches" class="ccc-link" target="_blank">sbubears.com ↗</a><span class="ccc-na">Verify current coach at athletics site</span></div></div></div>
       </div>
@@ -1341,8 +1360,8 @@
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div>
         </div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">25–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1200–1420</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff: <strong>trumanbulldogs.com</strong></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">25–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1200–1420</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
+          <div class="roster-note">Contact coaching staff: <strong>trumanbulldogs.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Truman Bulldogs Athletics</div><div class="ccc-links"><a href="https://trumanbulldogs.com/sports/msoc/coaches" class="ccc-link" target="_blank">trumanbulldogs.com ↗</a></div></div></div>
       </div>
@@ -1359,7 +1378,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>One of the most storied D1 soccer programs nationally. Multiple NCAA titles in program history. Atlantic 10 conference. <em>Note: Kevin Stoll (asst. coach) has reached out to Park Hill South — this is an active recruiting connection for Noah.</em></p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.6+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">Very High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">28–33</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1310–1480</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">28–33</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1310–1480</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Asst. Coach (Active Contact)</div><div class="ccc-name">Kevin Stoll</div><div class="ccc-links"><a href="tel:3144357669" class="ccc-link">📞 314-435-7669</a><a href="https://billikensoccercamps.com" class="ccc-link" target="_blank">billikensoccercamps.com ↗</a></div></div></div>
       </div>
@@ -1376,7 +1395,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>Missouri Valley Conference D1 — consistent NCAA Tournament appearances. Noah's MLS Next background is a strong credential at this level. Springfield is also home to Drury (D2), creating a good visit day pairing.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.3+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">AT/PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">21–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1060–1280</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">21–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1060–1280</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Missouri State Bears Athletics</div><div class="ccc-links"><a href="https://missouristatebears.com/sports/msoc/coaches" class="ccc-link" target="_blank">missouristatebears.com ↗</a></div></div></div>
       </div>
@@ -1384,7 +1403,7 @@
     </div>
 
     <!-- Lindenwood University -->
-    <div class="college-card" style="border-top: 3px solid #4a7a00;">
+    <div class="college-card college-card--priority">
       <div class="cc-header">
         <div>
           <div class="cc-name">Lindenwood University ⭐</div>
@@ -1401,13 +1420,13 @@
           <div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">AT/PT Pipeline</div></div>
         </div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">21–27</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1060–1280</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">ID Camp registration: <strong><a href="https://www.bertschsoccer.com" target="_blank" class="ccc-link">bertschsoccer.com ↗</a></strong></div>
+          <div class="roster-note">ID Camp registration: <strong><a href="https://www.bertschsoccer.com" target="_blank" class="ccc-link">bertschsoccer.com ↗</a></strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left">
           <div class="ccc-label">⭐ Active Recruit Contact</div>
@@ -1436,7 +1455,13 @@
 
   </div>
 
-  <p style="font-size:0.82rem;color:#6b7fa8;margin-bottom:20px;padding:10px 14px;background:rgba(183,28,28,0.05);border-left:3px solid #b71c1c;border-radius:0 6px 6px 0;">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong style="color:#0f1a2e">Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
+  <!-- TEST PREP CROSSLINK -->
+  <div style="background:rgba(74,122,0,0.07);border:1px solid rgba(74,122,0,0.2);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+    <span style="font-size:0.82rem;color:#3a4a6b;line-height:1.6;">📐 Each school card below shows its <strong style="color:#0f1a2e;">ACT/SAT middle 50% range</strong>. Use those ranges to set a score target — then head to the Test Prep page for the full resource guide, test dates, and score tracker.</span>
+    <a href="testprep.html" style="background:#4a7a00;color:#fff;padding:9px 18px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0;">Test Prep Guide →</a>
+  </div>
 
   <div class="college-grid">
 
@@ -1469,13 +1494,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">19–25</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">960–1183</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff for open spots: <strong>seu.edu/athletics</strong></div>
+          <div class="roster-note">Athletics site not publicly accessible — contact coaching staff for open spots: <strong>seu.edu/athletics</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SEU Fire Athletics</div><div class="ccc-links"><a href="https://seu.edu/athletics" class="ccc-link" target="_blank">seu.edu/athletics ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
@@ -1511,13 +1536,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">19–25</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1010–1200</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>saintleoathletics.com</strong></div>
+          <div class="roster-note">Contact coaching staff for current roster and open spots: <strong>saintleoathletics.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Saint Leo Athletics</div><div class="ccc-links"><a href="https://saintleoathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">saintleoathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
@@ -1553,13 +1578,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–22</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">880–1070</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>warneathletics.com</strong></div>
+          <div class="roster-note">Contact coaching staff for current roster and open spots: <strong>warneathletics.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Warner Royals Athletics</div><div class="ccc-links"><a href="https://warneathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">warneathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
@@ -1596,13 +1621,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">23–29</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1100–1270</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly for current roster and open spots: <strong>tampaspartans.com</strong></div>
+          <div class="roster-note">Athletics site not publicly accessible — contact coaching staff directly for current roster and open spots: <strong>tampaspartans.com</strong></div>
         </div>
       </div>
       <div class="cc-coach-contact">
@@ -1654,7 +1679,7 @@
             <div class="rs"><div class="rs-val rs-open">1</div><div class="rs-lbl">Graduating MF/FW</div></div>
             <div class="rs"><div class="rs-val rs-local">3</div><div class="rs-lbl">MO/KC Players</div></div>
           </div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">24–30</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1170–1320</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
@@ -1706,13 +1731,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">24–30</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1130–1330</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>eckerdathletics.com</strong></div>
+          <div class="roster-note">Contact coaching staff for current roster and open spots: <strong>eckerdathletics.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Eckerd Tritons Athletics</div><div class="ccc-links"><a href="https://eckerdathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">eckerdathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
@@ -1749,13 +1774,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">19–25</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1020–1200</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Contact coaching staff for current roster and open spots: <strong>lynnathletics.com</strong></div>
+          <div class="roster-note">Contact coaching staff for current roster and open spots: <strong>lynnathletics.com</strong></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">Lynn Fighting Knights Athletics</div><div class="ccc-links"><a href="https://lynnathletics.com/sports/msoc/coaches" class="ccc-link" target="_blank">lynnathletics.com ↗</a><span class="ccc-na">Coach contact not publicly listed</span></div></div></div>
       </div>
@@ -1774,7 +1799,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>AAC D1 — competitive mid-major. Tampa Bay soccer market is strong and growing. Same city as the University of Tampa (D2) — good comparison option when visiting.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.4+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">25–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1210–1400</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">25–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1210–1400</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">USF Bulls Athletics</div><div class="ccc-links"><a href="https://gousfbulls.com/sports/msoc/coaches" class="ccc-link" target="_blank">gousfbulls.com ↗</a></div></div></div>
       </div>
@@ -1793,7 +1818,13 @@
     <span class="region-count">7 programs</span>
   </div>
 
-  <p style="font-size:0.82rem;color:#6b7fa8;margin-bottom:20px;padding:10px 14px;background:rgba(183,28,28,0.05);border-left:3px solid #b71c1c;border-radius:0 6px 6px 0;">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong style="color:#0f1a2e">Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
+  <!-- TEST PREP CROSSLINK -->
+  <div style="background:rgba(74,122,0,0.07);border:1px solid rgba(74,122,0,0.2);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+    <span style="font-size:0.82rem;color:#3a4a6b;line-height:1.6;">📐 Each school card below shows its <strong style="color:#0f1a2e;">ACT/SAT middle 50% range</strong>. Use those ranges to set a score target — then head to the Test Prep page for the full resource guide, test dates, and score tracker.</span>
+    <a href="testprep.html" style="background:#4a7a00;color:#fff;padding:9px 18px;border-radius:5px;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0;">Test Prep Guide →</a>
+  </div>
 
   <div class="college-grid">
 
@@ -1826,13 +1857,13 @@
         </div>
         <div class="cc-roster">
           <div class="roster-title">Roster Data</div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–23</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">910–1120</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
             <div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div>
           </div>
-          <div class="roster-note" style="padding:4px 0;">Athletics site not publicly accessible — contact coaching staff directly: <strong>sdcc.edu/athletics</strong></div>
+          <div class="roster-note">Athletics site not publicly accessible — contact coaching staff directly: <strong>sdcc.edu/athletics</strong></div>
         </div>
       </div>
       <div class="cc-footer">
@@ -1852,7 +1883,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>Mountain West D1. SJSU is a CSU school with accessible admissions and strong scholarship potential. Playing D1 soccer in San Jose directly adjacent to the MLS (San Jose Earthquakes) environment.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.0+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">Medium</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–23</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">17–23</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SJSU Spartans Athletics</div><div class="ccc-links"><a href="https://sjsuspartans.com/sports/msoc/coaches" class="ccc-link" target="_blank">sjsuspartans.com ↗</a></div></div></div>
       </div>
@@ -1892,7 +1923,7 @@
             <div class="rs"><div class="rs-val rs-open">7</div><div class="rs-lbl">Graduating MF/FW</div></div>
             <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
           </div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">25–32</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1175–1365</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div>
@@ -1941,7 +1972,7 @@
             <div class="rs"><div class="rs-val rs-open">2</div><div class="rs-lbl">Graduating MF/FW</div></div>
             <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
           </div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">N/A</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div>
@@ -1989,7 +2020,7 @@
             <div class="rs"><div class="rs-val rs-open">3</div><div class="rs-lbl">Graduating MF/FW</div></div>
             <div class="rs"><div class="rs-val rs-local">0</div><div class="rs-lbl">KC/MO Players</div></div>
           </div>
-          <div class="cc-test-row" style="margin-bottom:8px;">
+          <div class="cc-test-row">
             <div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">N/A</div></div>
             <div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div>
             <div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div>
@@ -2014,7 +2045,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>Mountain West D1 — strong regional program in the San Diego market. New San Diego FC (MLS, 2025) creates growing professional soccer infrastructure in the area.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.3+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">20–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">20–27</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">N/A</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val blind">Test-Blind</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val strong">Strong Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">SDSU Aztecs Athletics</div><div class="ccc-links"><a href="https://goaztecs.com/sports/msoc/coaches" class="ccc-link" target="_blank">goaztecs.com ↗</a></div></div></div>
       </div>
@@ -2031,7 +2062,7 @@
         <div class="cc-soccer"><h4>Soccer Program</h4><p>WCC D1 — competitive conference alongside Gonzaga, Santa Clara, BYU. Private school means more scholarship flexibility. Worth contacting given San Diego target region.</p></div>
         <div class="cc-stats"><div class="cc-stat"><div class="cc-stat-val">3.5+</div><div class="cc-stat-lbl">Avg GPA</div></div><div class="cc-stat"><div class="cc-stat-val">High</div><div class="cc-stat-lbl">Soccer Level</div></div><div class="cc-stat"><div class="cc-stat-val">Strong</div><div class="cc-stat-lbl">PT Pipeline</div></div></div>
         <div class="cc-roster"><div class="roster-title">Admissions</div>
-          <div class="cc-test-row" style="margin-bottom:8px;"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">26–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1230–1450</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
+          <div class="cc-test-row"><div class="ct"><div class="ct-lbl">ACT</div><div class="ct-val">26–31</div></div><div class="ct"><div class="ct-lbl">SAT</div><div class="ct-val">1230–1450</div></div><div class="ct"><div class="ct-lbl">Policy</div><div class="ct-val opt">Test Optional</div></div><div class="ct"><div class="ct-lbl">GPA Fit</div><div class="ct-val good">Good Fit</div></div></div>
         </div>
         <div class="cc-coach-contact"><div class="ccc-left"><div class="ccc-label">Athletics Contact</div><div class="ccc-name">USD Toreros Athletics</div><div class="ccc-links"><a href="https://usdtoreros.com/sports/msoc/coaches" class="ccc-link" target="_blank">usdtoreros.com ↗</a></div></div></div>
       </div>
