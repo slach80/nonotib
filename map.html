@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Map — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #f4f6fb;
+      --bg-card:   #ffffff;
+      --accent:    #b8ff2e;
+      --accent-dark: #4a7a00;
+      --text:      #0f1a2e;
+      --muted:     #6b7fa8;
+      --border:    rgba(0,0,0,0.09);
+      --r:         10px;
+      --nav-h:     64px;
+      --filter-h:  52px;
+      --naia:      #9a6800;
+      --d2:        #0060c0;
+      --d1:        #b71c1c;
+      --high:      #4a7a00;
+      --med:       #7a5a00;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--bg); color: #3a4a6b; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: relative; z-index: 400; height: var(--nav-h);
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 60px); gap: 16px; flex-shrink: 0;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; flex-shrink: 0; }
+    .nav-logo span { color: #4a7a00; }
+    .nav-links { display: flex; gap: clamp(14px, 2vw, 26px); list-style: none; }
+    .nav-links > li > a { color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+    .nav-links > li > a:hover { color: #0f1a2e; }
+    .nav-links > li > a.active { color: #4a7a00; }
+    .nav-cta { background: #4a7a00; color: #fff; padding: 8px 16px; border-radius: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(74,122,0,0.3); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: '▾'; font-size: 0.55rem; opacity: 0.6; transition: transform 0.2s; display: inline-block; }
+    .nav-dropdown:hover > a::after, .nav-dropdown:focus-within > a::after { transform: rotate(180deg); }
+    .nav-dropdown::after { content: ''; position: absolute; top: 100%; left: -10px; right: -10px; height: 10px; background: transparent; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; box-shadow: 0 12px 36px rgba(0,0,0,0.15); min-width: 170px; z-index: 300; overflow: hidden; padding-top: 6px; }
+    .nav-dropdown-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #fff; border-left: 1px solid rgba(0,0,0,0.1); border-top: 1px solid rgba(0,0,0,0.1); rotate: 45deg; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 10px 18px; color: #3a4a6b; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: #0f1a2e; border-radius: 2px; }
+    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 399; padding: 16px 0 20px; flex-direction: column; }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a { padding: 12px clamp(18px,5vw,60px); color: #3a4a6b; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.15s, color 0.15s; }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-menu a:hover, .nav-mobile-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    .nav-mobile-menu .mob-group-label { padding: 10px clamp(18px,5vw,60px) 4px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #9baec8; }
+    @media (max-width: 960px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-dropdown-menu { display: none !important; } }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar {
+      height: var(--filter-h); flex-shrink: 0;
+      background: #fff; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 16px; overflow-x: auto; white-space: nowrap;
+      position: relative; z-index: 300;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-sep { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; margin: 0 4px; }
+    .filter-btn {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      background: none; border: 1px solid transparent; border-radius: 5px;
+      padding: 5px 10px; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .filter-btn:hover { color: var(--text); background: var(--bg); }
+    .filter-btn.active { color: #fff; background: var(--accent-dark); border-color: var(--accent-dark); }
+    .filter-btn.active.d1-btn { background: var(--d1); border-color: var(--d1); }
+    .filter-btn.active.d2-btn { background: var(--d2); border-color: var(--d2); }
+    .filter-btn.active.naia-btn { background: var(--naia); border-color: var(--naia); }
+    .filter-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #b0bdd4; flex-shrink: 0; }
+
+    /* ─── MOBILE TOGGLE ─── */
+    .mob-view-toggle {
+      display: none; flex-shrink: 0;
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 8px 16px; gap: 8px;
+    }
+    .mob-view-toggle button {
+      flex: 1; font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px; cursor: pointer; background: none; color: var(--muted);
+      transition: all 0.15s;
+    }
+    .mob-view-toggle button.active { background: var(--accent-dark); color: #fff; border-color: var(--accent-dark); }
+    @media (max-width: 768px) { .mob-view-toggle { display: flex; } }
+
+    /* ─── MAIN LAYOUT ─── */
+    .map-layout { flex: 1; display: flex; overflow: hidden; min-height: 0; }
+
+    /* ─── MAP ─── */
+    #map { flex: 1; min-width: 0; z-index: 1; }
+    .leaflet-popup-content-wrapper { border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); border: none; padding: 0; overflow: hidden; }
+    .leaflet-popup-content { margin: 0; }
+    .leaflet-popup-tip-container { display: none; }
+
+    /* ─── SIDEBAR ─── */
+    .map-sidebar {
+      width: 300px; flex-shrink: 0; background: #fff;
+      border-left: 1px solid var(--border); overflow-y: auto; z-index: 2;
+      display: flex; flex-direction: column;
+    }
+    .map-sidebar::-webkit-scrollbar { width: 4px; }
+    .map-sidebar::-webkit-scrollbar-thumb { background: #d0d8e8; border-radius: 2px; }
+
+    .sidebar-region { border-bottom: 1px solid var(--border); }
+    .sidebar-region-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; background: var(--bg); position: sticky; top: 0;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); z-index: 1;
+    }
+    .fly-btn {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; background: none;
+      border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px;
+      cursor: pointer; color: var(--accent-dark); transition: all 0.15s;
+    }
+    .fly-btn:hover { background: var(--accent-dark); color: #fff; border-color: var(--accent-dark); }
+
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 14px; cursor: pointer; transition: background 0.15s;
+      border-bottom: 1px solid rgba(0,0,0,0.04); text-decoration: none; color: inherit;
+    }
+    .sidebar-item:last-child { border-bottom: none; }
+    .sidebar-item:hover { background: rgba(74,122,0,0.05); }
+    .sidebar-item.hidden { display: none; }
+    .sidebar-item.highlighted { background: rgba(74,122,0,0.1); }
+
+    .si-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid rgba(0,0,0,0.15);
+    }
+    .si-info { flex: 1; min-width: 0; }
+    .si-name { font-size: 0.78rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .si-meta { font-size: 0.66rem; color: var(--muted); margin-top: 1px; }
+    .si-badges { display: flex; gap: 4px; flex-shrink: 0; }
+    .si-badge {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 5px; border-radius: 3px;
+    }
+    .si-badge.d1  { background: rgba(183,28,28,0.1); color: var(--d1); }
+    .si-badge.d2  { background: rgba(0,96,192,0.1);  color: var(--d2); }
+    .si-badge.naia{ background: rgba(154,104,0,0.1); color: var(--naia); }
+    .si-badge.high{ background: rgba(74,122,0,0.1);  color: var(--high); }
+    .si-badge.med { background: rgba(122,90,0,0.1);  color: var(--med); }
+
+    /* ─── POPUP ─── */
+    .map-popup { min-width: 220px; max-width: 260px; font-family: 'DM Sans', sans-serif; }
+    .popup-hd {
+      padding: 12px 14px 10px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+    }
+    .popup-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .popup-meta { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+    .popup-div-badge {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 7px;
+      border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+    }
+    .popup-div-badge.d1   { background: rgba(183,28,28,0.1); color: var(--d1); }
+    .popup-div-badge.d2   { background: rgba(0,96,192,0.1);  color: var(--d2); }
+    .popup-div-badge.naia { background: rgba(154,104,0,0.1); color: var(--naia); }
+    .popup-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 7px; }
+    .popup-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; }
+    .popup-row-lbl { color: var(--muted); }
+    .popup-row-val { font-weight: 500; color: var(--text); }
+    .popup-feas {
+      display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 4px;
+    }
+    .popup-feas.high { background: rgba(74,122,0,0.12); color: var(--high); }
+    .popup-feas.med  { background: rgba(122,90,0,0.1);  color: var(--med); }
+    .popup-coach { font-size: 0.7rem; color: var(--muted); }
+    .popup-coach strong { color: var(--text); }
+    .popup-ft { padding: 0 14px 12px; display: flex; gap: 7px; }
+    .popup-btn {
+      flex: 1; text-align: center; text-decoration: none; display: block;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 10px; border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+    .popup-btn:hover { opacity: 0.85; }
+    .popup-btn.primary { background: var(--accent-dark); color: #fff; }
+    .popup-btn.secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+
+    /* ─── MOBILE RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .map-sidebar { display: none; width: 100%; border-left: none; border-top: 1px solid var(--border); }
+      .map-sidebar.mob-active { display: flex; }
+      #map.mob-hidden { display: none; }
+      .map-layout { flex-direction: column; }
+    }
+    @media (max-width: 540px) {
+      .filter-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">NL<span>21</span></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="index.html#stats">Noah</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#stats">Profile</a>
+        <a href="index.html#journey">Journey</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="testprep.html">Test Prep</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#references">References</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="index.html#schools">Recruiting</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#schools">Target Schools</a>
+        <a href="colleges.html">College Analysis</a>
+        <a href="map.html" class="active">College Map</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="camps.html">ID Camps</a>
+      </div>
+    </li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Recruit Me</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <span class="mob-group-label">Noah</span>
+  <a href="index.html#stats">Profile</a>
+  <a href="index.html#journey">Journey</a>
+  <a href="index.html#highlights">Highlights</a>
+  <a href="index.html#academics">Academics</a>
+  <a href="testprep.html">Test Prep</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="index.html#references">References</a>
+  <span class="mob-group-label">Recruiting</span>
+  <a href="index.html#schools">Target Schools</a>
+  <a href="colleges.html">College Analysis</a>
+  <a href="map.html" class="active">College Map</a>
+  <a href="scholarships.html">Scholarships</a>
+  <a href="camps.html">ID Camps</a>
+  <span class="mob-group-label">Connect</span>
+  <a href="index.html#contact">Contact · Recruit Me</a>
+</div>
+
+<!-- ─── FILTER BAR ─── -->
+<div class="filter-bar" id="filterBar">
+  <span class="filter-label">Region</span>
+  <button class="filter-btn active" data-filter="region" data-val="all">All</button>
+  <button class="filter-btn" data-filter="region" data-val="kc">KC / MO</button>
+  <button class="filter-btn" data-filter="region" data-val="tampa">Tampa Bay</button>
+  <button class="filter-btn" data-filter="region" data-val="ca">California</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">Division</span>
+  <button class="filter-btn active" data-filter="div" data-val="all">All</button>
+  <button class="filter-btn d1-btn"   data-filter="div" data-val="d1">D1</button>
+  <button class="filter-btn d2-btn"   data-filter="div" data-val="d2">D2</button>
+  <button class="filter-btn naia-btn" data-filter="div" data-val="naia">NAIA</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">Feasibility</span>
+  <button class="filter-btn active" data-filter="feas" data-val="all">All</button>
+  <button class="filter-btn" data-filter="feas" data-val="high">High</button>
+  <button class="filter-btn" data-filter="feas" data-val="med">Medium</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-label">View</span>
+  <button class="filter-btn active" data-filter="tiles" data-val="road">Road</button>
+  <button class="filter-btn" data-filter="tiles" data-val="terrain">Terrain</button>
+  <button class="filter-btn" data-filter="tiles" data-val="satellite">Satellite</button>
+</div>
+
+<!-- ─── MOBILE TOGGLE ─── -->
+<div class="mob-view-toggle" id="mobToggle">
+  <button id="togMap" class="active">🗺 Map</button>
+  <button id="togList">☰ List</button>
+</div>
+
+<!-- ─── MAIN LAYOUT ─── -->
+<div class="map-layout">
+  <div id="map"></div>
+
+  <div class="map-sidebar" id="mapSidebar">
+
+    <!-- KC / Missouri -->
+    <div class="sidebar-region" data-region="kc">
+      <div class="sidebar-region-hd">
+        KC / Missouri (15)
+        <button class="fly-btn" data-fly="kc">Zoom</button>
+      </div>
+      <a class="sidebar-item" data-id="rockhurst"         data-region="kc" data-div="d2"   data-feas="high" href="colleges.html#rockhurst">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Rockhurst University</div><div class="si-meta">D2 · GLVC · Kansas City, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="midamerica-nazarene" data-region="kc" data-div="naia" data-feas="high" href="colleges.html#midamerica-nazarene">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">MidAmerica Nazarene</div><div class="si-meta">NAIA · Heart of America · Olathe, KS</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="saint-mary"        data-region="kc" data-div="naia" data-feas="high" href="colleges.html#saint-mary">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">University of Saint Mary</div><div class="si-meta">NAIA · KCAC · Leavenworth, KS</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="park"              data-region="kc" data-div="naia" data-feas="high" href="colleges.html#park">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Park University</div><div class="si-meta">NAIA · Heart of America · Parkville, MO</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="evangel"           data-region="kc" data-div="naia" data-feas="high" href="colleges.html#evangel">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Evangel University</div><div class="si-meta">NAIA · Heart of America · Springfield, MO</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="missouri-western"  data-region="kc" data-div="d2"   data-feas="high" href="colleges.html#missouri-western">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Missouri Western State</div><div class="si-meta">D2 · MIAA · St. Joseph, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="william-jewell"    data-region="kc" data-div="naia" data-feas="high" href="colleges.html#william-jewell">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">William Jewell College</div><div class="si-meta">NAIA · Heart of America · Liberty, MO</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="umkc"              data-region="kc" data-div="d1"   data-feas="high" href="colleges.html#umkc">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">UMKC</div><div class="si-meta">D1 · WAC · Kansas City, MO</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="drury"             data-region="kc" data-div="d2"   data-feas="med" href="colleges.html#drury">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Drury University</div><div class="si-meta">D2 · GLVC · Springfield, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="maryville"         data-region="kc" data-div="d2"   data-feas="med" href="colleges.html#maryville">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Maryville University</div><div class="si-meta">D2 · GLVC · St. Louis, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="southwest-baptist" data-region="kc" data-div="d2"   data-feas="med" href="colleges.html#southwest-baptist">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Southwest Baptist University</div><div class="si-meta">D2 · MIAA · Bolivar, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="truman-state"      data-region="kc" data-div="d2"   data-feas="med" href="colleges.html#truman-state">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Truman State University</div><div class="si-meta">D2 · GLVC · Kirksville, MO</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="slu"               data-region="kc" data-div="d1"   data-feas="med" href="colleges.html#slu">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">Saint Louis University (SLU)</div><div class="si-meta">D1 · Atlantic 10 · St. Louis, MO</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="missouri-state"    data-region="kc" data-div="d1"   data-feas="med" href="colleges.html#missouri-state">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">Missouri State University</div><div class="si-meta">D1 · Missouri Valley · Springfield, MO</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="lindenwood"        data-region="kc" data-div="d1"   data-feas="high" href="colleges.html#lindenwood">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">Lindenwood University ⭐</div><div class="si-meta">D1 · OVC · St. Charles, MO</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge high">High</span></div>
+      </a>
+    </div>
+
+    <!-- Tampa Bay -->
+    <div class="sidebar-region" data-region="tampa">
+      <div class="sidebar-region-hd">
+        Tampa Bay (8)
+        <button class="fly-btn" data-fly="tampa">Zoom</button>
+      </div>
+      <a class="sidebar-item" data-id="southeastern"      data-region="tampa" data-div="naia" data-feas="high" href="colleges.html#southeastern">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Southeastern University</div><div class="si-meta">NAIA · Sun Conference · Lakeland, FL</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="saint-leo"         data-region="tampa" data-div="d2"   data-feas="high" href="colleges.html#saint-leo">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Saint Leo University</div><div class="si-meta">D2 · Sunshine State · Saint Leo, FL</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="warner"            data-region="tampa" data-div="naia" data-feas="high" href="colleges.html#warner">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Warner University</div><div class="si-meta">NAIA · Sun Conference · Lake Wales, FL</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="u-tampa"           data-region="tampa" data-div="d2"   data-feas="med" href="colleges.html#u-tampa">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">University of Tampa</div><div class="si-meta">D2 · Sunshine State · Tampa, FL</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="florida-southern"  data-region="tampa" data-div="d2"   data-feas="med" href="colleges.html#florida-southern">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Florida Southern College</div><div class="si-meta">D2 · Sunshine State · Lakeland, FL</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="eckerd"            data-region="tampa" data-div="d2"   data-feas="med" href="colleges.html#eckerd">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Eckerd College</div><div class="si-meta">D2 · Sunshine State · St. Petersburg, FL</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="lynn"              data-region="tampa" data-div="d2"   data-feas="med" href="colleges.html#lynn">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Lynn University</div><div class="si-meta">D2 · Sunshine State · Boca Raton, FL</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="usf"               data-region="tampa" data-div="d1"   data-feas="med" href="colleges.html#usf">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">University of South Florida</div><div class="si-meta">D1 · American Athletic · Tampa, FL</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+    </div>
+
+    <!-- California -->
+    <div class="sidebar-region" data-region="ca">
+      <div class="sidebar-region-hd">
+        California (7)
+        <button class="fly-btn" data-fly="ca">Zoom</button>
+      </div>
+      <a class="sidebar-item" data-id="sd-christian"      data-region="ca" data-div="naia" data-feas="high" href="colleges.html#sd-christian">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">San Diego Christian College</div><div class="si-meta">NAIA · GSAC · Santee, CA</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="sjsu"              data-region="ca" data-div="d1"   data-feas="high" href="colleges.html#sjsu">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">San Jose State University</div><div class="si-meta">D1 · Mountain West · San Jose, CA</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="point-loma"        data-region="ca" data-div="d2"   data-feas="med" href="colleges.html#point-loma">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Point Loma Nazarene</div><div class="si-meta">D2 · PacWest · San Diego, CA</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="csusm"             data-region="ca" data-div="d2"   data-feas="med" href="colleges.html#csusm">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Cal State San Marcos</div><div class="si-meta">D2 · CCAA · San Marcos, CA</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="csueb"             data-region="ca" data-div="d2"   data-feas="med" href="colleges.html#csueb">
+        <div class="si-dot" style="background:var(--d2)"></div>
+        <div class="si-info"><div class="si-name">Cal State East Bay</div><div class="si-meta">D2 · CCAA · Hayward, CA</div></div>
+        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="sdsu"              data-region="ca" data-div="d1"   data-feas="med" href="colleges.html#sdsu">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">San Diego State University</div><div class="si-meta">D1 · Mountain West · San Diego, CA</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+      <a class="sidebar-item" data-id="usd"               data-region="ca" data-div="d1"   data-feas="med" href="colleges.html#usd">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">University of San Diego</div><div class="si-meta">D1 · West Coast · San Diego, CA</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+    </div>
+
+  </div><!-- /sidebar -->
+</div><!-- /map-layout -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+// ─── COLLEGE DATA ───────────────────────────────────────────────────────────
+var colleges = [
+  // KC / Missouri
+  { id:'rockhurst',         name:'Rockhurst University',        region:'kc',    div:'d2',   feas:'high', lat:39.0277,  lng:-94.5880, conf:'GLVC',            loc:'Kansas City, MO',   coach:'Athletics Staff' },
+  { id:'midamerica-nazarene',name:'MidAmerica Nazarene',        region:'kc',    div:'naia', feas:'high', lat:38.8814,  lng:-94.8191, conf:'Heart of America', loc:'Olathe, KS',        coach:'Athletics Staff' },
+  { id:'saint-mary',        name:'University of Saint Mary',    region:'kc',    div:'naia', feas:'high', lat:39.3072,  lng:-94.9166, conf:'KCAC',             loc:'Leavenworth, KS',   coach:'Athletics Staff' },
+  { id:'park',              name:'Park University',             region:'kc',    div:'naia', feas:'high', lat:39.1953,  lng:-94.6833, conf:'Heart of America', loc:'Parkville, MO',     coach:'Coach Zlitni (connection)' },
+  { id:'evangel',           name:'Evangel University',          region:'kc',    div:'naia', feas:'high', lat:37.1986,  lng:-93.3113, conf:'Heart of America', loc:'Springfield, MO',   coach:'Athletics Staff' },
+  { id:'missouri-western',  name:'Missouri Western State',      region:'kc',    div:'d2',   feas:'high', lat:39.7725,  lng:-94.8467, conf:'MIAA',             loc:'St. Joseph, MO',    coach:'Athletics Staff' },
+  { id:'william-jewell',    name:'William Jewell College',      region:'kc',    div:'naia', feas:'high', lat:39.2467,  lng:-94.4197, conf:'Heart of America', loc:'Liberty, MO',       coach:'Athletics Staff' },
+  { id:'umkc',              name:'UMKC',                        region:'kc',    div:'d1',   feas:'high', lat:39.0375,  lng:-94.5770, conf:'WAC',              loc:'Kansas City, MO',   coach:'Athletics Staff' },
+  { id:'drury',             name:'Drury University',            region:'kc',    div:'d2',   feas:'med',  lat:37.2090,  lng:-93.2952, conf:'GLVC',             loc:'Springfield, MO',   coach:'Athletics Staff' },
+  { id:'maryville',         name:'Maryville University',        region:'kc',    div:'d2',   feas:'med',  lat:38.6220,  lng:-90.5431, conf:'GLVC',             loc:'St. Louis, MO',     coach:'Athletics Staff' },
+  { id:'southwest-baptist', name:'Southwest Baptist University',region:'kc',    div:'d2',   feas:'med',  lat:37.6189,  lng:-93.4107, conf:'MIAA',             loc:'Bolivar, MO',       coach:'Athletics Staff' },
+  { id:'truman-state',      name:'Truman State University',     region:'kc',    div:'d2',   feas:'med',  lat:40.1964,  lng:-92.5832, conf:'GLVC',             loc:'Kirksville, MO',    coach:'Athletics Staff' },
+  { id:'slu',               name:'Saint Louis University (SLU)',region:'kc',    div:'d1',   feas:'med',  lat:38.6373,  lng:-90.2352, conf:'Atlantic 10',      loc:'St. Louis, MO',     coach:'Kevin Stoll (Active Contact)' },
+  { id:'missouri-state',    name:'Missouri State University',   region:'kc',    div:'d1',   feas:'med',  lat:37.1932,  lng:-93.2718, conf:'Missouri Valley',  loc:'Springfield, MO',   coach:'Athletics Staff' },
+  { id:'lindenwood',        name:'Lindenwood University ⭐',    region:'kc',    div:'d1',   feas:'high', lat:38.7845,  lng:-90.4960, conf:'OVC',              loc:'St. Charles, MO',   coach:'Nat Hubert (Personal Invite)', priority:true },
+  // Tampa Bay
+  { id:'southeastern',      name:'Southeastern University',     region:'tampa', div:'naia', feas:'high', lat:28.0399,  lng:-81.9498, conf:'Sun Conference',   loc:'Lakeland, FL',      coach:'Athletics Staff' },
+  { id:'saint-leo',         name:'Saint Leo University',        region:'tampa', div:'d2',   feas:'high', lat:28.3367,  lng:-82.2601, conf:'Sunshine State',   loc:'Saint Leo, FL',     coach:'Athletics Staff' },
+  { id:'warner',            name:'Warner University',           region:'tampa', div:'naia', feas:'high', lat:27.9014,  lng:-81.5853, conf:'Sun Conference',   loc:'Lake Wales, FL',    coach:'Athletics Staff' },
+  { id:'u-tampa',           name:'University of Tampa',         region:'tampa', div:'d2',   feas:'med',  lat:27.9478,  lng:-82.4584, conf:'Sunshine State',   loc:'Tampa, FL',         coach:'Athletics Staff' },
+  { id:'florida-southern',  name:'Florida Southern College',    region:'tampa', div:'d2',   feas:'med',  lat:28.0297,  lng:-81.9750, conf:'Sunshine State',   loc:'Lakeland, FL',      coach:'Ashley Holmes' },
+  { id:'eckerd',            name:'Eckerd College',              region:'tampa', div:'d2',   feas:'med',  lat:27.7207,  lng:-82.7476, conf:'Sunshine State',   loc:'St. Petersburg, FL',coach:'Athletics Staff' },
+  { id:'lynn',              name:'Lynn University',             region:'tampa', div:'d2',   feas:'med',  lat:26.3683,  lng:-80.1289, conf:'Sunshine State',   loc:'Boca Raton, FL',    coach:'Athletics Staff' },
+  { id:'usf',               name:'University of South Florida', region:'tampa', div:'d1',   feas:'med',  lat:28.0587,  lng:-82.4139, conf:'American Athletic',loc:'Tampa, FL',         coach:'Athletics Staff' },
+  // California
+  { id:'sd-christian',      name:'San Diego Christian College', region:'ca',    div:'naia', feas:'high', lat:32.8384,  lng:-116.9739,conf:'GSAC',             loc:'Santee, CA',        coach:'Athletics Staff' },
+  { id:'sjsu',              name:'San Jose State University',   region:'ca',    div:'d1',   feas:'high', lat:37.3352,  lng:-121.8811,conf:'Mountain West',    loc:'San Jose, CA',      coach:'Athletics Staff' },
+  { id:'point-loma',        name:'Point Loma Nazarene',         region:'ca',    div:'d2',   feas:'med',  lat:32.6835,  lng:-117.2425,conf:'PacWest',          loc:'San Diego, CA',     coach:'Phil Wolf' },
+  { id:'csusm',             name:'Cal State San Marcos',        region:'ca',    div:'d2',   feas:'med',  lat:33.1284,  lng:-117.1594,conf:'CCAA',             loc:'San Marcos, CA',    coach:'Ron Pulvers' },
+  { id:'csueb',             name:'Cal State East Bay',          region:'ca',    div:'d2',   feas:'med',  lat:37.6577,  lng:-122.0572,conf:'CCAA',             loc:'Hayward, CA',       coach:'Athletics Staff' },
+  { id:'sdsu',              name:'San Diego State University',  region:'ca',    div:'d1',   feas:'med',  lat:32.7757,  lng:-117.0719,conf:'Mountain West',    loc:'San Diego, CA',     coach:'Athletics Staff' },
+  { id:'usd',               name:'University of San Diego',     region:'ca',    div:'d1',   feas:'med',  lat:32.7726,  lng:-117.1887,conf:'West Coast',       loc:'San Diego, CA',     coach:'Athletics Staff' },
+];
+
+// ─── REGION VIEWS ───────────────────────────────────────────────────────────
+var regionViews = {
+  all:   { center: [38, -97], zoom: 4 },
+  kc:    { center: [38.8, -93.2], zoom: 6 },
+  tampa: { center: [27.9, -81.8], zoom: 7 },
+  ca:    { center: [34.5, -118.8], zoom: 6 },
+};
+
+// ─── TILE LAYERS ─────────────────────────────────────────────────────────────
+var tiles = {
+  road: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a>', maxZoom: 19, subdomains: 'abcd'
+  }),
+  terrain: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri', maxZoom: 18
+  }),
+  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri', maxZoom: 18
+  }),
+};
+
+// ─── INIT MAP ────────────────────────────────────────────────────────────────
+var map = L.map('map', {
+  center: regionViews.all.center, zoom: regionViews.all.zoom,
+  zoomControl: true, scrollWheelZoom: true,
+});
+tiles.road.addTo(map);
+var currentTile = 'road';
+
+// ─── MARKER COLORS ───────────────────────────────────────────────────────────
+var divColors = { d1: '#b71c1c', d2: '#0060c0', naia: '#9a6800' };
+var feasBorder = { high: '#4a7a00', med: '#7a5a00' };
+
+function makeIcon(college) {
+  var c = divColors[college.div];
+  var border = feasBorder[college.feas];
+  var size = college.priority ? 18 : 14;
+  var star = college.priority ? '<text x="9" y="12" text-anchor="middle" font-size="8" fill="#fff">⭐</text>' : '';
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + (size+8) + '" height="' + (size+8) + '">'
+    + '<circle cx="' + (size/2+4) + '" cy="' + (size/2+4) + '" r="' + (size/2+2) + '" fill="' + border + '" opacity="0.3"/>'
+    + '<circle cx="' + (size/2+4) + '" cy="' + (size/2+4) + '" r="' + (size/2) + '" fill="' + c + '" stroke="#fff" stroke-width="2"/>'
+    + star
+    + '</svg>';
+  return L.divIcon({
+    html: svg, className: '', iconSize: [size+8, size+8], iconAnchor: [(size+8)/2, (size+8)/2], popupAnchor: [0, -(size/2+6)]
+  });
+}
+
+// ─── BUILD POPUP ─────────────────────────────────────────────────────────────
+function buildPopup(c) {
+  var feasLabel = c.feas === 'high' ? 'High' : 'Medium';
+  var divLabel  = c.div === 'd1' ? 'NCAA D1' : c.div === 'd2' ? 'NCAA D2' : 'NAIA';
+  return '<div class="map-popup">'
+    + '<div class="popup-hd">'
+    +   '<div><div class="popup-name">' + c.name + '</div><div class="popup-meta">' + c.conf + ' · ' + c.loc + '</div></div>'
+    +   '<span class="popup-div-badge ' + c.div + '">' + divLabel + '</span>'
+    + '</div>'
+    + '<div class="popup-body">'
+    +   '<div class="popup-row"><span class="popup-row-lbl">Feasibility</span><span class="popup-feas ' + c.feas + '">' + feasLabel + '</span></div>'
+    +   '<div class="popup-row"><span class="popup-row-lbl">Region</span><span class="popup-row-val">' + (c.region === 'kc' ? 'KC / Missouri' : c.region === 'tampa' ? 'Tampa Bay' : 'California') + '</span></div>'
+    +   '<div class="popup-coach">Coach: <strong>' + c.coach + '</strong></div>'
+    + '</div>'
+    + '<div class="popup-ft">'
+    +   '<a href="colleges.html#' + c.id + '" class="popup-btn primary">View Profile →</a>'
+    + '</div>'
+    + '</div>';
+}
+
+// ─── CREATE MARKERS ───────────────────────────────────────────────────────────
+var markers = {};
+colleges.forEach(function(c) {
+  var m = L.marker([c.lat, c.lng], { icon: makeIcon(c) })
+    .bindPopup(buildPopup(c), { maxWidth: 280, closeButton: false })
+    .addTo(map);
+  m.on('click', function() { highlightSidebarItem(c.id); });
+  markers[c.id] = m;
+});
+
+// ─── SIDEBAR HIGHLIGHT ────────────────────────────────────────────────────────
+function highlightSidebarItem(id) {
+  document.querySelectorAll('.sidebar-item').forEach(function(el) {
+    el.classList.remove('highlighted');
+  });
+  var el = document.querySelector('.sidebar-item[data-id="' + id + '"]');
+  if (el) {
+    el.classList.add('highlighted');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+// ─── FILTERS ─────────────────────────────────────────────────────────────────
+var activeFilters = { region: 'all', div: 'all', feas: 'all' };
+
+function applyFilters() {
+  var r = activeFilters.region, d = activeFilters.div, f = activeFilters.feas;
+  colleges.forEach(function(c) {
+    var visible = (r === 'all' || c.region === r)
+               && (d === 'all' || c.div === d)
+               && (f === 'all' || c.feas === f);
+    var m = markers[c.id];
+    if (visible) { if (!map.hasLayer(m)) m.addTo(map); }
+    else         { if (map.hasLayer(m))  map.removeLayer(m); }
+    var si = document.querySelector('.sidebar-item[data-id="' + c.id + '"]');
+    if (si) si.classList.toggle('hidden', !visible);
+  });
+}
+
+document.querySelectorAll('.filter-btn[data-filter]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var filterType = btn.dataset.filter;
+    var val = btn.dataset.val;
+
+    if (filterType === 'tiles') {
+      document.querySelectorAll('.filter-btn[data-filter="tiles"]').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      map.removeLayer(tiles[currentTile]);
+      tiles[val].addTo(map);
+      currentTile = val;
+      return;
+    }
+
+    if (filterType === 'region' && val !== 'all') {
+      var v = regionViews[val];
+      map.flyTo(v.center, v.zoom, { duration: 1.2 });
+    } else if (filterType === 'region' && val === 'all') {
+      map.flyTo(regionViews.all.center, regionViews.all.zoom, { duration: 1.2 });
+    }
+
+    document.querySelectorAll('.filter-btn[data-filter="' + filterType + '"]').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    activeFilters[filterType] = val;
+    applyFilters();
+  });
+});
+
+// ─── FLY BUTTONS (SIDEBAR) ───────────────────────────────────────────────────
+document.querySelectorAll('.fly-btn[data-fly]').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var v = regionViews[btn.dataset.fly];
+    map.flyTo(v.center, v.zoom, { duration: 1.2 });
+  });
+});
+
+// ─── SIDEBAR → MAP HIGHLIGHT ─────────────────────────────────────────────────
+document.querySelectorAll('.sidebar-item').forEach(function(el) {
+  el.addEventListener('mouseenter', function() {
+    var id = el.dataset.id;
+    if (markers[id]) markers[id].openPopup();
+  });
+  el.addEventListener('mouseleave', function() {
+    var id = el.dataset.id;
+    if (markers[id]) markers[id].closePopup();
+  });
+});
+
+// ─── DEEP LINK: jump to school from URL hash ─────────────────────────────────
+function handleHash() {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && markers[hash]) {
+    var c = colleges.find(function(x) { return x.id === hash; });
+    if (c) {
+      var v = regionViews[c.region];
+      map.setView([c.lat, c.lng], Math.max(v.zoom + 2, 11));
+      setTimeout(function() { markers[hash].openPopup(); }, 400);
+      highlightSidebarItem(hash);
+    }
+  }
+}
+handleHash();
+window.addEventListener('hashchange', handleHash);
+
+// ─── MOBILE TOGGLE ───────────────────────────────────────────────────────────
+document.getElementById('togMap').addEventListener('click', function() {
+  this.classList.add('active');
+  document.getElementById('togList').classList.remove('active');
+  document.getElementById('map').classList.remove('mob-hidden');
+  document.getElementById('mapSidebar').classList.remove('mob-active');
+  map.invalidateSize();
+});
+document.getElementById('togList').addEventListener('click', function() {
+  this.classList.add('active');
+  document.getElementById('togMap').classList.remove('active');
+  document.getElementById('map').classList.add('mob-hidden');
+  document.getElementById('mapSidebar').classList.add('mob-active');
+});
+
+// ─── NAV HAMBURGER ───────────────────────────────────────────────────────────
+document.getElementById('navHamburger').addEventListener('click', function() {
+  document.getElementById('navMobileMenu').classList.toggle('open');
+});
+</script>
+</body>
+</html>
