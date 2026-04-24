@@ -36,29 +36,30 @@ SCHOOLS = [
     {"name": "Park University",            "div": "NAIA", "url": "https://parkathletics.com/sports/mens-soccer/coaches"},
     {"name": "Drury University",           "div": "D2",   "url": "https://drurypanthers.com/sports/mens-soccer/coaches"},
     {"name": "Maryville University",       "div": "D2",   "url": "https://maryvillesaints.com/sports/mens-soccer/coaches"},
-    {"name": "Missouri Western State",     "div": "D2",   "url": "https://mwsugriffons.com/sports/msoc/coaches"},
+    {"name": "Missouri Western State",     "div": "D2",   "url": "https://mwsugriffons.com/sports/msoc/coaches"},  # Cloudflare protected — manual check
     {"name": "William Jewell College",     "div": "NAIA", "url": "https://jewellcardinals.com/sports/msoc/coaches"},
     {"name": "Truman State University",    "div": "D2",   "url": "https://trumanbulldogs.com/sports/msoc/coaches"},
-    {"name": "Southwest Baptist",          "div": "D2",   "url": "https://sbubears.com/sports/mens-soccer/coaches"},
-    {"name": "Evangel University",         "div": "NAIA", "url": "https://evangelusports.com/sports/msoc/coaches"},
-    {"name": "Saint Louis University",     "div": "D1",   "url": "https://billikens.com/sports/msoc/coaches"},
-    {"name": "UMKC",                       "div": "D1",   "url": "https://umkcroos.com/sports/msoc/coaches"},
+    {"name": "Southwest Baptist",          "div": "D2",   "url": "https://www.sbubearcats.com/sports/msoc/coaches"},
+    {"name": "Evangel University",         "div": "NAIA", "url": "https://www.evangelathletics.com/sports/mens-soccer/coaches"},
+    {"name": "Lindenwood University",      "div": "D1",   "url": "https://lindenwoodlions.com/sports/msoc/coaches"},
+    {"name": "Saint Louis University",     "div": "D1",   "url": "https://www.slubillikens.com/sports/msoc/coaches"},
+    {"name": "UMKC",                       "div": "D1",   "url": "https://www.kcroos.com/sports/msoc/coaches"},
     {"name": "Missouri State University",  "div": "D1",   "url": "https://missouristatebears.com/sports/msoc/coaches"},
     # Florida
     {"name": "University of Tampa",        "div": "D2",   "url": "https://tampaspartans.com/sports/msoc/coaches"},
     {"name": "Florida Southern College",   "div": "D2",   "url": "https://fscmocs.com/sports/msoc/coaches"},
-    {"name": "Southeastern University",    "div": "NAIA", "url": "https://seusfire.com/sports/msoc/coaches"},
-    {"name": "Saint Leo University",       "div": "D2",   "url": "https://saintleoathletics.com/sports/msoc/coaches"},
-    {"name": "Eckerd College",             "div": "D2",   "url": "https://eckerdathletics.com/sports/msoc/coaches"},
-    {"name": "Lynn University",            "div": "D2",   "url": "https://lynnathletics.com/sports/msoc/coaches"},
-    {"name": "Warner University",          "div": "NAIA", "url": "https://warneathletics.com/sports/msoc/coaches"},
+    {"name": "Southeastern University",    "div": "NAIA", "url": "https://fire.seu.edu/sports/msoc/coaches"},
+    {"name": "Saint Leo University",       "div": "D2",   "url": "https://saintleolions.com/sports/msoc/coaches"},
+    {"name": "Eckerd College",             "div": "D2",   "url": "https://www.eckerdtritons.com/sports/mens-soccer/coaches"},
+    {"name": "Lynn University",            "div": "D2",   "url": "https://www.lynnfightingknights.com/sports/msoc/coaches"},
+    {"name": "Warner University",          "div": "NAIA", "url": "https://warnerroyals.com/sports/msoc/coaches"},
     {"name": "Univ. of South Florida",     "div": "D1",   "url": "https://gousfbulls.com/sports/msoc/coaches"},
     # California
     {"name": "Point Loma Nazarene",        "div": "D2",   "url": "https://plnusealions.com/sports/msoc/coaches"},
     {"name": "Cal State San Marcos",       "div": "D2",   "url": "https://csusmcougars.com/sports/msoc/coaches"},
     {"name": "Cal State East Bay",         "div": "D2",   "url": "https://eastbaypioneers.com/sports/msoc/coaches"},
-    {"name": "San Diego State",            "div": "D1",   "url": "https://goaztecs.com/sports/msoc/coaches"},
-    {"name": "San Jose State",             "div": "D1",   "url": "https://sjsuspartans.com/sports/msoc/coaches"},
+    {"name": "San Diego State",            "div": "D1",   "url": "https://www.goaztecs.com/sports/mens-soccer/roster"},
+    {"name": "San Jose State",             "div": "D1",   "url": "https://www.sjsuspartans.com/sports/mens-soccer/roster"},
     {"name": "University of San Diego",    "div": "D1",   "url": "https://usdtoreros.com/sports/msoc/coaches"},
 ]
 
@@ -93,12 +94,23 @@ def send_telegram(message, parse_mode="Markdown"):
         print(f"[WARN] No chat_id yet. Message would be:\n{message}")
         return
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    try:
-        r = requests.post(url, json={"chat_id": chat_id, "text": message, "parse_mode": parse_mode}, timeout=15)
-        if r.status_code != 200:
-            print(f"[ERROR] Telegram send failed: {r.text}")
-    except Exception as e:
-        print(f"[ERROR] Telegram: {e}")
+    # Try with Markdown first, fall back to plain text if parse fails
+    for mode in [parse_mode, None]:
+        try:
+            payload = {"chat_id": chat_id, "text": message}
+            if mode:
+                payload["parse_mode"] = mode
+            r = requests.post(url, json=payload, timeout=15)
+            if r.status_code == 200:
+                return
+            elif "can't parse" in r.text.lower() and mode:
+                continue  # retry without parse_mode
+            else:
+                print(f"[ERROR] Telegram send failed: {r.text}")
+                return
+        except Exception as e:
+            print(f"[ERROR] Telegram: {e}")
+            return
 
 def poll_for_chat_id():
     """Poll Telegram updates to capture first message's chat_id."""
