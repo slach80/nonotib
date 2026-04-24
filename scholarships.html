@@ -10,173 +10,181 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #06090f; --bg-card: #0d1828; --accent: #b8ff2e;
-      --accent-lo: rgba(184,255,46,0.1); --accent-md: rgba(184,255,46,0.22);
-      --text: #eef2ff; --muted: #607090; --border: rgba(255,255,255,0.07);
+      --bg: #f4f6fb; --bg-2: #eef1f8; --bg-card: #ffffff;
+      --accent: #b8ff2e; --accent-dark: #4a7a00;
+      --accent-lo: rgba(90,138,0,0.08); --accent-md: rgba(90,138,0,0.2);
+      --text: #0f1a2e; --muted: #6b7fa8; --border: rgba(0,0,0,0.09);
       --r: 10px; --nav-h: 64px;
-      --gold: #ffc844; --gold-bg: rgba(255,200,68,0.1);
-      --blue: #7fc5ff; --blue-bg: rgba(127,197,255,0.1);
-      --purple: #b899ff; --purple-bg: rgba(184,153,255,0.1);
-      --red: #ff6b6b; --red-bg: rgba(255,107,107,0.08);
+      --gold: #9a6800; --gold-bg: rgba(180,120,0,0.09);
+      --blue: #0060c0; --blue-bg: rgba(0,100,200,0.09);
+      --purple: #6032c0; --purple-bg: rgba(100,50,200,0.09);
+      --red: #b71c1c; --red-bg: rgba(183,28,28,0.08);
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: #3a4a6b; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
     /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100; height: var(--nav-h);
-      background: rgba(6,9,15,0.92); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 clamp(18px, 5vw, 60px); gap: 16px;
     }
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
-      letter-spacing: 0.06em; color: var(--text); text-decoration: none; flex-shrink: 0;
+      letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; flex-shrink: 0;
     }
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span { color: #4a7a00; }
     .nav-links {
       display: flex; gap: clamp(14px, 2vw, 28px); list-style: none;
     }
     .nav-links a {
-      color: var(--muted); text-decoration: none; font-size: 0.7rem; font-weight: 600;
+      color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: #0f1a2e; }
     .nav-cta {
-      background: var(--accent); color: #06090f; padding: 8px 16px; border-radius: 5px;
+      background: #4a7a00; color: #ffffff; padding: 8px 16px; border-radius: 5px;
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
       white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s, box-shadow 0.2s;
     }
-    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(184,255,46,0.3); }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(74,122,0,0.3); }
     @media (max-width: 960px) { .nav-links { display: none; } }
 
     /* PAGE HERO */
-    .page-hero { padding: 56px clamp(18px,5vw,60px) 44px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-    .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,6vw,72px); line-height: 0.95; letter-spacing: 0.03em; margin-bottom: 18px; }
-    .page-hero p.sub { color: var(--muted); font-size: 0.9rem; line-height: 1.7; max-width: 680px; margin-bottom: 24px; }
+    .page-hero { padding: 56px clamp(18px,5vw,60px) 44px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #4a7a00; margin-bottom: 10px; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,6vw,72px); line-height: 0.95; letter-spacing: 0.03em; color: #0f1a2e; margin-bottom: 18px; }
+    .page-hero p.sub { color: #3a4a6b; font-size: 0.9rem; line-height: 1.7; max-width: 680px; margin-bottom: 24px; }
     .profile-chips { display: flex; gap: 8px; flex-wrap: wrap; }
     .pchip {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      color: var(--muted); padding: 5px 12px; border-radius: 20px;
+      background: #f0f2f8; border: 1px solid rgba(0,0,0,0.08);
+      color: #6b7fa8; padding: 5px 12px; border-radius: 20px;
       font-size: 0.76rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.08em;
     }
-    .pchip.on { background: var(--accent-lo); border-color: var(--accent-md); color: var(--accent); }
+    .pchip.on { background: rgba(74,122,0,0.1); border-color: rgba(74,122,0,0.25); color: #4a7a00; }
 
     /* ACTION BANNER */
     .action-banner {
       max-width: 1200px; margin: 0 auto;
       padding: 20px clamp(18px,5vw,60px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
     .action-inner {
-      background: linear-gradient(135deg, rgba(184,255,46,0.08) 0%, rgba(184,255,46,0.03) 100%);
-      border: 1px solid var(--accent-md);
+      background: linear-gradient(135deg, rgba(74,122,0,0.06) 0%, rgba(74,122,0,0.02) 100%);
+      border: 1px solid rgba(74,122,0,0.25);
       border-radius: var(--r); padding: 20px 24px;
       display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
     }
     .action-item { display: flex; gap: 10px; align-items: flex-start; }
-    .action-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; flex-shrink: 0; }
-    .action-text h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); margin-bottom: 3px; }
-    .action-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-    .action-text a { color: var(--accent); text-decoration: none; }
+    .action-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #4a7a00; line-height: 1; flex-shrink: 0; }
+    .action-text h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0f1a2e; margin-bottom: 3px; }
+    .action-text p { font-size: 0.78rem; color: #3a4a6b; line-height: 1.5; }
+    .action-text a { color: #4a7a00; text-decoration: none; }
     .action-text a:hover { text-decoration: underline; }
 
     /* SECTION */
     .sec { max-width: 1200px; margin: 0 auto; padding: 52px clamp(18px,5vw,60px) 0; }
     .sec-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px; }
-    .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,48px); letter-spacing: 0.03em; margin-bottom: 28px; }
-    .sec-note { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px; max-width: 780px; }
+    .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,48px); letter-spacing: 0.03em; color: #0f1a2e; margin-bottom: 28px; }
+    .sec-note { font-size: 0.82rem; color: #3a4a6b; line-height: 1.65; margin-bottom: 28px; max-width: 780px; }
 
     /* SCHOLARSHIP GRID */
     .sch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 52px; }
 
     /* SCHOLARSHIP CARD */
     .sch-card {
-      background: var(--bg-card); border: 1px solid var(--border);
+      background: var(--bg-card); border: 1px solid rgba(0,0,0,0.07);
       border-radius: var(--r); overflow: hidden;
-      transition: border-color 0.22s, transform 0.22s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow 0.25s, transform 0.25s;
     }
-    .sch-card:hover { border-color: var(--accent-md); transform: translateY(-2px); }
+    .sch-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
     .sch-card-top { padding: 18px 20px 14px; }
     .sch-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
     .sch-tag {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
     }
-    .tag-asian { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(184,153,255,0.2); }
-    .tag-merit { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(127,197,255,0.2); }
-    .tag-need  { background: rgba(255,107,107,0.1); color: var(--red); border: 1px solid rgba(255,107,107,0.2); }
-    .tag-state { background: var(--accent-lo); color: var(--accent); border: 1px solid var(--accent-md); }
-    .tag-sport { background: rgba(68,255,180,0.08); color: #44ffb4; border: 1px solid rgba(68,255,180,0.2); }
-    .tag-health { background: var(--gold-bg); color: var(--gold); border: 1px solid rgba(255,200,68,0.2); }
-    .tag-employer { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
-    .tag-priority { background: var(--accent); color: #06090f; }
-    .sch-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.03em; color: var(--text); line-height: 1.05; margin-bottom: 4px; }
-    .sch-org { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
-    .sch-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 10px; }
-    .sch-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .tag-asian { background: rgba(100,50,200,0.09); color: #6032c0; border: 1px solid rgba(100,50,200,0.2); }
+    .tag-merit { background: rgba(0,100,200,0.09); color: #0060c0; border: 1px solid rgba(0,100,200,0.2); }
+    .tag-need  { background: rgba(183,28,28,0.08); color: #b71c1c; border: 1px solid rgba(183,28,28,0.2); }
+    .tag-state { background: rgba(74,122,0,0.1); color: #4a7a00; border: 1px solid rgba(74,122,0,0.25); }
+    .tag-sport { background: rgba(0,130,100,0.09); color: #007a5a; border: 1px solid rgba(0,130,100,0.2); }
+    .tag-health { background: rgba(180,120,0,0.09); color: #9a6800; border: 1px solid rgba(180,120,0,0.2); }
+    .tag-employer { background: #f0f2f8; color: #6b7fa8; border: 1px solid rgba(0,0,0,0.08); }
+    .tag-priority { background: #4a7a00; color: #ffffff; border: 1px solid transparent; }
+    .sch-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.03em; color: #0f1a2e; line-height: 1.05; margin-bottom: 4px; }
+    .sch-org { font-size: 0.75rem; color: #6b7fa8; margin-bottom: 10px; }
+    .sch-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: #4a7a00; letter-spacing: 0.02em; margin-bottom: 10px; }
+    .sch-desc { font-size: 0.8rem; color: #3a4a6b; line-height: 1.6; margin-bottom: 12px; }
     .sch-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-    .sch-meta-item { background: rgba(255,255,255,0.025); border-radius: 5px; padding: 7px 10px; }
-    .sch-meta-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-    .sch-meta-val { font-size: 0.78rem; color: var(--text); font-weight: 500; }
+    .sch-meta-item { background: #f8fafc; border: 1px solid rgba(0,0,0,0.06); border-radius: 5px; padding: 7px 10px; }
+    .sch-meta-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7fa8; margin-bottom: 2px; }
+    .sch-meta-val { font-size: 0.78rem; color: #0f1a2e; font-weight: 500; }
     .sch-card-footer {
-      padding: 10px 20px; background: rgba(255,255,255,0.018); border-top: 1px solid var(--border);
+      padding: 10px 20px; background: #f8fafc; border-top: 1px solid rgba(0,0,0,0.07);
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
     }
-    .sch-url { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+    .sch-url { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: #4a7a00; text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
     .sch-url:hover { opacity: 1; }
     .sch-status { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-    .status-now { color: var(--accent); }
-    .status-junior { color: var(--gold); }
-    .status-senior { color: var(--blue); }
-    .status-verify { color: var(--muted); }
+    .status-now { color: #4a7a00; }
+    .status-junior { color: #9a6800; }
+    .status-senior { color: #0060c0; }
+    .status-verify { color: #6b7fa8; }
     .sch-note {
-      font-size: 0.74rem; color: var(--muted); font-style: italic;
-      padding: 8px 10px; background: rgba(255,165,0,0.05);
-      border-left: 2px solid rgba(255,165,0,0.3); border-radius: 0 4px 4px 0; margin-top: 8px;
+      font-size: 0.74rem; color: #3a4a6b; font-style: italic;
+      padding: 8px 10px; background: rgba(180,120,0,0.06);
+      border-left: 2px solid rgba(180,120,0,0.3); border-radius: 0 4px 4px 0; margin-top: 8px;
     }
 
     /* TIMELINE / PRIORITY PLAN */
     .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 52px; }
     .plan-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r);
+      background: var(--bg-card); border: 1px solid rgba(0,0,0,0.07); border-radius: var(--r);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
       padding: 22px 20px; position: relative; overflow: hidden;
     }
     .plan-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-    .plan-card.now::before   { background: var(--accent); }
-    .plan-card.junior::before { background: var(--gold); }
-    .plan-card.senior::before { background: var(--blue); }
+    .plan-card.now::before   { background: #4a7a00; }
+    .plan-card.junior::before { background: #9a6800; }
+    .plan-card.senior::before { background: #0060c0; }
     .plan-when { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
-    .plan-card.now .plan-when   { color: var(--accent); }
-    .plan-card.junior .plan-when { color: var(--gold); }
-    .plan-card.senior .plan-when { color: var(--blue); }
+    .plan-card.now .plan-when   { color: #4a7a00; }
+    .plan-card.junior .plan-when { color: #9a6800; }
+    .plan-card.senior .plan-when { color: #0060c0; }
     .plan-items { display: flex; flex-direction: column; gap: 10px; }
     .plan-item { display: flex; gap: 10px; align-items: flex-start; }
     .pi-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 6px; }
-    .plan-card.now .pi-dot   { color: var(--accent); }
-    .plan-card.junior .pi-dot { color: var(--gold); }
-    .plan-card.senior .pi-dot { color: var(--blue); }
-    .pi-text { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
-    .pi-text strong { color: var(--text); font-weight: 500; }
+    .plan-card.now .pi-dot   { color: #4a7a00; }
+    .plan-card.junior .pi-dot { color: #9a6800; }
+    .plan-card.senior .pi-dot { color: #0060c0; }
+    .pi-text { font-size: 0.8rem; color: #3a4a6b; line-height: 1.55; }
+    .pi-text strong { color: #0f1a2e; font-weight: 500; }
 
     /* BRIGHT FLIGHT CALLOUT */
     .bf-callout {
-      background: linear-gradient(135deg, rgba(184,255,46,0.07) 0%, transparent 60%);
-      border: 1px solid var(--accent-md); border-radius: var(--r); padding: 24px 28px;
+      background: linear-gradient(135deg, rgba(74,122,0,0.07) 0%, transparent 60%);
+      border: 1px solid rgba(74,122,0,0.25); border-radius: var(--r); padding: 24px 28px;
       margin-bottom: 28px; display: flex; gap: 20px; align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .bf-icon { font-size: 2.2rem; flex-shrink: 0; }
-    .bf-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 6px; }
-    .bf-text p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
-    .bf-text strong { color: var(--text); font-weight: 500; }
+    .bf-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: #4a7a00; margin-bottom: 6px; }
+    .bf-text p { font-size: 0.84rem; color: #3a4a6b; line-height: 1.7; }
+    .bf-text strong { color: #0f1a2e; font-weight: 500; }
 
     /* DISCLAIMER */
     .disclaimer {
       max-width: 1200px; margin: 40px auto 0; padding: 20px clamp(18px,5vw,60px) 52px;
-      font-size: 0.74rem; color: var(--muted); line-height: 1.65; opacity: 0.6;
+      font-size: 0.74rem; color: #6b7fa8; line-height: 1.65; opacity: 0.8;
     }
 
     /* MOBILE */
@@ -196,7 +204,7 @@
     <li><a href="index.html#academics">Academics</a></li>
     <li><a href="index.html#schools">Schools</a></li>
     <li><a href="colleges.html">Analysis</a></li>
-    <li><a href="scholarships.html" style="color:var(--accent)">Scholarships</a></li>
+    <li><a href="scholarships.html" style="color:#4a7a00">Scholarships</a></li>
   </ul>
   <a href="index.html#contact" class="nav-cta">Recruit Me</a>
 </nav>
@@ -247,7 +255,7 @@
 
 <!-- ═══ PRIORITY PLAN ════════════════════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:var(--accent)">When to Apply</p>
+  <p class="sec-label" style="color:#4a7a00">When to Apply</p>
   <h2 class="sec-title">Action Timeline</h2>
   <div class="plan-grid">
 
@@ -298,14 +306,14 @@
     <div class="bf-icon">🎯</div>
     <div class="bf-text">
       <h3>Missouri Bright Flight — Priority #1</h3>
-      <p>Bright Flight is the single highest-value scholarship Noah can unlock with effort. Missouri awards up to <strong>$3,000/year (renewable 4 years = $12,000 total)</strong> to Missouri residents who score in the <strong>top 3% of all Missouri ACT test-takers</strong> — approximately <strong>ACT 31+</strong>. Noah has not yet taken the ACT, meaning this is fully attainable. A strong ACT score also strengthens every other scholarship application and college admissions package. Register at <a href="https://www.act.org" target="_blank" style="color:var(--accent)">act.org</a> — next available test dates should be booked as soon as possible.</p>
+      <p>Bright Flight is the single highest-value scholarship Noah can unlock with effort. Missouri awards up to <strong>$3,000/year (renewable 4 years = $12,000 total)</strong> to Missouri residents who score in the <strong>top 3% of all Missouri ACT test-takers</strong> — approximately <strong>ACT 31+</strong>. Noah has not yet taken the ACT, meaning this is fully attainable. A strong ACT score also strengthens every other scholarship application and college admissions package. Register at <a href="https://www.act.org" target="_blank" style="color:#4a7a00">act.org</a> — next available test dates should be booked as soon as possible.</p>
     </div>
   </div>
 </div>
 
 <!-- ═══ ASIAN-AMERICAN SCHOLARSHIPS ═════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:var(--purple)">Heritage Scholarships</p>
+  <p class="sec-label" style="color:#6032c0">Heritage Scholarships</p>
   <h2 class="sec-title">Asian-American /<br>Cambodian / Vietnamese</h2>
   <p class="sec-note">Noah's Cambodian and Vietnamese heritage opens access to multiple targeted scholarships. These are among the most under-applied categories — competition is lower than general merit pools.</p>
 
@@ -437,7 +445,7 @@
 
 <!-- ═══ MISSOURI STATE SCHOLARSHIPS ═════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:var(--accent)">State Programs</p>
+  <p class="sec-label" style="color:#4a7a00">State Programs</p>
   <h2 class="sec-title">Missouri Scholarships</h2>
   <div class="sch-grid">
 
@@ -487,7 +495,7 @@
 
 <!-- ═══ ATHLETIC SCHOLARSHIPS ════════════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:#44ffb4">Athletic</p>
+  <p class="sec-label" style="color:#007a5a">Athletic</p>
   <h2 class="sec-title">Soccer &amp; Athletic Scholarships</h2>
   <div class="sch-grid">
 
@@ -577,7 +585,7 @@
 
 <!-- ═══ HEALTH SCIENCE SCHOLARSHIPS ═════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:var(--gold)">Academic Field</p>
+  <p class="sec-label" style="color:#9a6800">Academic Field</p>
   <h2 class="sec-title">Pre-PT / Kinesiology /<br>Sports Medicine</h2>
   <p class="sec-note">Most PT-specific national scholarships target students already enrolled in DPT programs. Apply these now to build the profile; most field-specific awards open up in undergrad years 2-4.</p>
   <div class="sch-grid">
@@ -627,7 +635,7 @@
 
 <!-- ═══ GENERAL MERIT / NEED ══════════════════════════ -->
 <div class="sec">
-  <p class="sec-label" style="color:var(--blue)">General</p>
+  <p class="sec-label" style="color:#0060c0">General</p>
   <h2 class="sec-title">Merit &amp; Need-Based</h2>
   <div class="sch-grid">
 
@@ -742,9 +750,9 @@
   <strong>Disclaimer:</strong> Scholarship details, deadlines, and amounts change annually. All information on this page should be verified directly at the source URL before applying. This page was compiled from knowledge through 2025 and live web search where available. Some programs may have been discontinued or modified. Always check official scholarship websites for current requirements. This page is for research and tracking purposes only.
 </div>
 
-<footer style="border-top:1px solid var(--border); padding:24px clamp(18px,5vw,60px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:0;">
-  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--muted); opacity:0.4;">NL<span style="color:var(--accent);opacity:1;">21</span></div>
-  <div style="font-size:0.72rem; color:var(--muted); opacity:0.3;">Noah Lach · Class of 2028 · Kansas City, MO</div>
+<footer style="background:#ffffff; border-top:1px solid rgba(0,0,0,0.08); padding:24px clamp(18px,5vw,60px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:0;">
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:#6b7fa8; opacity:0.6;">NL<span style="color:#4a7a00;opacity:1;">21</span></div>
+  <div style="font-size:0.72rem; color:#6b7fa8; opacity:0.5;">Noah Lach · Class of 2028 · Kansas City, MO</div>
 </footer>
 
 </body>
