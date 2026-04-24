@@ -62,39 +62,48 @@
       gap: 16px;
     }
     .nav-left { display: flex; align-items: center; gap: 20px; }
-    .back-link {
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
       display: flex;
-      align-items: center;
-      gap: 7px;
+      gap: clamp(14px, 2vw, 28px);
+      list-style: none;
+    }
+    .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
-    .back-link:hover { color: var(--accent); }
-    .nav-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.06em;
-      color: var(--text);
-    }
-    .nav-title span { color: var(--accent); }
-    .nav-badge {
-      background: var(--accent-lo);
-      border: 1px solid var(--accent-md);
-      color: var(--accent);
-      padding: 4px 10px;
-      border-radius: 4px;
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #06090f;
+      padding: 8px 16px;
+      border-radius: 5px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.2s, box-shadow 0.2s;
     }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(184,255,46,0.3); }
+    @media (max-width: 960px) { .nav-links { display: none; } }
 
     /* ─── HERO ─── */
     .page-hero {
@@ -668,11 +677,17 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-  <div class="nav-left">
-    <a href="index.html" class="back-link">← Back to Profile</a>
-    <div class="nav-title">NL<span>21</span> — College Analysis</div>
-  </div>
-  <span class="nav-badge">Class of 2028</span>
+  <a href="index.html" class="nav-logo">NL<span>21</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#stats">Profile</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="index.html#highlights">Highlights</a></li>
+    <li><a href="index.html#academics">Academics</a></li>
+    <li><a href="index.html#schools">Schools</a></li>
+    <li><a href="colleges.html" style="color:var(--accent)">Analysis</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Recruit Me</a>
 </nav>
 
 <!-- ─── PAGE HERO ─── -->
