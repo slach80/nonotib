@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT & ACT Test Prep — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #f4f6fb;
+      --bg-2:      #eef1f8;
+      --bg-card:   #ffffff;
+      --accent:    #b8ff2e;
+      --accent-dark: #4a7a00;
+      --accent-lo: rgba(74,122,0,0.08);
+      --accent-md: rgba(74,122,0,0.2);
+      --text:      #0f1a2e;
+      --muted:     #6b7fa8;
+      --border:    rgba(0,0,0,0.09);
+      --r:         10px;
+      --nav-h:     64px;
+
+      --free:      #4a7a00;
+      --free-bg:   rgba(74,122,0,0.08);
+      --free-border: rgba(74,122,0,0.22);
+      --paid:      #9a6800;
+      --paid-bg:   rgba(154,104,0,0.08);
+      --paid-border: rgba(154,104,0,0.22);
+      --sat:       #0060c0;
+      --sat-bg:    rgba(0,96,192,0.08);
+      --act:       #b71c1c;
+      --act-bg:    rgba(183,28,28,0.08);
+      --both:      #6032c0;
+      --both-bg:   rgba(96,50,192,0.08);
+      --yt:        #cc0000;
+      --yt-bg:     rgba(204,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #3a4a6b; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 200; height: var(--nav-h, 64px);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 60px); gap: 16px;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; flex-shrink: 0; }
+    .nav-logo span { color: #4a7a00; }
+    .nav-links { display: flex; gap: clamp(14px, 2vw, 26px); list-style: none; }
+    .nav-links > li > a { color: #6b7fa8; text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+    .nav-links > li > a:hover { color: #0f1a2e; }
+    .nav-links > li > a.active { color: #4a7a00; }
+    .nav-cta { background: #4a7a00; color: #fff; padding: 8px 16px; border-radius: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(74,122,0,0.3); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: '▾'; font-size: 0.55rem; opacity: 0.6; transition: transform 0.2s; display: inline-block; }
+    .nav-dropdown:hover > a::after, .nav-dropdown:focus-within > a::after { transform: rotate(180deg); }
+    .nav-dropdown::after { content: ''; position: absolute; top: 100%; left: -10px; right: -10px; height: 10px; background: transparent; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; box-shadow: 0 12px 36px rgba(0,0,0,0.15); min-width: 170px; z-index: 300; overflow: hidden; padding-top: 6px; }
+    .nav-dropdown-menu::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #fff; border-left: 1px solid rgba(0,0,0,0.1); border-top: 1px solid rgba(0,0,0,0.1); rotate: 45deg; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 10px 18px; color: #3a4a6b; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: #0f1a2e; border-radius: 2px; }
+    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h, 64px); left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 199; padding: 16px 0 20px; flex-direction: column; }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a { padding: 12px clamp(18px,5vw,60px); color: #3a4a6b; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); transition: background 0.15s, color 0.15s; }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-menu a:hover, .nav-mobile-menu a.active { background: rgba(74,122,0,0.07); color: #4a7a00; }
+    .nav-mobile-menu .mob-group-label { padding: 10px clamp(18px,5vw,60px) 4px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #9baec8; }
+    @media (max-width: 960px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-dropdown-menu { display: none !important; } }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero { padding: 52px clamp(18px,5vw,60px) 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .page-hero .label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #4a7a00; margin-bottom: 10px; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px,5.5vw,66px); line-height: 0.95; letter-spacing: 0.03em; color: #0f1a2e; margin-bottom: 14px; }
+    .page-hero p { color: #3a4a6b; font-size: 0.88rem; line-height: 1.72; max-width: 680px; margin-bottom: 20px; }
+    .hero-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hchip { background: var(--accent-lo); border: 1px solid var(--accent-md); color: #4a7a00; padding: 5px 12px; border-radius: 20px; font-size: 0.74rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.08em; }
+
+    /* ─── SECTION LAYOUT ─── */
+    .section { max-width: 1200px; margin: 0 auto; padding: 52px clamp(18px,5vw,60px) 0; }
+    .section-last { padding-bottom: 64px; }
+    .sec-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #4a7a00; margin-bottom: 8px; }
+    .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px,4vw,44px); letter-spacing: 0.04em; color: #0f1a2e; margin-bottom: 6px; }
+    .sec-sub { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px; max-width: 680px; }
+
+    /* ─── BADGES ─── */
+    .badge { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+    .badge-free { background: var(--free-bg); color: var(--free); border: 1px solid var(--free-border); }
+    .badge-paid { background: var(--paid-bg); color: var(--paid); border: 1px solid var(--paid-border); }
+    .badge-sat  { background: var(--sat-bg);  color: var(--sat);  border: 1px solid rgba(0,96,192,0.2); }
+    .badge-act  { background: var(--act-bg);  color: var(--act);  border: 1px solid rgba(183,28,28,0.2); }
+    .badge-both { background: var(--both-bg); color: var(--both); border: 1px solid rgba(96,50,192,0.2); }
+    .badge-math { background: rgba(0,128,100,0.07); color: #007860; border: 1px solid rgba(0,128,100,0.2); }
+    .badge-eng  { background: rgba(0,80,160,0.07); color: #005090; border: 1px solid rgba(0,80,160,0.2); }
+    .badge-sci  { background: rgba(140,40,0,0.07); color: #8c2800; border: 1px solid rgba(140,40,0,0.2); }
+
+    /* ─── COMPARE TABLE ─── */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .compare-card-head { padding: 16px 20px 14px; border-bottom: 1px solid var(--border); }
+    .compare-card-head .test-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0.06em; color: #0f1a2e; line-height: 1; margin-bottom: 4px; }
+    .compare-card-head .test-full { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+    .compare-card.sat .compare-card-head { border-top: 3px solid var(--sat); }
+    .compare-card.act .compare-card-head { border-top: 3px solid var(--act); }
+    .compare-rows { padding: 12px 20px 16px; }
+    .compare-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.82rem; }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-row .cr-label { color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+    .compare-row .cr-val { color: #0f1a2e; font-weight: 500; text-align: right; }
+    .compare-tip { background: var(--accent-lo); border: 1px solid var(--accent-md); border-radius: 8px; padding: 12px 16px; font-size: 0.83rem; color: #3a4a6b; line-height: 1.6; }
+    .compare-tip strong { color: #4a7a00; }
+
+    /* ─── SCORE TARGETS ─── */
+    .score-targets { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+    .score-card { flex: 1; min-width: 180px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 20px; }
+    .score-card .sc-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 4px; }
+    .score-card.sat .sc-num { color: var(--sat); }
+    .score-card.act .sc-num { color: var(--act); }
+    .score-card .sc-label { font-size: 0.75rem; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+    .score-card .sc-note { font-size: 0.8rem; color: #3a4a6b; line-height: 1.55; }
+
+    /* ─── RESOURCE GRID ─── */
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .resource-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.2s, transform 0.2s; }
+    .resource-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-2px); }
+    .rc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .rc-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.04em; color: #0f1a2e; line-height: 1.2; }
+    .rc-desc { font-size: 0.8rem; color: #3a4a6b; line-height: 1.6; }
+    .rc-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .rc-link { display: inline-flex; align-items: center; gap: 5px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4a7a00; text-decoration: none; margin-top: auto; }
+    .rc-link:hover { text-decoration: underline; }
+    .rc-link::after { content: '↗'; font-size: 0.72rem; }
+
+    /* ─── YOUTUBE GRID ─── */
+    .yt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    .yt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; transition: box-shadow 0.2s; }
+    .yt-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
+    .yt-top { display: flex; align-items: center; gap: 10px; }
+    .yt-icon { width: 32px; height: 32px; background: var(--yt-bg); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.85rem; }
+    .yt-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; color: #0f1a2e; }
+    .yt-desc { font-size: 0.78rem; color: #3a4a6b; line-height: 1.55; }
+    .yt-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .yt-link { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--yt); text-decoration: none; margin-top: auto; }
+    .yt-link:hover { text-decoration: underline; }
+    .yt-link::after { content: ' ↗'; }
+
+    /* ─── SUBJECT SPOTLIGHTS ─── */
+    .subject-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 760px) { .subject-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1000px) and (min-width: 761px) { .subject-grid { grid-template-columns: 1fr 1fr; } }
+    .subject-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .subject-card-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+    .subject-card.math .subject-card-head { border-top: 3px solid #007860; }
+    .subject-card.eng  .subject-card-head { border-top: 3px solid #005090; }
+    .subject-card.sci  .subject-card-head { border-top: 3px solid #8c2800; }
+    .subject-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .subject-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: #0f1a2e; margin-bottom: 4px; }
+    .subject-subtitle { font-size: 0.74rem; color: var(--muted); font-weight: 500; }
+    .subject-body { padding: 16px 20px; }
+    .subject-topics { margin-bottom: 14px; }
+    .subject-topics h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    .subject-topics ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .subject-topics li { font-size: 0.8rem; color: #3a4a6b; line-height: 1.5; padding-left: 12px; position: relative; }
+    .subject-topics li::before { content: '·'; position: absolute; left: 0; color: #4a7a00; font-weight: 700; }
+    .subject-picks { display: flex; flex-direction: column; gap: 6px; }
+    .subject-picks h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .subject-pick-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; padding: 6px 10px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); }
+    .subject-pick-row span { color: #0f1a2e; font-weight: 500; }
+
+    /* ─── TIMELINE ─── */
+    .timeline { position: relative; padding-left: 28px; display: flex; flex-direction: column; gap: 0; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(to bottom, #4a7a00, rgba(74,122,0,0.15)); border-radius: 2px; }
+    .tl-item { position: relative; padding: 0 0 28px 20px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot { position: absolute; left: -28px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid #4a7a00; display: flex; align-items: center; justify-content: center; }
+    .tl-dot-inner { width: 6px; height: 6px; border-radius: 50%; background: #4a7a00; }
+    .tl-item.now .tl-dot { background: #4a7a00; border-color: #4a7a00; }
+    .tl-item.now .tl-dot-inner { background: #b8ff2e; }
+    .tl-period { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #4a7a00; margin-bottom: 4px; }
+    .tl-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: #0f1a2e; margin-bottom: 5px; }
+    .tl-desc { font-size: 0.82rem; color: #3a4a6b; line-height: 1.65; }
+    .tl-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .tl-action { background: var(--accent-lo); border: 1px solid var(--accent-md); color: #4a7a00; padding: 4px 10px; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+
+    /* ─── TIPS BOX ─── */
+    .tips-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .tips-box-head { background: #0f1a2e; padding: 14px 20px; }
+    .tips-box-head h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; color: #b8ff2e; }
+    .tips-list { padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .tip-row { display: flex; gap: 12px; align-items: flex-start; }
+    .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .tip-text { font-size: 0.83rem; color: #3a4a6b; line-height: 1.65; }
+    .tip-text strong { color: #0f1a2e; font-weight: 600; }
+
+    /* ─── CATEGORY LABELS ─── */
+    .cat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .cat-label:first-of-type { margin-top: 0; }
+
+    /* ─── NOTICE ─── */
+    .notice { background: rgba(0,96,192,0.05); border: 1px solid rgba(0,96,192,0.18); border-radius: 8px; padding: 13px 16px; font-size: 0.82rem; color: #3a4a6b; line-height: 1.65; margin-bottom: 28px; }
+    .notice strong { color: #0060c0; }
+
+    /* ─── DIVIDER ─── */
+    .divider { height: 1px; background: var(--border); max-width: 1200px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">NL<span>21</span></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="index.html#stats">Noah</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#stats">Profile</a>
+        <a href="index.html#journey">Journey</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#academics">Academics</a>
+        <a href="testprep.html" class="active">Test Prep</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#references">References</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="index.html#schools">Recruiting</a>
+      <div class="nav-dropdown-menu">
+        <a href="index.html#schools">Target Schools</a>
+        <a href="colleges.html">College Analysis</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="camps.html">ID Camps</a>
+      </div>
+    </li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Recruit Me</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+    <span class="mob-group-label">Noah</span>
+    <a href="index.html#stats">Profile</a>
+    <a href="index.html#journey">Journey</a>
+    <a href="index.html#highlights">Highlights</a>
+    <a href="index.html#academics">Academics</a>
+    <a href="testprep.html" class="active">Test Prep</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#references">References</a>
+    <span class="mob-group-label">Recruiting</span>
+    <a href="index.html#schools">Target Schools</a>
+    <a href="colleges.html">College Analysis</a>
+    <a href="scholarships.html">Scholarships</a>
+    <a href="camps.html">ID Camps</a>
+    <span class="mob-group-label">Connect</span>
+    <a href="index.html#contact">Contact · Recruit Me</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="label">Academics · Class of 2028</div>
+  <h1>SAT & ACT<br>Test Prep</h1>
+  <p>Sophomore year is the perfect time to start — you have 2+ years before scores matter most.
+     This guide covers both tests end-to-end: free practice, the best YouTube channels, budget-friendly books,
+     and a realistic timeline built around your soccer schedule.</p>
+  <div class="hero-chips">
+    <span class="hchip">Both Tests</span>
+    <span class="hchip">All Subjects</span>
+    <span class="hchip">Sophomore Timeline</span>
+    <span class="hchip">Free &amp; Paid Resources</span>
+    <span class="hchip">Budget Friendly</span>
+  </div>
+</div>
+
+<!-- ═══ SECTION 1 — SAT vs ACT ═══════════════════════════════ -->
+<div class="section">
+  <div class="sec-label">Which Test Is Right for You?</div>
+  <div class="sec-title">SAT vs ACT</div>
+  <p class="sec-sub">Both are accepted by every college in the US. The best strategy is to take a free diagnostic for each and go with the one that feels more natural.</p>
+
+  <div class="compare-grid">
+
+    <div class="compare-card sat">
+      <div class="compare-card-head">
+        <div class="test-name">SAT</div>
+        <div class="test-full">Scholastic Assessment Test · College Board</div>
+      </div>
+      <div class="compare-rows">
+        <div class="compare-row"><span class="cr-label">Scale</span><span class="cr-val">400–1600</span></div>
+        <div class="compare-row"><span class="cr-label">Sections</span><span class="cr-val">Reading + Writing, Math</span></div>
+        <div class="compare-row"><span class="cr-label">Duration</span><span class="cr-val">~2 hrs 14 min (digital)</span></div>
+        <div class="compare-row"><span class="cr-label">Science Section</span><span class="cr-val">No</span></div>
+        <div class="compare-row"><span class="cr-label">Calculator</span><span class="cr-val">Allowed throughout math</span></div>
+        <div class="compare-row"><span class="cr-label">Superscoring</span><span class="cr-val">Yes — CB combines best sections</span></div>
+        <div class="compare-row"><span class="cr-label">Format</span><span class="cr-val">Digital adaptive (2024+)</span></div>
+      </div>
+    </div>
+
+    <div class="compare-card act">
+      <div class="compare-card-head">
+        <div class="test-name">ACT</div>
+        <div class="test-full">American College Testing</div>
+      </div>
+      <div class="compare-rows">
+        <div class="compare-row"><span class="cr-label">Scale</span><span class="cr-val">1–36 composite</span></div>
+        <div class="compare-row"><span class="cr-label">Sections</span><span class="cr-val">English, Math, Reading, Science</span></div>
+        <div class="compare-row"><span class="cr-label">Duration</span><span class="cr-val">~2 hrs 55 min</span></div>
+        <div class="compare-row"><span class="cr-label">Science Section</span><span class="cr-val">Yes — data &amp; reasoning focused</span></div>
+        <div class="compare-row"><span class="cr-label">Calculator</span><span class="cr-val">Allowed entire math section</span></div>
+        <div class="compare-row"><span class="cr-label">Superscoring</span><span class="cr-val">Varies by school</span></div>
+        <div class="compare-row"><span class="cr-label">Format</span><span class="cr-val">Paper or online (varies)</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="compare-tip">
+    <strong>💡 Start with a free diagnostic for both.</strong> Khan Academy has a free SAT diagnostic.
+    ACT.org has free full practice tests. Take one of each and compare how comfortable you feel —
+    the "better" test is whichever clicks more naturally with your thinking style.
+  </div>
+
+  <div class="score-targets">
+    <div class="score-card sat">
+      <div class="sc-label">SAT Target</div>
+      <div class="sc-num">1150+</div>
+      <div class="sc-note">Good baseline for D2/NAIA programs. D1 programs typically want 1200–1350+. Strong math helps engineering or business majors.</div>
+    </div>
+    <div class="score-card act">
+      <div class="sc-label">ACT Target</div>
+      <div class="sc-num">24+</div>
+      <div class="sc-note">Solid floor for most of Noah's target schools. D1 programs often look for 25–28+. Coaches care more about GPA, but scores matter for academic scholarships.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 2 — FREE RESOURCES ═══════════════════════════ -->
+<div class="section">
+  <div class="sec-label">Open Source &amp; Free</div>
+  <div class="sec-title">Free Resources</div>
+  <p class="sec-sub">These are the highest-quality free options — many are official or from top-tier educators. Start here before spending a dime.</p>
+
+  <div class="notice">
+    <strong>Official first:</strong> College Board and ACT.org publish real retired tests for free.
+    These are the best practice material you can get — the questions are exactly what you'll see on test day.
+  </div>
+
+  <div class="cat-label">Official Practice Tests &amp; Platforms</div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Khan Academy SAT Prep</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Official College Board partner. Adaptive practice, full-length tests, video lessons, and a personalized study plan. Connects to your PSAT results to find weak spots automatically.</div>
+      <div class="rc-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-math">Math</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://www.khanacademy.org/sat" target="_blank" rel="noopener" class="rc-link">khanacademy.org/sat</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">College Board Official Tests</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">8 full-length official SAT practice tests with answer explanations, plus the digital SAT practice on Bluebook. These are real retired tests — the gold standard for practice.</div>
+      <div class="rc-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://satsuite.collegeboard.org/sat/practice-preparation/practice-tests" target="_blank" rel="noopener" class="rc-link">collegeboard.org</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">ACT.org Free Practice</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">5 official full-length ACT practice tests with answers. Download the PDF and simulate real test conditions. Also has a free ACT prep account with practice questions.</div>
+      <div class="rc-tags">
+        <span class="badge badge-act">ACT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://www.act.org/content/act/en/products-and-services/the-act/test-preparation.html" target="_blank" rel="noopener" class="rc-link">act.org</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">CrackACT.com</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Aggregates every released real ACT test available online. Excellent for downloading past tests to simulate real test conditions. Also has test strategies and section breakdowns.</div>
+      <div class="rc-tags">
+        <span class="badge badge-act">ACT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://www.crackact.com" target="_blank" rel="noopener" class="rc-link">crackact.com</a>
+    </div>
+
+  </div>
+
+  <div class="cat-label">Study Guides &amp; Blogs</div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">PrepScholar Blog</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Enormous library of free strategy guides, subject breakdowns, and score improvement articles for both SAT and ACT. Highly detailed — great for understanding the logic behind each test.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+      </div>
+      <a href="https://blog.prepscholar.com" target="_blank" rel="noopener" class="rc-link">blog.prepscholar.com</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Magoosh Blog &amp; Lessons</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Free blog with test strategy, math concept reviews, and reading tips. Also has a free limited version of their app with some video lessons and practice questions.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://magoosh.com/hs/sat/" target="_blank" rel="noopener" class="rc-link">magoosh.com</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">No Red Ink</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Free grammar and writing practice platform. Excellent for mastering the grammar rules that appear heavily in the SAT Writing and ACT English sections.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://www.noredink.com" target="_blank" rel="noopener" class="rc-link">noredink.com</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Erica Meltzer's Blog</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">The definitive free resource for SAT/ACT grammar rules. Meltzer's articles explain exactly which grammar rules are tested and how to spot them. Her paid books are even better.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://thecriticalreader.com" target="_blank" rel="noopener" class="rc-link">thecriticalreader.com</a>
+    </div>
+
+  </div>
+
+  <div class="cat-label">Math &amp; Science Foundations</div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Khan Academy — Math</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Full Algebra I/II, geometry, and precalc courses — exactly what the math sections test. Work through the SAT math path or review specific topics you're shaky on.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://www.khanacademy.org/math" target="_blank" rel="noopener" class="rc-link">khanacademy.org/math</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Art of Problem Solving</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">Harder math problems for students who want to push toward top scores. The free online resources and community are great for advanced algebra and geometry problem solving.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://artofproblemsolving.com" target="_blank" rel="noopener" class="rc-link">artofproblemsolving.com</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Magoosh ACT Science Blog</div>
+        <span class="badge badge-free">Free</span>
+      </div>
+      <div class="rc-desc">ACT Science is really a reading and reasoning test — no outside science knowledge needed. Magoosh's free articles break down the 3 passage types and show you exactly how to attack each one.</div>
+      <div class="rc-tags">
+        <span class="badge badge-act">ACT</span>
+        <span class="badge badge-sci">Science</span>
+      </div>
+      <a href="https://magoosh.com/hs/act/act-science/" target="_blank" rel="noopener" class="rc-link">magoosh.com/hs/act</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 3 — YOUTUBE ═══════════════════════════════════ -->
+<div class="section">
+  <div class="sec-label">100% Free</div>
+  <div class="sec-title">YouTube Channels</div>
+  <p class="sec-sub">These channels are consistently ranked as the best free video prep available. Watch on your phone between practices, on the bus, or wherever.</p>
+
+  <div class="yt-grid">
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">Khan Academy</div>
+      </div>
+      <div class="yt-desc">Official SAT partner. Hundreds of videos covering every SAT topic with worked examples. Also great for filling math and grammar foundation gaps.</div>
+      <div class="yt-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-math">Math</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://www.youtube.com/@khanacademy" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">SupertutorTV</div>
+      </div>
+      <div class="yt-desc">Brooke Hanson has 1600 SAT and 36 ACT scores. Videos on both tests — strong focus on ACT English, Reading, and test strategy. Very practical, no fluff.</div>
+      <div class="yt-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://www.youtube.com/@SupertutorTV" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">PrepScholar SAT &amp; ACT</div>
+      </div>
+      <div class="yt-desc">Strategy videos for both tests covering score improvement, specific section techniques, and how to approach different question types. Good for big-picture strategy.</div>
+      <div class="yt-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+      </div>
+      <a href="https://www.youtube.com/@PrepScholar" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">Mario's Math Tutoring</div>
+      </div>
+      <div class="yt-desc">Clear, step-by-step videos for Algebra I/II, geometry, and pre-calc. Great for reviewing math concepts that show up on both the SAT and ACT math sections.</div>
+      <div class="yt-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://www.youtube.com/@MariosMathTutoring" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">Art of Problem Solving</div>
+      </div>
+      <div class="yt-desc">Best for students pushing toward higher math scores. Covers advanced problem solving, competition math, and the kinds of tricky problems on the harder SAT/ACT math questions.</div>
+      <div class="yt-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://www.youtube.com/@ArtofProblemSolving" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">The Princeton Review</div>
+      </div>
+      <div class="yt-desc">Test strategy content from one of the biggest test prep companies. Videos on both SAT and ACT covering general approach, time management, and section-specific tips.</div>
+      <div class="yt-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+      </div>
+      <a href="https://www.youtube.com/@ThePrincetonReview" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+    <div class="yt-card">
+      <div class="yt-top">
+        <div class="yt-icon">▶</div>
+        <div class="yt-name">Scalar Learning (SAT Math)</div>
+      </div>
+      <div class="yt-desc">Focused specifically on digital SAT math. Short, efficient videos for each question type. Great for the new adaptive SAT format — very up-to-date content.</div>
+      <div class="yt-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://www.youtube.com/@ScalarLearning" target="_blank" rel="noopener" class="yt-link">Watch on YouTube</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 4 — PAID RESOURCES ═══════════════════════════ -->
+<div class="section">
+  <div class="sec-label">Budget: Under $50</div>
+  <div class="sec-title">Paid Resources</div>
+  <p class="sec-sub">You don't need to spend much — the free resources cover most of what you need. These picks are the highest value for under $50 each.</p>
+
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Official SAT Study Guide</div>
+        <span class="badge badge-paid">~$25</span>
+      </div>
+      <div class="rc-desc">Published by College Board — the test makers. Contains 8 real practice tests with detailed answer explanations. If you buy one SAT book, this is it. Available on Amazon.</div>
+      <div class="rc-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://www.amazon.com/s?k=official+SAT+study+guide+college+board" target="_blank" rel="noopener" class="rc-link">Find on Amazon</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Official ACT Prep Guide</div>
+        <span class="badge badge-paid">~$35</span>
+      </div>
+      <div class="rc-desc">ACT's official prep book with 5 full practice tests, answer explanations, and strategy content. The authoritative source for ACT prep. Buy the most recent edition.</div>
+      <div class="rc-tags">
+        <span class="badge badge-act">ACT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://www.amazon.com/s?k=official+ACT+prep+guide" target="_blank" rel="noopener" class="rc-link">Find on Amazon</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Erica Meltzer — SAT/ACT Grammar</div>
+        <span class="badge badge-paid">~$22</span>
+      </div>
+      <div class="rc-desc">Widely considered the best grammar prep book for both tests. Covers every rule tested, with practice exercises. Students often report jumping 100+ points in the English/Writing section after this book alone.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT &amp; ACT</span>
+        <span class="badge badge-eng">English</span>
+      </div>
+      <a href="https://www.amazon.com/s?k=erica+meltzer+SAT+grammar" target="_blank" rel="noopener" class="rc-link">Find on Amazon</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">PWN the SAT — Math Guide</div>
+        <span class="badge badge-paid">~$30</span>
+      </div>
+      <div class="rc-desc">Considered the best SAT math supplementary book. Goes deep on every question type with strategy and practice. Pairs well with Khan Academy. Best for students who want to push their math score.</div>
+      <div class="rc-tags">
+        <span class="badge badge-sat">SAT</span>
+        <span class="badge badge-math">Math</span>
+      </div>
+      <a href="https://www.amazon.com/s?k=PWN+the+SAT+math+guide" target="_blank" rel="noopener" class="rc-link">Find on Amazon</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Barron's SAT or ACT</div>
+        <span class="badge badge-paid">~$18</span>
+      </div>
+      <div class="rc-desc">Affordable general-purpose prep book for either test. Good overview of all sections with practice questions. Best used as a secondary resource alongside official tests.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT or ACT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://www.amazon.com/s?k=barrons+SAT+prep" target="_blank" rel="noopener" class="rc-link">Find on Amazon</a>
+    </div>
+
+    <div class="resource-card">
+      <div class="rc-top">
+        <div class="rc-name">Magoosh SAT/ACT (1 Month)</div>
+        <span class="badge badge-paid">~$29/mo</span>
+      </div>
+      <div class="rc-desc">Video lessons, adaptive practice questions, and score predictor. Best used the month before your test date for an intensive sprint. Cancel after — no need to keep it long term.</div>
+      <div class="rc-tags">
+        <span class="badge badge-both">SAT or ACT</span>
+        <span class="badge badge-both">All Sections</span>
+      </div>
+      <a href="https://magoosh.com/hs/sat/" target="_blank" rel="noopener" class="rc-link">magoosh.com</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 5 — SUBJECT SPOTLIGHTS ════════════════════════ -->
+<div class="section">
+  <div class="sec-label">Know What's Tested</div>
+  <div class="sec-title">Subject Breakdown</div>
+  <p class="sec-sub">Every section has a predictable set of topics. Knowing exactly what's tested lets you focus your time instead of studying everything.</p>
+
+  <div class="subject-grid">
+
+    <div class="subject-card math">
+      <div class="subject-card-head">
+        <div class="subject-icon">📐</div>
+        <div class="subject-title">Math</div>
+        <div class="subject-subtitle">SAT &amp; ACT · Heaviest section weight</div>
+      </div>
+      <div class="subject-body">
+        <div class="subject-topics">
+          <h4>Key Topics</h4>
+          <ul>
+            <li>Algebra I &amp; II (linear equations, systems, inequalities)</li>
+            <li>Geometry (area, angles, triangles, circles)</li>
+            <li>Basic trigonometry (SAT: sin/cos/tan; ACT: more trig)</li>
+            <li>Data analysis &amp; statistics</li>
+            <li>Word problems &amp; modeling</li>
+            <li>ACT only: matrices, logarithms, sequences</li>
+          </ul>
+        </div>
+        <div class="subject-picks">
+          <h4>Top Resources</h4>
+          <div class="subject-pick-row"><span>Khan Academy Math</span><span class="badge badge-free">Free</span></div>
+          <div class="subject-pick-row"><span>Mario's Math Tutoring</span><span class="badge badge-free">YouTube</span></div>
+          <div class="subject-pick-row"><span>PWN the SAT Math Guide</span><span class="badge badge-paid">~$30</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subject-card eng">
+      <div class="subject-card-head">
+        <div class="subject-icon">📖</div>
+        <div class="subject-title">English &amp; Reading</div>
+        <div class="subject-subtitle">SAT Reading+Writing · ACT English &amp; Reading</div>
+      </div>
+      <div class="subject-body">
+        <div class="subject-topics">
+          <h4>Key Topics</h4>
+          <ul>
+            <li>Grammar rules: punctuation, subject-verb agreement, modifiers</li>
+            <li>Sentence structure &amp; clarity</li>
+            <li>Reading comprehension: main idea, evidence, tone</li>
+            <li>Vocabulary in context (not memorized vocab)</li>
+            <li>Argument structure &amp; transition words</li>
+            <li>SAT: data graphics paired with passages</li>
+          </ul>
+        </div>
+        <div class="subject-picks">
+          <h4>Top Resources</h4>
+          <div class="subject-pick-row"><span>No Red Ink</span><span class="badge badge-free">Free</span></div>
+          <div class="subject-pick-row"><span>Erica Meltzer Blog</span><span class="badge badge-free">Free</span></div>
+          <div class="subject-pick-row"><span>Meltzer Grammar Book</span><span class="badge badge-paid">~$22</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subject-card sci">
+      <div class="subject-card-head">
+        <div class="subject-icon">🔬</div>
+        <div class="subject-title">Science</div>
+        <div class="subject-subtitle">ACT only · No memorization required</div>
+      </div>
+      <div class="subject-body">
+        <div class="subject-topics">
+          <h4>What It Actually Tests</h4>
+          <ul>
+            <li>Data interpretation (reading tables, graphs, charts)</li>
+            <li>Experimental design &amp; research summaries</li>
+            <li>Conflicting viewpoints (compare two scientists' claims)</li>
+            <li>Logical reasoning — not bio, chem, or physics knowledge</li>
+            <li>Speed: 40 questions in 35 minutes = tight pacing</li>
+          </ul>
+        </div>
+        <div class="subject-picks">
+          <h4>Top Resources</h4>
+          <div class="subject-pick-row"><span>Magoosh ACT Science Blog</span><span class="badge badge-free">Free</span></div>
+          <div class="subject-pick-row"><span>SupertutorTV (YouTube)</span><span class="badge badge-free">YouTube</span></div>
+          <div class="subject-pick-row"><span>Official ACT Prep Guide</span><span class="badge badge-paid">~$35</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 6 — TIMELINE ══════════════════════════════════ -->
+<div class="section">
+  <div class="sec-label">Class of 2028</div>
+  <div class="sec-title">Sophomore Prep Timeline</div>
+  <p class="sec-sub">No need to panic — you have more runway than most. This timeline keeps prep realistic around your soccer season.</p>
+
+  <div class="timeline">
+
+    <div class="tl-item now">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Now — End of Sophomore Year</div>
+      <div class="tl-title">Take Diagnostics &amp; Find Your Baseline</div>
+      <div class="tl-desc">No pressure, just data. Take one free SAT diagnostic on Khan Academy and one free ACT practice test from ACT.org. Compare your scores and how each felt. No studying needed beforehand — you want an honest baseline.</div>
+      <div class="tl-actions">
+        <span class="tl-action">Khan Academy SAT Diagnostic</span>
+        <span class="tl-action">ACT.org Free Practice Test</span>
+        <span class="tl-action">Identify Weakest Section</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Summer Before Junior Year</div>
+      <div class="tl-title">Light Daily Study — Build the Foundation</div>
+      <div class="tl-desc">No tournaments, less pressure. Commit to 30 minutes a day on your weakest subject. Khan Academy math lessons or Meltzer grammar rules. Read the PrepScholar blog to understand the test structure. This summer compound-interests your prep — it pays off big in the fall.</div>
+      <div class="tl-actions">
+        <span class="tl-action">30 min/day Khan Academy</span>
+        <span class="tl-action">1 practice section/week</span>
+        <span class="tl-action">Read PrepScholar strategy guides</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Junior Fall (Sept – Dec)</div>
+      <div class="tl-title">Full Practice Tests &amp; Targeted Review</div>
+      <div class="tl-desc">One full practice test per month under timed conditions. Review every wrong answer — understand <em>why</em> you missed it, not just what the right answer was. Take the PSAT in October — it's free, low-stakes, and gives you official College Board data on your performance.</div>
+      <div class="tl-actions">
+        <span class="tl-action">Monthly full practice test</span>
+        <span class="tl-action">PSAT in October</span>
+        <span class="tl-action">Start Meltzer grammar book</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Junior Spring (Jan – May)</div>
+      <div class="tl-title">First Real Test Attempt</div>
+      <div class="tl-desc">Register early — test centers fill up. Take both SAT and ACT once if possible. These are your exploratory attempts — scores still count and many colleges accept them, but you'll have more shots. Consider one month of Magoosh as a sprint in the month before your test.</div>
+      <div class="tl-actions">
+        <span class="tl-action">Register by January</span>
+        <span class="tl-action">Take SAT (March or May)</span>
+        <span class="tl-action">Take ACT (April)</span>
+        <span class="tl-action">Optional: 1-month Magoosh</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Junior Summer (June – Aug)</div>
+      <div class="tl-title">Analyze &amp; Retake if Needed</div>
+      <div class="tl-desc">Review your score reports — both College Board and ACT provide section-level breakdowns. If you're within range of your goal, keep the score. If not, targeted prep on weak sections and retake in June or July.</div>
+      <div class="tl-actions">
+        <span class="tl-action">Analyze score reports</span>
+        <span class="tl-action">Retake if 50+ points from goal</span>
+        <span class="tl-action">Send scores to target schools</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-period">Senior Fall (Aug – Nov)</div>
+      <div class="tl-title">Final Attempt if Needed</div>
+      <div class="tl-desc">Most colleges want scores by November for regular decision. If you hit your target junior year, you're done — focus on your application. If not, one more attempt in August or October. Coaches are typically engaged by this point and may have already waived score requirements for soccer recruits.</div>
+      <div class="tl-actions">
+        <span class="tl-action">Scores due to schools by Nov</span>
+        <span class="tl-action">August or October SAT/ACT</span>
+        <span class="tl-action">Check each school's deadline</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- ═══ SECTION 7 — QUICK TIPS ════════════════════════════════ -->
+<div class="section section-last">
+  <div class="sec-label">Smart Strategy</div>
+  <div class="sec-title">Quick Tips</div>
+
+  <div class="tips-box">
+    <div class="tips-box-head">
+      <h3>Things Most Students Don't Know</h3>
+    </div>
+    <div class="tips-list">
+      <div class="tip-row">
+        <div class="tip-icon">📅</div>
+        <div class="tip-text"><strong>Register early.</strong> Popular test dates fill up fast — especially March and October SAT and April ACT. Register 6–8 weeks out to get your preferred location.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon">🔄</div>
+        <div class="tip-text"><strong>SAT Superscoring works in your favor.</strong> College Board combines your best section scores across multiple test dates. Take it twice and submit both — they'll build the best composite for you automatically.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon">⚽</div>
+        <div class="tip-text"><strong>Coaches care most about GPA and soccer tape.</strong> Test scores are secondary for athletic recruits — but academic scholarships often have score floors (usually ACT 23+ / SAT 1100+), so hitting the threshold still matters for your financial aid package.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon">📄</div>
+        <div class="tip-text"><strong>Only official tests are worth simulating.</strong> Third-party practice tests (from most prep books) are slightly off in difficulty. When doing full timed simulations, use official College Board or ACT.org tests only.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon">🎯</div>
+        <div class="tip-text"><strong>Wrong answers teach more than right ones.</strong> After every practice test, spend as much time reviewing missed questions as you did taking the test. Understand the pattern — most students miss the same question types repeatedly.</div>
+      </div>
+      <div class="tip-row">
+        <div class="tip-icon">💤</div>
+        <div class="tip-text"><strong>Sleep beats last-minute cramming.</strong> The night before the test, stop studying after a light review. Sleep is the single biggest performance variable on test day — especially if you've been prepping consistently for months.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:24px clamp(18px,5vw,60px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#6b7fa8;opacity:0.5;">NL<span style="color:#4a7a00;opacity:1;">21</span></div>
+  <div style="font-size:0.72rem;color:#6b7fa8;opacity:0.4;">Noah Lach · Class of 2028 · Kansas City, MO</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  if (nav) nav.classList.add('scrolled');
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('navMobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) mobileMenu.classList.remove('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  }
+</script>
+</body>
+</html>
