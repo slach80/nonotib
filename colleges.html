@@ -679,7 +679,146 @@
     @media (max-width: 860px) { .contacts-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 560px) { .contacts-grid { grid-template-columns: 1fr; } }
 
+    /* ─── LAYOUT WITH SIDEBAR ─── */
+    .colleges-layout {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 clamp(10px, 3vw, 32px);
+      gap: 24px;
+    }
+    .colleges-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .colleges-main .region-section {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .colleges-main .legend-bar {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .colleges-main .feasibility-guide {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* ─── FLOATING SIDEBAR ─── */
+    .filter-sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      position: sticky;
+      top: calc(var(--nav-h, 64px) + 16px);
+      max-height: calc(100vh - var(--nav-h, 64px) - 32px);
+      overflow-y: auto;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 18px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .filter-sidebar::-webkit-scrollbar { width: 4px; }
+    .filter-sidebar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+    .fs-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9baec8;
+      margin-bottom: 2px;
+    }
+    .fs-group { display: flex; flex-direction: column; gap: 6px; }
+    .fs-group-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6b7fa8;
+      margin-bottom: 2px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .fs-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #6b7fa8;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      width: 100%;
+    }
+    .fs-btn:hover { background: rgba(0,0,0,0.03); color: #0f1a2e; }
+    .fs-btn.active { background: rgba(74,122,0,0.08); border-color: rgba(74,122,0,0.3); color: #3a7000; }
+    .fs-dot {
+      width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
+    }
+    .fs-count {
+      margin-left: auto;
+      font-size: 0.65rem;
+      color: #9baec8;
+      font-weight: 600;
+    }
+    .fs-reset {
+      background: none;
+      border: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9baec8;
+      cursor: pointer;
+      padding: 4px 0;
+      text-align: left;
+      transition: color 0.15s;
+    }
+    .fs-reset:hover { color: #b71c1c; }
+    .fs-result-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #6b7fa8;
+      padding: 8px 10px;
+      background: rgba(0,0,0,0.03);
+      border-radius: 6px;
+      text-align: center;
+    }
+    .fs-result-count strong { color: #4a7a00; }
+
+    /* ─── FILTERED CARD STATE ─── */
+    .college-card.card-hidden {
+      display: none;
+    }
+    .region-section.region-empty {
+      display: none;
+    }
+
     /* ─── MOBILE ─── */
+    @media (max-width: 1024px) {
+      .filter-sidebar { display: none; }
+      .colleges-layout { padding: 0; }
+      .colleges-main .region-section { padding-left: clamp(18px,5vw,60px); padding-right: clamp(18px,5vw,60px); }
+      .colleges-main .legend-bar { padding-left: clamp(18px,5vw,60px); padding-right: clamp(18px,5vw,60px); }
+    }
     @media (max-width: 860px) {
       .college-grid { grid-template-columns: 1fr; }
       .guide-grid   { grid-template-columns: 1fr; }
@@ -812,6 +951,89 @@
   </div>
 </div>
 
+<div class="colleges-layout">
+
+<!-- ─── FILTER SIDEBAR ─── -->
+<aside class="filter-sidebar" id="filterSidebar">
+  <div>
+    <div class="fs-title">Filter Schools</div>
+  </div>
+
+  <div class="fs-group">
+    <div class="fs-group-label">Division</div>
+    <button class="fs-btn active" data-filter="div" data-val="all">
+      <span class="fs-dot" style="background:#9baec8"></span> All Divisions
+      <span class="fs-count" id="cnt-div-all"></span>
+    </button>
+    <button class="fs-btn" data-filter="div" data-val="d1">
+      <span class="fs-dot" style="background:var(--d1)"></span> NCAA D1
+      <span class="fs-count" id="cnt-div-d1"></span>
+    </button>
+    <button class="fs-btn" data-filter="div" data-val="d2">
+      <span class="fs-dot" style="background:var(--d2)"></span> NCAA D2
+      <span class="fs-count" id="cnt-div-d2"></span>
+    </button>
+    <button class="fs-btn" data-filter="div" data-val="d3">
+      <span class="fs-dot" style="background:var(--d3)"></span> NCAA D3
+      <span class="fs-count" id="cnt-div-d3"></span>
+    </button>
+    <button class="fs-btn" data-filter="div" data-val="naia">
+      <span class="fs-dot" style="background:var(--naia)"></span> NAIA
+      <span class="fs-count" id="cnt-div-naia"></span>
+    </button>
+  </div>
+
+  <div class="fs-group">
+    <div class="fs-group-label">Region</div>
+    <button class="fs-btn active" data-filter="region" data-val="all">
+      <span class="fs-dot" style="background:#9baec8"></span> All Regions
+      <span class="fs-count" id="cnt-reg-all"></span>
+    </button>
+    <button class="fs-btn" data-filter="region" data-val="kc">
+      <span class="fs-dot" style="background:#4a7a00"></span> KC / Missouri
+      <span class="fs-count" id="cnt-reg-kc"></span>
+    </button>
+    <button class="fs-btn" data-filter="region" data-val="tampa">
+      <span class="fs-dot" style="background:#0060c0"></span> Tampa Bay
+      <span class="fs-count" id="cnt-reg-tampa"></span>
+    </button>
+    <button class="fs-btn" data-filter="region" data-val="ca">
+      <span class="fs-dot" style="background:#c07000"></span> California
+      <span class="fs-count" id="cnt-reg-ca"></span>
+    </button>
+    <button class="fs-btn" data-filter="region" data-val="houston">
+      <span class="fs-dot" style="background:#c01060"></span> Houston, TX
+      <span class="fs-count" id="cnt-reg-houston"></span>
+    </button>
+    <button class="fs-btn" data-filter="region" data-val="phoenix">
+      <span class="fs-dot" style="background:#8a3000"></span> Phoenix, AZ
+      <span class="fs-count" id="cnt-reg-phoenix"></span>
+    </button>
+  </div>
+
+  <div class="fs-group">
+    <div class="fs-group-label">Feasibility</div>
+    <button class="fs-btn active" data-filter="feas" data-val="all">
+      <span class="fs-dot" style="background:#9baec8"></span> All
+      <span class="fs-count" id="cnt-feas-all"></span>
+    </button>
+    <button class="fs-btn" data-filter="feas" data-val="high">
+      <span class="fs-dot" style="background:var(--high)"></span> High
+      <span class="fs-count" id="cnt-feas-high"></span>
+    </button>
+    <button class="fs-btn" data-filter="feas" data-val="medium">
+      <span class="fs-dot" style="background:var(--med)"></span> Medium
+      <span class="fs-count" id="cnt-feas-medium"></span>
+    </button>
+  </div>
+
+  <div class="fs-result-count" id="resultCount"></div>
+  <button class="fs-reset" id="resetFilters">✕ Reset Filters</button>
+</aside>
+
+<!-- ─── MAIN CONTENT ─── -->
+<div class="colleges-main">
+
 <!-- ─── LEGEND ─── -->
 <div class="legend-bar">
   <span class="legend-label">Division</span>
@@ -833,7 +1055,7 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- REGION 1: KC / MISSOURI -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="region-section">
+<div class="region-section" id="region-kc">
   <div class="region-header">
     <h2 class="region-title">KC / Missouri</h2>
     <span class="region-sub">Missouri &amp; Kansas</span>
@@ -851,7 +1073,7 @@
   <div class="college-grid">
 
     <!-- Rockhurst -->
-    <div class="college-card" id="rockhurst">
+    <div class="college-card" id="rockhurst" data-div="d2" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Rockhurst University</div>
@@ -909,7 +1131,7 @@
         <span class="cc-connection">Local · Home Program</span>
       </div>
     </div>
-    <div class="college-card" id="midamerica-nazarene">
+    <div class="college-card" id="midamerica-nazarene" data-div="naia" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">MidAmerica Nazarene</div>
@@ -966,7 +1188,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
       </div>
     </div>
-    <div class="college-card" id="saint-mary">
+    <div class="college-card" id="saint-mary" data-div="naia" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">University of Saint Mary</div>
@@ -1024,7 +1246,7 @@
         <span class="cc-connection">Most Open Spots</span>
       </div>
     </div>
-    <div class="college-card" id="park">
+    <div class="college-card" id="park" data-div="naia" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Park University</div>
@@ -1082,7 +1304,7 @@
         <span class="cc-connection">⭐ Coach Connection</span>
       </div>
     </div>
-    <div class="college-card" id="evangel">
+    <div class="college-card" id="evangel" data-div="naia" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Evangel University</div>
@@ -1125,7 +1347,7 @@
         <span class="cc-connection">Springfield — In City</span>
       </div>
     </div>
-    <div class="college-card" id="william-jewell">
+    <div class="college-card" id="william-jewell" data-div="naia" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">William Jewell College</div>
@@ -1149,7 +1371,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span><span class="cc-connection">KC Suburb · 20 min</span></div>
     </div>
-    <div class="college-card" id="umkc">
+    <div class="college-card" id="umkc" data-div="d1" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div><div class="cc-name">UMKC</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">WAC</span><span class="cc-location">· Kansas City, MO</span></div></div>
@@ -1166,7 +1388,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D1)</span><span class="cc-connection">KC Local · D1</span></div>
     </div>
-    <div class="college-card" id="drury">
+    <div class="college-card" id="drury" data-div="d2" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Drury University</div>
@@ -1223,7 +1445,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
       </div>
     </div>
-    <div class="college-card" id="maryville">
+    <div class="college-card" id="maryville" data-div="d2" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Maryville University</div>
@@ -1281,7 +1503,7 @@
         <span class="cc-connection">Best DPT Pipeline KC</span>
       </div>
     </div>
-    <div class="college-card" id="southwest-baptist">
+    <div class="college-card" id="southwest-baptist" data-div="d2" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Southwest Baptist University</div>
@@ -1324,7 +1546,7 @@
         <span class="cc-connection">Springfield Region</span>
       </div>
     </div>
-    <div class="college-card" id="truman-state">
+    <div class="college-card" id="truman-state" data-div="d2" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Truman State University</div>
@@ -1348,7 +1570,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span></div>
     </div>
-    <div class="college-card" id="slu">
+    <div class="college-card" id="slu" data-div="d1" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div><div class="cc-name">Saint Louis University (SLU)</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">Atlantic 10</span><span class="cc-location">· St. Louis, MO</span></div></div>
@@ -1365,7 +1587,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D1 — 9.9 equiv.)</span><span class="cc-connection">⭐ Active Recruiting Contact</span></div>
     </div>
-    <div class="college-card" id="missouri-state">
+    <div class="college-card" id="missouri-state" data-div="d1" data-region="kc" data-feas="medium">
       <div class="cc-header">
         <div><div class="cc-name">Missouri State University</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">Missouri Valley</span><span class="cc-location">· Springfield, MO</span></div></div>
@@ -1384,7 +1606,7 @@
     </div>
 
     <!-- Lindenwood University -->
-    <div class="college-card college-card--priority" id="lindenwood">
+    <div class="college-card college-card--priority" id="lindenwood" data-div="d1" data-region="kc" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Lindenwood University ⭐</div>
@@ -1428,7 +1650,7 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- REGION 2: TAMPA BAY / FL-GA -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="region-section">
+<div class="region-section" id="region-tampa">
   <div class="region-header">
     <h2 class="region-title">Tampa Bay</h2>
     <span class="region-sub">Florida</span>
@@ -1436,7 +1658,7 @@
 
   </div>
 
-  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
 
   <!-- TEST PREP CROSSLINK -->
   <div style="background:rgba(74,122,0,0.07);border:1px solid rgba(74,122,0,0.2);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
@@ -1447,7 +1669,7 @@
   <div class="college-grid">
 
     <!-- University of Tampa -->
-    <div class="college-card" id="southeastern">
+    <div class="college-card" id="southeastern" data-div="naia" data-region="tampa" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Southeastern University</div>
@@ -1489,7 +1711,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (NAIA)</span>
       </div>
     </div>
-    <div class="college-card" id="saint-leo">
+    <div class="college-card" id="saint-leo" data-div="d2" data-region="tampa" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Saint Leo University</div>
@@ -1531,7 +1753,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
       </div>
     </div>
-    <div class="college-card" id="warner">
+    <div class="college-card" id="warner" data-div="naia" data-region="tampa" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Warner University</div>
@@ -1574,7 +1796,7 @@
         <span class="cc-connection">Best Scholarship Value FL</span>
       </div>
     </div>
-    <div class="college-card" id="u-tampa">
+    <div class="college-card" id="u-tampa" data-div="d2" data-region="tampa" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">University of Tampa</div>
@@ -1627,7 +1849,7 @@
         <span class="cc-connection">Top Target</span>
       </div>
     </div>
-    <div class="college-card" id="florida-southern">
+    <div class="college-card" id="florida-southern" data-div="d2" data-region="tampa" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Florida Southern College</div>
@@ -1685,7 +1907,7 @@
         <span class="cc-connection">Best FL Academic Fit</span>
       </div>
     </div>
-    <div class="college-card" id="eckerd">
+    <div class="college-card" id="eckerd" data-div="d2" data-region="tampa" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Eckerd College</div>
@@ -1728,7 +1950,7 @@
         <span class="cc-connection">Tampa Bay Waterfront</span>
       </div>
     </div>
-    <div class="college-card" id="lynn">
+    <div class="college-card" id="lynn" data-div="d2" data-region="tampa" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Lynn University</div>
@@ -1770,7 +1992,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
       </div>
     </div>
-    <div class="college-card" id="usf">
+    <div class="college-card" id="usf" data-div="d1" data-region="tampa" data-feas="medium">
       <div class="cc-header">
         <div><div class="cc-name">University of South Florida</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">American Athletic</span><span class="cc-location">· Tampa, FL</span></div></div>
@@ -1793,14 +2015,14 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- REGION 3: SAN JOSE / SAN DIEGO, CA -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="region-section">
+<div class="region-section" id="region-ca">
   <div class="region-header">
     <h2 class="region-title">San Jose / San Diego</h2>
     <span class="region-sub">California</span>
     <span class="region-count">7 programs</span>
   </div>
 
-  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
 
   <!-- TEST PREP CROSSLINK -->
   <div style="background:rgba(74,122,0,0.07);border:1px solid rgba(74,122,0,0.2);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
@@ -1811,7 +2033,7 @@
   <div class="college-grid">
 
     <!-- Point Loma Nazarene -->
-    <div class="college-card" id="sd-christian">
+    <div class="college-card" id="sd-christian" data-div="naia" data-region="ca" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">San Diego Christian College</div>
@@ -1854,7 +2076,7 @@
         <span class="cc-connection">Best NAIA CA Fit</span>
       </div>
     </div>
-    <div class="college-card" id="sjsu">
+    <div class="college-card" id="sjsu" data-div="d1" data-region="ca" data-feas="high">
       <div class="cc-header">
         <div><div class="cc-name">San Jose State University</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">Mountain West</span><span class="cc-location">· San Jose, CA</span></div></div>
@@ -1871,7 +2093,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D1)</span><span class="cc-connection">San Jose Target City</span></div>
     </div>
-    <div class="college-card" id="point-loma">
+    <div class="college-card" id="point-loma" data-div="d2" data-region="ca" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Point Loma Nazarene</div>
@@ -1920,7 +2142,7 @@
         <span class="cc-connection">Top CA Pick</span>
       </div>
     </div>
-    <div class="college-card" id="csusm">
+    <div class="college-card" id="csusm" data-div="d2" data-region="ca" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Cal State San Marcos</div>
@@ -1968,7 +2190,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
       </div>
     </div>
-    <div class="college-card" id="csueb">
+    <div class="college-card" id="csueb" data-div="d2" data-region="ca" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Cal State East Bay</div>
@@ -2016,7 +2238,7 @@
         <span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D2)</span>
       </div>
     </div>
-    <div class="college-card" id="sdsu">
+    <div class="college-card" id="sdsu" data-div="d1" data-region="ca" data-feas="medium">
       <div class="cc-header">
         <div><div class="cc-name">San Diego State University</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">Mountain West</span><span class="cc-location">· San Diego, CA</span></div></div>
@@ -2033,7 +2255,7 @@
       </div>
       <div class="cc-footer"><span class="scholarship-note"><span class="dot"></span> Athletic scholarships available (D1)</span></div>
     </div>
-    <div class="college-card" id="usd">
+    <div class="college-card" id="usd" data-div="d1" data-region="ca" data-feas="medium">
       <div class="cc-header">
         <div><div class="cc-name">University of San Diego</div>
         <div class="cc-meta"><span class="div-badge d1">NCAA D1</span><span class="cc-conf">West Coast</span><span class="cc-location">· San Diego, CA</span></div></div>
@@ -2054,28 +2276,11 @@
 </div>
 
 <!-- ─── FEASIBILITY GUIDE ─── -->
-<div class="feasibility-guide">
-  <h3 class="guide-title">Recruiting Feasibility — What It Means</h3>
-  <div class="guide-grid">
-    <div class="guide-card high">
-      <h4>High Feasibility</h4>
-      <p>Noah's MLS Next AD background, 3.5 GPA, and KC area profile make him a realistic recruiting target. With a highlight reel and direct coach outreach, expect interest and likely scholarship conversation.</p>
-    </div>
-    <div class="guide-card medium">
-      <h4>Medium Feasibility</h4>
-      <p>Program is competitive — Noah is in range but needs strong showcase appearances, good film, and early outreach (by sophomore fall). Getting a trial or ID camp invite is the key first step.</p>
-    </div>
-    <div class="guide-card low">
-      <h4>Low Feasibility</h4>
-      <p>Reach program — either soccer level significantly exceeds Noah's current exposure or academic standards are above average. Worth contacting but should not anchor the recruiting strategy.</p>
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- REGION 4: HOUSTON, TX -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="region-section">
+<div class="region-section" id="region-houston">
   <div class="region-header">
     <h2 class="region-title">Houston, TX</h2>
     <span class="region-sub">Texas Gulf Coast</span>
@@ -2093,7 +2298,7 @@
   <div class="college-grid">
 
     <!-- HCU / Houston Christian University -->
-    <div class="college-card college-card--priority" id="houston-christian">
+    <div class="college-card college-card--priority" id="houston-christian" data-div="d1" data-region="houston" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Houston Christian University</div>
@@ -2148,7 +2353,7 @@
     </div>
 
     <!-- University of St. Thomas Houston -->
-    <div class="college-card" id="ust-houston">
+    <div class="college-card" id="ust-houston" data-div="d3" data-region="houston" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">University of St. Thomas Houston</div>
@@ -2204,7 +2409,7 @@
     </div>
 
     <!-- Concordia University Texas -->
-    <div class="college-card" id="concordia-texas">
+    <div class="college-card" id="concordia-texas" data-div="d3" data-region="houston" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Concordia University Texas</div>
@@ -2264,14 +2469,14 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- REGION 5: PHOENIX, AZ -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="region-section">
+<div class="region-section" id="region-phoenix">
   <div class="region-header">
     <h2 class="region-title">Phoenix</h2>
     <span class="region-sub">Arizona</span>
     <span class="region-count">4 programs</span>
   </div>
 
-  <p class="d1-note">D1 programs have 9.9 scholarship equivalencies — MLS Next AD background is a real credential. <strong>Register with NCAA Eligibility Center at web3.ncaa.org/ecwr3</strong></p>
+
 
   <div style="background:rgba(180,0,0,0.06);border:1px solid rgba(180,0,0,0.15);border-radius:10px;padding:14px 18px;margin-bottom:24px;">
     <span style="font-size:0.82rem;color:#3a4a6b;line-height:1.6;"><strong style="color:#b71c1c;">⚠️ Research note:</strong> ASU does <strong>not</strong> sponsor men's varsity soccer. Embry-Riddle Prescott (NAIA) has a soccer program but offers no Exercise Science / Health Science / Pre-PT programs — eliminated on academic fit. Park Gilbert (NAIA) overlaps with Park University already in the KC section. The four programs below are the best fits in the Phoenix metro.</span>
@@ -2280,7 +2485,7 @@
   <div class="college-grid">
 
     <!-- Grand Canyon University -->
-    <div class="college-card" id="gcu">
+    <div class="college-card" id="gcu" data-div="d1" data-region="phoenix" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Grand Canyon University</div>
@@ -2325,7 +2530,7 @@
     </div>
 
     <!-- Benedictine University Mesa -->
-    <div class="college-card" id="benu-mesa">
+    <div class="college-card" id="benu-mesa" data-div="naia" data-region="phoenix" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Benedictine University Mesa</div>
@@ -2370,7 +2575,7 @@
     </div>
 
     <!-- Arizona Christian University -->
-    <div class="college-card" id="acu-az">
+    <div class="college-card" id="acu-az" data-div="naia" data-region="phoenix" data-feas="high">
       <div class="cc-header">
         <div>
           <div class="cc-name">Arizona Christian University</div>
@@ -2415,7 +2620,7 @@
     </div>
 
     <!-- Ottawa University Arizona -->
-    <div class="college-card" id="ouaz">
+    <div class="college-card" id="ouaz" data-div="naia" data-region="phoenix" data-feas="medium">
       <div class="cc-header">
         <div>
           <div class="cc-name">Ottawa University Arizona</div>
@@ -2519,6 +2724,9 @@
   <p style="font-size:0.75rem; color:#6b7fa8; margin-top:14px; line-height:1.6;">⚠️ San Diego Christian College was on accreditation Warning status as of Spring 2025 — verify current status before applying.</p>
 </div>
 
+</div><!-- end colleges-main -->
+</div><!-- end colleges-layout -->
+
 <footer style="background:#ffffff; border-top:1px solid rgba(0,0,0,0.08); padding:24px clamp(18px,5vw,60px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
   <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:#6b7fa8; opacity:0.6;">NL<span style="color:#4a7a00;opacity:1;">21</span></div>
   <div style="font-size:0.72rem; color:#6b7fa8; opacity:0.5;">Noah Lach · Class of 2028 · MLS Next Academy Division · Kansas City, MO</div>
@@ -2541,6 +2749,92 @@
     });
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
   }
+</script>
+<script>
+  // ─── FILTER SIDEBAR ───
+  (function() {
+    const cards = Array.from(document.querySelectorAll('.college-card[data-div]'));
+    const regions = Array.from(document.querySelectorAll('.region-section[id]'));
+    const resultEl = document.getElementById('resultCount');
+
+    let activeDiv = 'all', activeRegion = 'all', activeFeas = 'all';
+
+    // Populate per-value counts
+    function countBy(attr) {
+      const counts = {};
+      cards.forEach(c => {
+        const v = c.dataset[attr];
+        counts[v] = (counts[v] || 0) + 1;
+      });
+      return counts;
+    }
+    const divCounts  = countBy('div');
+    const regCounts  = countBy('region');
+    const feasCounts = countBy('feas');
+    const total = cards.length;
+
+    function setCount(id, n) { const el = document.getElementById(id); if (el) el.textContent = n; }
+    setCount('cnt-div-all',  total);
+    setCount('cnt-div-d1',   divCounts.d1   || 0);
+    setCount('cnt-div-d2',   divCounts.d2   || 0);
+    setCount('cnt-div-d3',   divCounts.d3   || 0);
+    setCount('cnt-div-naia', divCounts.naia || 0);
+    setCount('cnt-reg-all',     total);
+    setCount('cnt-reg-kc',      regCounts.kc      || 0);
+    setCount('cnt-reg-tampa',   regCounts.tampa    || 0);
+    setCount('cnt-reg-ca',      regCounts.ca       || 0);
+    setCount('cnt-reg-houston', regCounts.houston  || 0);
+    setCount('cnt-reg-phoenix', regCounts.phoenix  || 0);
+    setCount('cnt-feas-all',    total);
+    setCount('cnt-feas-high',   feasCounts.high   || 0);
+    setCount('cnt-feas-medium', feasCounts.medium || 0);
+
+    function applyFilters() {
+      let visible = 0;
+      cards.forEach(c => {
+        const show = (activeDiv    === 'all' || c.dataset.div    === activeDiv)
+                  && (activeRegion === 'all' || c.dataset.region === activeRegion)
+                  && (activeFeas   === 'all' || c.dataset.feas   === activeFeas);
+        c.classList.toggle('card-hidden', !show);
+        if (show) visible++;
+      });
+
+      // Hide region sections where all cards are hidden
+      document.querySelectorAll('.region-section').forEach(sec => {
+        const secCards = sec.querySelectorAll('.college-card');
+        if (!secCards.length) return;
+        const anyVisible = Array.from(secCards).some(c => !c.classList.contains('card-hidden'));
+        sec.classList.toggle('region-empty', !anyVisible);
+      });
+
+      if (resultEl) resultEl.innerHTML = '<strong>' + visible + '</strong> of ' + total + ' schools';
+    }
+
+    // Wire buttons
+    document.querySelectorAll('.fs-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filterType = btn.dataset.filter;
+        const val = btn.dataset.val;
+        if (filterType === 'div')    activeDiv    = val;
+        if (filterType === 'region') activeRegion = val;
+        if (filterType === 'feas')   activeFeas   = val;
+
+        // Update active state within group
+        document.querySelectorAll('.fs-btn[data-filter="' + filterType + '"]')
+          .forEach(b => b.classList.toggle('active', b.dataset.val === val));
+
+        applyFilters();
+      });
+    });
+
+    document.getElementById('resetFilters').addEventListener('click', () => {
+      activeDiv = activeRegion = activeFeas = 'all';
+      document.querySelectorAll('.fs-btn').forEach(b => b.classList.toggle('active', b.dataset.val === 'all'));
+      applyFilters();
+    });
+
+    applyFilters();
+  })();
 </script>
 <script>
   document.querySelectorAll('.college-card[id]').forEach(function(card) {
