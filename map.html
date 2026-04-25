@@ -280,6 +280,8 @@
   <button class="filter-btn" data-filter="region" data-val="kc">KC / MO</button>
   <button class="filter-btn" data-filter="region" data-val="tampa">Tampa Bay</button>
   <button class="filter-btn" data-filter="region" data-val="ca">California</button>
+  <button class="filter-btn" data-filter="region" data-val="houston">Houston</button>
+  <button class="filter-btn" data-filter="region" data-val="phoenix">Phoenix</button>
 
   <div class="filter-sep"></div>
   <span class="filter-label">Division</span>
@@ -316,7 +318,7 @@
     <!-- KC / Missouri -->
     <div class="sidebar-region" data-region="kc">
       <div class="sidebar-region-hd">
-        KC / Missouri (15)
+        KC / Missouri (14)
         <button class="fly-btn" data-fly="kc">Zoom</button>
       </div>
       <a class="sidebar-item" data-id="rockhurst"         data-region="kc" data-div="d2"   data-feas="high" href="colleges.html#rockhurst">
@@ -344,11 +346,7 @@
         <div class="si-info"><div class="si-name">Evangel University</div><div class="si-meta">NAIA · Heart of America · Springfield, MO</div></div>
         <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
       </a>
-      <a class="sidebar-item" data-id="missouri-western"  data-region="kc" data-div="d2"   data-feas="high" href="colleges.html#missouri-western">
-        <div class="si-dot" style="background:var(--d2)"></div>
-        <div class="si-info"><div class="si-name">Missouri Western State</div><div class="si-meta">D2 · MIAA · St. Joseph, MO</div></div>
-        <div class="si-badges"><span class="si-badge d2">D2</span><span class="si-badge high">High</span></div>
-      </a>
+
       <a class="sidebar-item" data-id="william-jewell"    data-region="kc" data-div="naia" data-feas="high" href="colleges.html#william-jewell">
         <div class="si-dot" style="background:var(--naia)"></div>
         <div class="si-info"><div class="si-name">William Jewell College</div><div class="si-meta">NAIA · Heart of America · Liberty, MO</div></div>
@@ -487,6 +485,48 @@
       </a>
     </div>
 
+
+    <!-- Houston, TX -->
+    <div class="sidebar-region" data-region="houston">
+      <div class="sidebar-region-hd">
+        Houston, TX (1)
+        <button class="fly-btn" data-fly="houston">Zoom</button>
+      </div>
+      <a class="sidebar-item" data-id="houston-christian" data-region="houston" data-div="d1" data-feas="med" href="colleges.html#houston-christian">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">Houston Christian University</div><div class="si-meta">D1 · OVC · Houston, TX</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge med">Med</span></div>
+      </a>
+    </div>
+
+    <!-- Phoenix, AZ -->
+    <div class="sidebar-region" data-region="phoenix">
+      <div class="sidebar-region-hd">
+        Phoenix, AZ (4)
+        <button class="fly-btn" data-fly="phoenix">Zoom</button>
+      </div>
+      <a class="sidebar-item" data-id="gcu" data-region="phoenix" data-div="d1" data-feas="high" href="colleges.html#gcu">
+        <div class="si-dot" style="background:var(--d1)"></div>
+        <div class="si-info"><div class="si-name">Grand Canyon University</div><div class="si-meta">D1 · WAC · Phoenix, AZ</div></div>
+        <div class="si-badges"><span class="si-badge d1">D1</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="benu-mesa" data-region="phoenix" data-div="naia" data-feas="high" href="colleges.html#benu-mesa">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Benedictine Univ. Mesa</div><div class="si-meta">NAIA · GSAC · Mesa, AZ</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="acu-az" data-region="phoenix" data-div="naia" data-feas="high" href="colleges.html#acu-az">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Arizona Christian University</div><div class="si-meta">NAIA · GSAC · Glendale, AZ</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge high">High</span></div>
+      </a>
+      <a class="sidebar-item" data-id="ouaz" data-region="phoenix" data-div="naia" data-feas="med" href="colleges.html#ouaz">
+        <div class="si-dot" style="background:var(--naia)"></div>
+        <div class="si-info"><div class="si-name">Ottawa University Arizona</div><div class="si-meta">NAIA · GSAC · Surprise, AZ</div></div>
+        <div class="si-badges"><span class="si-badge naia">NAIA</span><span class="si-badge med">Med</span></div>
+      </a>
+    </div>
+
   </div><!-- /sidebar -->
 </div><!-- /map-layout -->
 
@@ -495,46 +535,54 @@
 // ─── COLLEGE DATA ───────────────────────────────────────────────────────────
 var colleges = [
   // KC / Missouri
-  { id:'rockhurst',         name:'Rockhurst University',        region:'kc',    div:'d2',   feas:'high', lat:39.0277,  lng:-94.5880, conf:'GLVC',            loc:'Kansas City, MO',   coach:'Athletics Staff' },
-  { id:'midamerica-nazarene',name:'MidAmerica Nazarene',        region:'kc',    div:'naia', feas:'high', lat:38.8814,  lng:-94.8191, conf:'Heart of America', loc:'Olathe, KS',        coach:'Athletics Staff' },
-  { id:'saint-mary',        name:'University of Saint Mary',    region:'kc',    div:'naia', feas:'high', lat:39.3072,  lng:-94.9166, conf:'KCAC',             loc:'Leavenworth, KS',   coach:'Athletics Staff' },
-  { id:'park',              name:'Park University',             region:'kc',    div:'naia', feas:'high', lat:39.1953,  lng:-94.6833, conf:'Heart of America', loc:'Parkville, MO',     coach:'Coach Zlitni (connection)' },
-  { id:'evangel',           name:'Evangel University',          region:'kc',    div:'naia', feas:'high', lat:37.1986,  lng:-93.3113, conf:'Heart of America', loc:'Springfield, MO',   coach:'Athletics Staff' },
-  { id:'missouri-western',  name:'Missouri Western State',      region:'kc',    div:'d2',   feas:'high', lat:39.7725,  lng:-94.8467, conf:'MIAA',             loc:'St. Joseph, MO',    coach:'Athletics Staff' },
-  { id:'william-jewell',    name:'William Jewell College',      region:'kc',    div:'naia', feas:'high', lat:39.2467,  lng:-94.4197, conf:'Heart of America', loc:'Liberty, MO',       coach:'Athletics Staff' },
-  { id:'umkc',              name:'UMKC',                        region:'kc',    div:'d1',   feas:'high', lat:39.0375,  lng:-94.5770, conf:'WAC',              loc:'Kansas City, MO',   coach:'Athletics Staff' },
-  { id:'drury',             name:'Drury University',            region:'kc',    div:'d2',   feas:'med',  lat:37.2090,  lng:-93.2952, conf:'GLVC',             loc:'Springfield, MO',   coach:'Athletics Staff' },
-  { id:'maryville',         name:'Maryville University',        region:'kc',    div:'d2',   feas:'med',  lat:38.6220,  lng:-90.5431, conf:'GLVC',             loc:'St. Louis, MO',     coach:'Athletics Staff' },
-  { id:'southwest-baptist', name:'Southwest Baptist University',region:'kc',    div:'d2',   feas:'med',  lat:37.6189,  lng:-93.4107, conf:'MIAA',             loc:'Bolivar, MO',       coach:'Athletics Staff' },
-  { id:'truman-state',      name:'Truman State University',     region:'kc',    div:'d2',   feas:'med',  lat:40.1964,  lng:-92.5832, conf:'GLVC',             loc:'Kirksville, MO',    coach:'Athletics Staff' },
-  { id:'slu',               name:'Saint Louis University (SLU)',region:'kc',    div:'d1',   feas:'med',  lat:38.6373,  lng:-90.2352, conf:'Atlantic 10',      loc:'St. Louis, MO',     coach:'Kevin Stoll (Active Contact)' },
-  { id:'missouri-state',    name:'Missouri State University',   region:'kc',    div:'d1',   feas:'med',  lat:37.1932,  lng:-93.2718, conf:'Missouri Valley',  loc:'Springfield, MO',   coach:'Athletics Staff' },
-  { id:'lindenwood',        name:'Lindenwood University ⭐',    region:'kc',    div:'d1',   feas:'high', lat:38.7845,  lng:-90.4960, conf:'OVC',              loc:'St. Charles, MO',   coach:'Nat Hubert (Personal Invite)', priority:true },
+  { id:'rockhurst',         name:'Rockhurst University',        region:'kc',    div:'d2',   feas:'high', lat:39.0277,  lng:-94.5880,  conf:'GLVC',            loc:'Kansas City, MO',    coach:'Athletics Staff' },
+  { id:'midamerica-nazarene',name:'MidAmerica Nazarene',        region:'kc',    div:'naia', feas:'high', lat:38.8814,  lng:-94.8191,  conf:'Heart of America', loc:'Olathe, KS',         coach:'Athletics Staff' },
+  { id:'saint-mary',        name:'University of Saint Mary',    region:'kc',    div:'naia', feas:'high', lat:39.3072,  lng:-94.9166,  conf:'KCAC',             loc:'Leavenworth, KS',    coach:'Athletics Staff' },
+  { id:'park',              name:'Park University',             region:'kc',    div:'naia', feas:'high', lat:39.1953,  lng:-94.6833,  conf:'Heart of America', loc:'Parkville, MO',      coach:'Coach Zlitni (connection)' },
+  { id:'evangel',           name:'Evangel University',          region:'kc',    div:'naia', feas:'high', lat:37.1986,  lng:-93.3113,  conf:'Heart of America', loc:'Springfield, MO',    coach:'Kyle Beard' },
+  { id:'william-jewell',    name:'William Jewell College',      region:'kc',    div:'naia', feas:'high', lat:39.2467,  lng:-94.4197,  conf:'Heart of America', loc:'Liberty, MO',        coach:'Keith Buderus' },
+  { id:'umkc',              name:'UMKC',                        region:'kc',    div:'d1',   feas:'high', lat:39.0375,  lng:-94.5770,  conf:'WAC',              loc:'Kansas City, MO',    coach:'Ryan Pore' },
+  { id:'drury',             name:'Drury University',            region:'kc',    div:'d2',   feas:'med',  lat:37.2090,  lng:-93.2952,  conf:'GLVC',             loc:'Springfield, MO',    coach:'Athletics Staff' },
+  { id:'maryville',         name:'Maryville University',        region:'kc',    div:'d2',   feas:'med',  lat:38.6220,  lng:-90.5431,  conf:'GLVC',             loc:'St. Louis, MO',      coach:'Athletics Staff' },
+  { id:'southwest-baptist', name:'Southwest Baptist University',region:'kc',    div:'d2',   feas:'med',  lat:37.6189,  lng:-93.4107,  conf:'MIAA',             loc:'Bolivar, MO',        coach:'Steve Bushre' },
+  { id:'truman-state',      name:'Truman State University',     region:'kc',    div:'d2',   feas:'med',  lat:40.1964,  lng:-92.5832,  conf:'GLVC',             loc:'Kirksville, MO',     coach:'Duke Cochran' },
+  { id:'slu',               name:'Saint Louis University (SLU)',region:'kc',    div:'d1',   feas:'med',  lat:38.6373,  lng:-90.2352,  conf:'Atlantic 10',      loc:'St. Louis, MO',      coach:'Kevin Stoll (Active Contact)' },
+  { id:'missouri-state',    name:'Missouri State University',   region:'kc',    div:'d1',   feas:'med',  lat:37.1932,  lng:-93.2718,  conf:'Missouri Valley',  loc:'Springfield, MO',    coach:'Michael Seabolt' },
+  { id:'lindenwood',        name:'Lindenwood University ⭐',    region:'kc',    div:'d1',   feas:'high', lat:38.7845,  lng:-90.4960,  conf:'OVC',              loc:'St. Charles, MO',    coach:'Nat Hubert (Personal Invite)', priority:true },
   // Tampa Bay
-  { id:'southeastern',      name:'Southeastern University',     region:'tampa', div:'naia', feas:'high', lat:28.0399,  lng:-81.9498, conf:'Sun Conference',   loc:'Lakeland, FL',      coach:'Athletics Staff' },
-  { id:'saint-leo',         name:'Saint Leo University',        region:'tampa', div:'d2',   feas:'high', lat:28.3367,  lng:-82.2601, conf:'Sunshine State',   loc:'Saint Leo, FL',     coach:'Athletics Staff' },
-  { id:'warner',            name:'Warner University',           region:'tampa', div:'naia', feas:'high', lat:27.9014,  lng:-81.5853, conf:'Sun Conference',   loc:'Lake Wales, FL',    coach:'Athletics Staff' },
-  { id:'u-tampa',           name:'University of Tampa',         region:'tampa', div:'d2',   feas:'med',  lat:27.9478,  lng:-82.4584, conf:'Sunshine State',   loc:'Tampa, FL',         coach:'Athletics Staff' },
-  { id:'florida-southern',  name:'Florida Southern College',    region:'tampa', div:'d2',   feas:'med',  lat:28.0297,  lng:-81.9750, conf:'Sunshine State',   loc:'Lakeland, FL',      coach:'Ashley Holmes' },
-  { id:'eckerd',            name:'Eckerd College',              region:'tampa', div:'d2',   feas:'med',  lat:27.7207,  lng:-82.7476, conf:'Sunshine State',   loc:'St. Petersburg, FL',coach:'Athletics Staff' },
-  { id:'lynn',              name:'Lynn University',             region:'tampa', div:'d2',   feas:'med',  lat:26.3683,  lng:-80.1289, conf:'Sunshine State',   loc:'Boca Raton, FL',    coach:'Athletics Staff' },
-  { id:'usf',               name:'University of South Florida', region:'tampa', div:'d1',   feas:'med',  lat:28.0587,  lng:-82.4139, conf:'American Athletic',loc:'Tampa, FL',         coach:'Athletics Staff' },
+  { id:'southeastern',      name:'Southeastern University',     region:'tampa', div:'naia', feas:'high', lat:28.0399,  lng:-81.9498,  conf:'Sun Conference',   loc:'Lakeland, FL',       coach:'Gerritson Craane' },
+  { id:'saint-leo',         name:'Saint Leo University',        region:'tampa', div:'d2',   feas:'high', lat:28.3367,  lng:-82.2601,  conf:'Sunshine State',   loc:'Saint Leo, FL',      coach:'Brett Parker' },
+  { id:'warner',            name:'Warner University',           region:'tampa', div:'naia', feas:'high', lat:27.9014,  lng:-81.5853,  conf:'Sun Conference',   loc:'Lake Wales, FL',     coach:'Drew Stacey' },
+  { id:'u-tampa',           name:'University of Tampa',         region:'tampa', div:'d2',   feas:'med',  lat:27.9478,  lng:-82.4584,  conf:'Sunshine State',   loc:'Tampa, FL',          coach:'Adrian Bush' },
+  { id:'florida-southern',  name:'Florida Southern College',    region:'tampa', div:'d2',   feas:'med',  lat:28.0297,  lng:-81.9750,  conf:'Sunshine State',   loc:'Lakeland, FL',       coach:'Ashley Holmes' },
+  { id:'eckerd',            name:'Eckerd College',              region:'tampa', div:'d2',   feas:'med',  lat:27.7207,  lng:-82.7476,  conf:'Sunshine State',   loc:'St. Petersburg, FL', coach:'Joe Ilett' },
+  { id:'lynn',              name:'Lynn University',             region:'tampa', div:'d2',   feas:'med',  lat:26.3683,  lng:-80.1289,  conf:'Sunshine State',   loc:'Boca Raton, FL',     coach:'John Rootes' },
+  { id:'usf',               name:'University of South Florida', region:'tampa', div:'d1',   feas:'med',  lat:28.0587,  lng:-82.4139,  conf:'American Athletic',loc:'Tampa, FL',          coach:'George Kiefer' },
   // California
-  { id:'sd-christian',      name:'San Diego Christian College', region:'ca',    div:'naia', feas:'high', lat:32.8384,  lng:-116.9739,conf:'GSAC',             loc:'Santee, CA',        coach:'Athletics Staff' },
-  { id:'sjsu',              name:'San Jose State University',   region:'ca',    div:'d1',   feas:'high', lat:37.3352,  lng:-121.8811,conf:'Mountain West',    loc:'San Jose, CA',      coach:'Athletics Staff' },
-  { id:'point-loma',        name:'Point Loma Nazarene',         region:'ca',    div:'d2',   feas:'med',  lat:32.6835,  lng:-117.2425,conf:'PacWest',          loc:'San Diego, CA',     coach:'Phil Wolf' },
-  { id:'csusm',             name:'Cal State San Marcos',        region:'ca',    div:'d2',   feas:'med',  lat:33.1284,  lng:-117.1594,conf:'CCAA',             loc:'San Marcos, CA',    coach:'Ron Pulvers' },
-  { id:'csueb',             name:'Cal State East Bay',          region:'ca',    div:'d2',   feas:'med',  lat:37.6577,  lng:-122.0572,conf:'CCAA',             loc:'Hayward, CA',       coach:'Athletics Staff' },
-  { id:'sdsu',              name:'San Diego State University',  region:'ca',    div:'d1',   feas:'med',  lat:32.7757,  lng:-117.0719,conf:'Mountain West',    loc:'San Diego, CA',     coach:'Athletics Staff' },
-  { id:'usd',               name:'University of San Diego',     region:'ca',    div:'d1',   feas:'med',  lat:32.7726,  lng:-117.1887,conf:'West Coast',       loc:'San Diego, CA',     coach:'Athletics Staff' },
+  { id:'sd-christian',      name:'San Diego Christian College', region:'ca',    div:'naia', feas:'high', lat:32.8384,  lng:-116.9739, conf:'GSAC',             loc:'Santee, CA',         coach:'Kyle Hewitt' },
+  { id:'sjsu',              name:'San Jose State University',   region:'ca',    div:'d1',   feas:'high', lat:37.3352,  lng:-121.8811, conf:'Mountain West',    loc:'San Jose, CA',       coach:'Simon Tobin' },
+  { id:'point-loma',        name:'Point Loma Nazarene',         region:'ca',    div:'d2',   feas:'med',  lat:32.6835,  lng:-117.2425, conf:'PacWest',          loc:'San Diego, CA',      coach:'Phil Wolf' },
+  { id:'csusm',             name:'Cal State San Marcos',        region:'ca',    div:'d2',   feas:'med',  lat:33.1284,  lng:-117.1594, conf:'CCAA',             loc:'San Marcos, CA',     coach:'Ron Pulvers' },
+  { id:'csueb',             name:'Cal State East Bay',          region:'ca',    div:'d2',   feas:'med',  lat:37.6577,  lng:-122.0572, conf:'CCAA',             loc:'Hayward, CA',        coach:'Michael Haswell' },
+  { id:'sdsu',              name:'San Diego State University',  region:'ca',    div:'d1',   feas:'med',  lat:32.7757,  lng:-117.0719, conf:'Mountain West',    loc:'San Diego, CA',      coach:'Ryan Hopkins' },
+  { id:'usd',               name:'University of San Diego',     region:'ca',    div:'d1',   feas:'med',  lat:32.7726,  lng:-117.1887, conf:'West Coast',       loc:'San Diego, CA',      coach:'Brian Quinn' },
+  // Houston, TX
+  { id:'houston-christian', name:'Houston Christian University',region:'houston',div:'d1',  feas:'med',  lat:29.9206,  lng:-95.5651,  conf:'OVC (Soccer)',     loc:'Houston, TX',        coach:'Ryan Pratt' },
+  // Phoenix, AZ
+  { id:'gcu',               name:'Grand Canyon University',     region:'phoenix',div:'d1',  feas:'high', lat:33.5126,  lng:-112.1427, conf:'WAC',              loc:'Phoenix, AZ',        coach:'Jamie Davies' },
+  { id:'benu-mesa',         name:'Benedictine Univ. Mesa',      region:'phoenix',div:'naia',feas:'high', lat:33.4152,  lng:-111.8315, conf:'GSAC',             loc:'Mesa, AZ',           coach:'Tyler Hoffman' },
+  { id:'acu-az',            name:'Arizona Christian University',region:'phoenix',div:'naia',feas:'high', lat:33.5786,  lng:-112.1680, conf:'GSAC',             loc:'Glendale, AZ',       coach:'Ted Krzywiecki' },
+  { id:'ouaz',              name:'Ottawa University Arizona',   region:'phoenix',div:'naia',feas:'med',  lat:33.6384,  lng:-112.3680, conf:'GSAC',             loc:'Surprise, AZ',       coach:'David Stockton' },
 ];
 
 // ─── REGION VIEWS ───────────────────────────────────────────────────────────
 var regionViews = {
-  all:   { center: [38, -97], zoom: 4 },
-  kc:    { center: [38.8, -93.2], zoom: 6 },
-  tampa: { center: [27.9, -81.8], zoom: 7 },
-  ca:    { center: [34.5, -118.8], zoom: 6 },
+  all:     { center: [38, -97], zoom: 4 },
+  kc:      { center: [38.8, -93.2], zoom: 6 },
+  tampa:   { center: [27.9, -81.8], zoom: 7 },
+  ca:      { center: [34.5, -118.8], zoom: 6 },
+  houston: { center: [29.8, -95.4], zoom: 9 },
+  phoenix: { center: [33.5, -112.1], zoom: 9 },
 };
 
 // ─── TILE LAYERS ─────────────────────────────────────────────────────────────
