@@ -663,6 +663,23 @@
       margin: 0;
       line-height: 1.5;
     }
+    .reels-group {
+      margin-bottom: 44px;
+    }
+    .reels-group:last-child {
+      margin-bottom: 0;
+    }
+    .reels-group-header {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(74,122,0,0.15);
+    }
     .reels-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1874,121 +1891,136 @@
   <p class="sec-label reveal">Game Film</p>
   <h2 class="sec-title reveal">Highlight Reels</h2>
 
-  <!-- Featured Video -->
-  <div class="featured-video reveal">
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/FPMw_lhh-KE"
-        title="Noah Lach Highlight Reel"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="video-caption">
-      <h3>Featured Highlight Reel</h3>
-      <p>2024-2025 Season — MLS Next & High School</p>
+  <!-- YouTube -->
+  <div class="reels-group">
+    <h3 class="reels-group-header reveal">🎬 YouTube</h3>
+    <div class="featured-video reveal">
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/FPMw_lhh-KE"
+          title="Noah Lach Highlight Reel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-caption">
+        <h3>2024-2025 Season Highlights</h3>
+        <p>MLS Next & High School — Full compilation</p>
+      </div>
     </div>
   </div>
 
-  <div class="reels-grid">
+  <!-- Taka.io Game Film -->
+  <div class="reels-group">
+    <h3 class="reels-group-header reveal">⚽ Taka.io — Full Match Film</h3>
+    <div class="reels-grid">
 
-    <!-- Reel 1 — Taka.io Game Film -->
-    <a class="reel-card reveal" href="https://taka.io/soccer/athlete/68b7216db03c7582d7f1a37a?tabName=by_games&fixtureId=350045&clip=121777_35_2" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #0a1018 0%, #0d2235 60%, #061408 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">Game Film · Taka.io</div>
-          <div class="reel-caption">Full match clip — Sporting City MLS Next AD</div>
+      <!-- Taka 1 -->
+      <a class="reel-card reveal" href="https://taka.io/soccer/athlete/68b7216db03c7582d7f1a37a?tabName=playlist&playlistId=69a82771e2b8ecdba36c7ea6&videoId=69f911489c8720324d812848" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #0a1018 0%, #0d2235 60%, #061408 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">Game Film · Taka.io</div>
+            <div class="reel-caption">Full match analysis — Sporting City</div>
+          </div>
         </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Taka.io</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Reel 2 -->
-    <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DXK66z_EVY6/" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #071422 0%, #0c3040 60%, #081e12 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">MLS Next 2 · 4–1 W</div>
-          <div class="reel-caption">Surgical finish into the far corner 🤑</div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Taka.io</span>
+          <span class="reel-arrow">→</span>
         </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Instagram</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Reel 3 -->
-    <a class="reel-card reveal reveal-d2" href="https://www.instagram.com/noahlach16/reel/DSGK-c7EtSg/" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #0a0f22 0%, #101a40 60%, #0c0f20 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">MLS Next Fest · 3–3</div>
-          <div class="reel-caption">Sporting City vs Ginga FC — level on the big stage</div>
-        </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Instagram</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Reel 4 -->
-    <a class="reel-card reveal" href="https://www.instagram.com/noahlach16/reel/DPQGS2uDL6A/" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #091222 0%, #0a2818 60%, #0f1420 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">HS Soccer · 1–0 W</div>
-          <div class="reel-caption">Park Hill South vs LHS Jays — shutout win</div>
-        </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Instagram</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Reel 5 -->
-    <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DONHhmCDESC/" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #0d0f1a 0%, #261618 60%, #0d1220 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">Season Opener · 2–0 W</div>
-          <div class="reel-caption">The assist to break the stalemate 💪 vs Staley</div>
-        </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Instagram</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- Reel 6 -->
-    <a class="reel-card reveal reveal-d2" href="https://www.instagram.com/reel/DXx84BCMXGG/" target="_blank" rel="noopener">
-      <div class="reel-thumb" style="background: linear-gradient(145deg, #0a1422 0%, #0d1840 60%, #081614 100%);">
-        <span class="reel-ball">⚽</span>
-        <div class="reel-play-btn"><div class="play-tri"></div></div>
-        <div class="reel-label">
-          <div class="reel-tag">MLS Next · Latest</div>
-          <div class="reel-caption">Recent match highlights — Sporting City</div>
-        </div>
-      </div>
-      <div class="reel-info">
-        <span class="reel-ig">▷ Watch on Instagram</span>
-        <span class="reel-arrow">→</span>
-      </div>
-    </a>
-
+      </a>
+    </div>
   </div>
+
+  <!-- Instagram Reels -->
+  <div class="reels-group">
+    <h3 class="reels-group-header reveal">📷 Instagram Highlights</h3>
+    <div class="reels-grid">
+
+      <!-- Instagram 1 -->
+      <a class="reel-card reveal" href="https://www.instagram.com/reel/DXx84BCMXGG/" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #0a1422 0%, #0d1840 60%, #081614 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">MLS Next · Latest</div>
+            <div class="reel-caption">Recent match highlights — Sporting City</div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Instagram</span>
+          <span class="reel-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Instagram 2 -->
+      <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DXK66z_EVY6/" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #071422 0%, #0c3040 60%, #081e12 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">MLS Next 2 · 4–1 W</div>
+            <div class="reel-caption">Surgical finish into the far corner 🤑</div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Instagram</span>
+          <span class="reel-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Instagram 3 -->
+      <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DSGK-c7EtSg/" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #0a0f22 0%, #101a40 60%, #0c0f20 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">MLS Next Fest · 3–3</div>
+            <div class="reel-caption">Sporting City vs Ginga FC — level on the big stage</div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Instagram</span>
+          <span class="reel-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Instagram 4 -->
+      <a class="reel-card reveal" href="https://www.instagram.com/noahlach16/reel/DPQGS2uDL6A/" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #091222 0%, #0a2818 60%, #0f1420 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">HS Soccer · 1–0 W</div>
+            <div class="reel-caption">Park Hill South vs LHS Jays — shutout win</div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Instagram</span>
+          <span class="reel-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Instagram 5 -->
+      <a class="reel-card reveal reveal-d1" href="https://www.instagram.com/noahlach16/reel/DONHhmCDESC/" target="_blank" rel="noopener">
+        <div class="reel-thumb" style="background: linear-gradient(145deg, #0d0f1a 0%, #261618 60%, #0d1220 100%);">
+          <span class="reel-ball">⚽</span>
+          <div class="reel-play-btn"><div class="play-tri"></div></div>
+          <div class="reel-label">
+            <div class="reel-tag">Season Opener · 2–0 W</div>
+            <div class="reel-caption">The assist to break the stalemate 💪 vs Staley</div>
+          </div>
+        </div>
+        <div class="reel-info">
+          <span class="reel-ig">▷ Watch on Instagram</span>
+          <span class="reel-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
 </div>
 
 <hr class="full-divider">
