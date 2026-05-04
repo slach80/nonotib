@@ -1,5 +1,13 @@
 # TODO
 
+## Gmail Automation CRM — Coach Outreach
+Build a Google Apps Script + Sheets CRM for tracking and automating coach email outreach:
+- Google Sheet as CRM: school, coach name, email, div, roster window score, date contacted, response status
+- Apps Script to send templated intro emails from noahlach@gmail.com
+- Track open/reply status; weekly digest of who hasn't responded
+- Populate initial school list from monitor.py SCHOOLS + roster snapshot scores
+- Template: introduce Noah, link to nonotib homepage + SportsRecruits profile, offer game film
+
 ## Security / Access Control
 - `index.html` = public; all other pages need protection
 - Key decisions still open:

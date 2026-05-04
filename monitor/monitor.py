@@ -50,7 +50,7 @@ SCHOOLS = [
     {"name": "UMKC",                       "div": "D1",   "coaches": "https://www.kcroos.com/sports/msoc/coaches",                 "roster": "https://www.kcroos.com/sports/msoc/roster"},
     {"name": "Missouri State University",  "div": "D1",   "coaches": "https://missouristatebears.com/sports/msoc/coaches",         "roster": "https://missouristatebears.com/sports/msoc/roster"},
     # Florida
-    {"name": "University of Tampa",        "div": "D2",   "coaches": "https://tampaspartans.com/sports/msoc/coaches",              "roster": "https://tampaspartans.com/sports/msoc/roster"},
+    {"name": "University of Tampa",        "div": "D2",   "coaches": None,                                                         "roster": None},  # Cloudflare-blocked
     {"name": "Florida Southern College",   "div": "D2",   "coaches": "https://fscmocs.com/sports/msoc/coaches",                    "roster": "https://fscmocs.com/sports/msoc/roster"},
     {"name": "Southeastern University",    "div": "NAIA", "coaches": "https://fire.seu.edu/sports/msoc/coaches",                   "roster": "https://fire.seu.edu/sports/msoc/roster"},
     {"name": "Saint Leo University",       "div": "D2",   "coaches": "https://saintleolions.com/sports/msoc/coaches",              "roster": "https://saintleolions.com/sports/msoc/roster"},
@@ -153,32 +153,64 @@ def page_hash(page):
     return hashlib.md5(text.encode()).hexdigest(), text[:4000]
 
 # ── Roster analysis ─────────────────────────────────────────────────
-YEAR_MAP = {
-    'fr.': 'Fr', 'freshman': 'Fr',
-    'so.': 'So', 'sophomore': 'So',
-    'jr.': 'Jr', 'junior': 'Jr',
-    'sr.': 'Sr', 'senior': 'Sr',
-    'gr.': 'Gr', 'graduate student': 'Gr', 'graduate': 'Gr', '5th': 'Gr', 'gs': 'Gr',
+# Short-form only (e.g. "Fr.", "So.") — avoids double-counting with long form
+YEAR_MAP_SHORT = {
+    'fr.': 'Fr', 'so.': 'So', 'jr.': 'Jr', 'sr.': 'Sr', 'gr.': 'Gr', 'gs': 'Gr', '5th': 'Gr',
 }
+# Long-form only — used when short form not present
+YEAR_MAP_LONG = {
+    'freshman': 'Fr', 'sophomore': 'So', 'junior': 'Jr', 'senior': 'Sr',
+    'graduate student': 'Gr', 'graduate': 'Gr',
+}
+YEAR_MAP = {**YEAR_MAP_SHORT, **YEAR_MAP_LONG}
 
 def extract_roster_counts(page):
     """Extract Fr/So/Jr/Sr/Gr counts from a Scrapling page object."""
     counts = {'Fr': 0, 'So': 0, 'Jr': 0, 'Sr': 0, 'Gr': 0}
     if not page:
         return counts, 0
-    # Primary: Sidearm Athletics standard selector
+
+    # Primary: Sidearm Athletics — each player has both short ("Fr.") and long ("Freshman")
+    # in the same element, so count only short-form abbreviations to avoid doubling.
     year_els = page.css(".sidearm-roster-player-academic-year")
     if year_els:
         for el in year_els:
-            y = YEAR_MAP.get(el.text.strip().lower())
+            t = el.text.strip().lower()
+            y = YEAR_MAP_SHORT.get(t)
             if y:
                 counts[y] += 1
         total = sum(counts.values())
         if total > 0:
             return counts, total
-    # Fallback: scan all <td> cells
+
+    # Fallback A: SJSU-style card layout
+    card_els = page.css('[class*="profile-field__value--basic"]')
+    if card_els:
+        for el in card_els:
+            t = el.text.strip().lower()
+            y = YEAR_MAP_LONG.get(t) or YEAR_MAP_SHORT.get(t)
+            if y:
+                counts[y] += 1
+        total = sum(counts.values())
+        if total > 0:
+            return counts, total
+
+    # Fallback B: generic [class*="class"] — used by some sites (e.g. goaztecs.com)
+    class_els = page.css('[class*="class"]')
+    if class_els:
+        for el in class_els:
+            t = el.text.strip().lower()
+            y = YEAR_MAP_LONG.get(t) or YEAR_MAP_SHORT.get(t)
+            if y:
+                counts[y] += 1
+        total = sum(counts.values())
+        if total > 0:
+            return counts, total
+
+    # Fallback C: scan all <td> cells (plain HTML tables)
     for td in page.css("td"):
-        y = YEAR_MAP.get(td.text.strip().lower())
+        t = td.text.strip().lower()
+        y = YEAR_MAP_SHORT.get(t) or YEAR_MAP_LONG.get(t)
         if y:
             counts[y] += 1
     return counts, sum(counts.values())
@@ -542,10 +574,50 @@ def run_monitor():
     else:
         print(f"\n[4/4] School discovery skipped (last run: {last_discovery})")
 
+    # ── 5. Roster window analysis (quarterly) ────────────────────────
+    last_roster = baseline.get("last_roster_check", "2000-01-01")
+    roster_alerts = []
+    if (today - datetime.date.fromisoformat(last_roster)).days >= 90:
+        print("\n[5/5] Running quarterly roster window analysis...")
+        prev_snapshot = {}
+        if ROSTER_SNAPSHOT_FILE.exists():
+            try:
+                prev_snapshot = json.loads(ROSTER_SNAPSHOT_FILE.read_text())
+            except Exception:
+                pass
+        new_snapshot = {}
+        for school in SCHOOLS:
+            name = school["name"]
+            url = school.get("roster")
+            if not url:
+                continue
+            page = fetch_page(url)
+            counts, total = extract_roster_counts(page)
+            if total == 0:
+                continue
+            window, score = recruitment_window(counts, school["div"])
+            new_snapshot[name] = {"window": window, "score": score, "counts": counts}
+            prev = prev_snapshot.get(name, {})
+            prev_window = prev.get("window")
+            if prev_window and prev_window != window:
+                roster_alerts.append({
+                    "school": name, "div": school["div"],
+                    "old": prev_window, "new": window, "score": score,
+                })
+                print(f"  ⚡ {name}: {prev_window} → {window} (score={score})")
+            else:
+                print(f"  → {name}: {window} (score={score})")
+            time.sleep(1)
+        ROSTER_SNAPSHOT_FILE.write_text(json.dumps(new_snapshot, indent=2))
+        baseline["last_roster_check"] = str(today)
+        print(f"  Snapshot saved ({len(new_snapshot)} schools)")
+    else:
+        print(f"\n[5/5] Roster check skipped (last run: {last_roster}, next in {90 - (today - datetime.date.fromisoformat(last_roster)).days}d)")
+
     save_baseline(baseline)
 
     # ── Build and send Telegram report ───────────────────────────────
-    total_alerts = len(school_changes) + len(camp_updates) + len(deadline_alerts)
+    total_alerts = len(school_changes) + len(camp_updates) + len(deadline_alerts) + len(roster_alerts)
 
     if total_alerts == 0 and not new_schools_suggestion:
         msg = (f"✅ *Weekly Check Complete* — {today.strftime('%b %d, %Y')}\n\n"
@@ -574,6 +646,12 @@ def run_monitor():
             for d in deadline_alerts:
                 emoji = "🚨" if d['days_left'] <= 7 else "⚠️"
                 lines.append(f"{emoji} *{d['name']}*\n  {d['days_left']} days left — {d['deadline']}\n  [Apply]({d['url']})")
+            lines.append("")
+
+        if roster_alerts:
+            lines.append(f"*📊 {len(roster_alerts)} Roster Window Change(s)*")
+            for r in roster_alerts:
+                lines.append(f"• *{r['school']}* ({r['div']}): {r['old']} → {r['new']} (score={r['score']})")
             lines.append("")
 
         if new_schools_suggestion:
