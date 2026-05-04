@@ -621,6 +621,48 @@
     }
 
     /* ─── HIGHLIGHTS ────────────────────────────── */
+    .featured-video {
+      margin-bottom: 44px;
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
+      background: var(--bg-card);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-caption {
+      padding: 16px 20px;
+      background: var(--bg-card);
+    }
+    .video-caption h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 6px;
+    }
+    .video-caption p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
     .reels-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1831,6 +1873,22 @@
 <div class="section" id="highlights">
   <p class="sec-label reveal">Game Film</p>
   <h2 class="sec-title reveal">Highlight Reels</h2>
+
+  <!-- Featured Video -->
+  <div class="featured-video reveal">
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/FPMw_lhh-KE"
+        title="Noah Lach Highlight Reel"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-caption">
+      <h3>Featured Highlight Reel</h3>
+      <p>2024-2025 Season — MLS Next & High School</p>
+    </div>
+  </div>
 
   <div class="reels-grid">
 
