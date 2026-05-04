@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-College soccer recruiting portfolio for Noah Lach (Class of 2028, #21 Midfielder/Forward), deployed on GitHub Pages. The repo has two distinct parts:
+College soccer recruiting portfolio for Noah Lach (Class of 2028, #16 Midfielder/Forward), deployed on GitHub Pages. The repo has two distinct parts:
 
 1. **Static recruiting site** — 6 HTML pages showcasing Noah's profile, target colleges, ID camps, scholarships, test prep, and an interactive college map
 2. **Python monitoring backend** — `monitor/monitor.py` scrapes ~30 college soccer sites weekly and sends Telegram alerts on coaching changes or new camp postings
