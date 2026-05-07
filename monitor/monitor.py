@@ -23,10 +23,15 @@ load_dotenv(ENV_FILE)
 BOT_TOKEN = os.getenv("NOAH_ALERT_BOT_TOKEN")
 CHAT_ID_FILE = DATA_DIR / "chat_id.txt"
 OLLAMA_URL = "http://192.168.1.70:11434/api/generate"
-OLLAMA_MODEL = "llama3.1:8b"
+OLLAMA_MODEL = "qwen3:8b-32k"
 BASELINE_FILE = DATA_DIR / "baseline.json"
 ROSTER_SNAPSHOT_FILE = DATA_DIR / "roster_snapshot.json"
+METRICS_FILE = DATA_DIR / "metrics.json"
 ALERT_DAYS = [30, 7, 1]
+SUCCESS_RATE_THRESHOLD = 0.70  # Alert if success rate drops below 70%
+ENABLE_RETRY = True  # Retry failed fetches after delay
+RETRY_DELAY_MINUTES = 15  # Wait 15min before retry (allows transient issues to resolve)
+RETRY_THRESHOLD = 0.50  # Only retry if initial success rate < 50% (indicates systemic issue)
 
 _FETCHER = Fetcher()
 _STEALTH = None  # lazy-init on first 403/block
@@ -123,26 +128,36 @@ def poll_for_chat_id():
     return None
 
 # ── Scraping ────────────────────────────────────────────────────────
-def fetch_page(url, timeout=20):
-    """Fetch URL using Scrapling; falls back to StealthyFetcher on 403/429/503."""
+def fetch_page(url, timeout=20, record_metrics=True):
+    """
+    Fetch URL using Scrapling; falls back to StealthyFetcher on 403/429/503.
+    Returns (page, method) tuple where method is 'scrapling', 'stealthy', or None on failure.
+    """
     global _STEALTH
     if not url:
-        return None
+        return None, None
+
+    # Try Scrapling first
     try:
         page = _FETCHER.get(url, timeout=timeout)
         if page.status in (403, 429, 503):
             raise ValueError(f"blocked ({page.status})")
-        return page
-    except Exception:
+        return page, 'scrapling'
+    except Exception as e1:
+        # Fallback to StealthyFetcher
         try:
             if _STEALTH is None:
                 _STEALTH = StealthyFetcher()
-            return _STEALTH.fetch(url, timeout=timeout + 10)
+            page = _STEALTH.fetch(url, timeout=timeout + 10)
+            return page, 'stealthy'
         except Exception as e2:
-            print(f"    [SKIP] {url}: {e2}")
-            return None
+            if record_metrics:
+                print(f"    [SKIP] {url}: {e2}")
+            return None, None
 
-def page_hash(page):
+def page_hash(page_tuple):
+    """Extract hash from page. Accepts both (page, method) tuple and bare page for compatibility."""
+    page = page_tuple[0] if isinstance(page_tuple, tuple) else page_tuple
     if not page:
         return None
     html = page.html_content if hasattr(page, 'html_content') else page
@@ -164,8 +179,9 @@ YEAR_MAP_LONG = {
 }
 YEAR_MAP = {**YEAR_MAP_SHORT, **YEAR_MAP_LONG}
 
-def extract_roster_counts(page):
-    """Extract Fr/So/Jr/Sr/Gr counts from a Scrapling page object."""
+def extract_roster_counts(page_tuple):
+    """Extract Fr/So/Jr/Sr/Gr counts from a Scrapling page object. Accepts (page, method) tuple or bare page."""
+    page = page_tuple[0] if isinstance(page_tuple, tuple) else page_tuple
     counts = {'Fr': 0, 'So': 0, 'Jr': 0, 'Sr': 0, 'Gr': 0}
     if not page:
         return counts, 0
@@ -302,7 +318,7 @@ def search_camps(school_name, school_url):
     if not school_url:
         return None
     camps_url = school_url.replace("/coaches", "/camps")
-    page = fetch_page(camps_url)
+    page, _ = fetch_page(camps_url, record_metrics=False)
     if not page:
         return None
     html = page.html_content if hasattr(page, 'html_content') else page
@@ -390,6 +406,95 @@ def load_roster_snapshot():
 
 def save_roster_snapshot(data):
     ROSTER_SNAPSHOT_FILE.write_text(json.dumps(data, indent=2))
+
+# ── Metrics tracking ────────────────────────────────────────────────
+def load_metrics():
+    if METRICS_FILE.exists():
+        return json.loads(METRICS_FILE.read_text())
+    return {"runs": [], "school_stats": {}}
+
+def save_metrics(data):
+    METRICS_FILE.write_text(json.dumps(data, indent=2))
+
+def record_run_metrics(metrics, run_stats):
+    """Record metrics for this run and maintain rolling 30-day history."""
+    today = str(datetime.date.today())
+
+    # Add this run
+    metrics["runs"].append({
+        "date": today,
+        "timestamp": datetime.datetime.now().isoformat(),
+        "total_schools": run_stats["total"],
+        "coaches_success": run_stats["coaches_success"],
+        "coaches_failed": run_stats["coaches_failed"],
+        "rosters_success": run_stats.get("rosters_success", 0),
+        "rosters_failed": run_stats.get("rosters_failed", 0),
+        "success_rate": run_stats["coaches_success"] / run_stats["total"] if run_stats["total"] > 0 else 0,
+        "fetch_methods": run_stats.get("fetch_methods", {}),
+    })
+
+    # Keep only last 30 days
+    cutoff = (datetime.date.today() - datetime.timedelta(days=30)).isoformat()
+    metrics["runs"] = [r for r in metrics["runs"] if r["date"] >= cutoff]
+
+    save_metrics(metrics)
+
+def update_school_stats(metrics, school_name, url, success, method=None, error=None):
+    """Track per-school fetch statistics."""
+    if school_name not in metrics["school_stats"]:
+        metrics["school_stats"][school_name] = {
+            "total_attempts": 0,
+            "successes": 0,
+            "failures": 0,
+            "consecutive_failures": 0,
+            "last_success": None,
+            "last_failure": None,
+            "last_error": None,
+            "fetch_methods": {},
+        }
+
+    stats = metrics["school_stats"][school_name]
+    stats["total_attempts"] += 1
+
+    if success:
+        stats["successes"] += 1
+        stats["consecutive_failures"] = 0
+        stats["last_success"] = str(datetime.date.today())
+        if method:
+            stats["fetch_methods"][method] = stats["fetch_methods"].get(method, 0) + 1
+    else:
+        stats["failures"] += 1
+        stats["consecutive_failures"] += 1
+        stats["last_failure"] = str(datetime.date.today())
+        if error:
+            stats["last_error"] = str(error)[:200]
+
+def get_success_rate_alert(metrics):
+    """Check if recent success rate is below threshold."""
+    if not metrics["runs"]:
+        return None
+
+    # Check last 3 runs
+    recent = metrics["runs"][-3:]
+    if len(recent) < 2:
+        return None
+
+    avg_rate = sum(r["success_rate"] for r in recent) / len(recent)
+
+    if avg_rate < SUCCESS_RATE_THRESHOLD:
+        failing_schools = []
+        for name, stats in metrics["school_stats"].items():
+            if stats["consecutive_failures"] >= 2:
+                failing_schools.append(f"{name} ({stats['consecutive_failures']} failures)")
+
+        return {
+            "avg_rate": avg_rate,
+            "threshold": SUCCESS_RATE_THRESHOLD,
+            "recent_runs": len(recent),
+            "failing_schools": failing_schools[:10],  # Top 10
+        }
+
+    return None
 
 # ── Roster report ────────────────────────────────────────────────────
 def run_roster_report(verbose=False, send_tg=True):
@@ -496,8 +601,18 @@ def run_monitor():
             return
 
     baseline = load_baseline()
+    metrics = load_metrics()
     school_changes = []
     camp_updates = []
+
+    # Track this run's statistics
+    run_stats = {
+        "total": len([s for s in SCHOOLS if s["coaches"] is not None]),
+        "coaches_success": 0,
+        "coaches_failed": 0,
+        "fetch_methods": {},
+        "failed_schools": [],  # Track which schools failed for retry
+    }
 
     # ── 1. School coach page monitoring ─────────────────────────────
     print("[1/4] Checking school coach pages...")
@@ -508,12 +623,20 @@ def run_monitor():
             print(f"  [SKIP] {name} — no coaches URL")
             continue
         print(f"  → {name}")
-        page = fetch_page(url)
+        page, method = fetch_page(url)
+
         if not page:
-            print(f"    [SKIP] Could not fetch {url}")
+            run_stats["coaches_failed"] += 1
+            run_stats["failed_schools"].append(school)
+            update_school_stats(metrics, name, url, success=False, error="fetch failed")
             continue
 
-        result = page_hash(page)
+        # Track success
+        run_stats["coaches_success"] += 1
+        run_stats["fetch_methods"][method] = run_stats["fetch_methods"].get(method, 0) + 1
+        update_school_stats(metrics, name, url, success=True, method=method)
+
+        result = page_hash((page, method))
         if not result:
             continue
         new_hash, new_text = result
@@ -533,6 +656,68 @@ def run_monitor():
 
         baseline[name] = {"hash": new_hash, "text": new_text, "url": url, "checked": str(datetime.date.today())}
         time.sleep(1)
+
+    # Print run summary
+    success_rate = run_stats["coaches_success"] / run_stats["total"] if run_stats["total"] > 0 else 0
+    print(f"\n  📊 Fetch summary: {run_stats['coaches_success']}/{run_stats['total']} successful ({success_rate:.1%})")
+    if run_stats["fetch_methods"]:
+        methods_str = ", ".join(f"{m}={c}" for m, c in run_stats["fetch_methods"].items())
+        print(f"     Methods: {methods_str}")
+
+    # ── RETRY LOGIC: If success rate is very low, wait and retry failures ────
+    if ENABLE_RETRY and success_rate < RETRY_THRESHOLD and run_stats["coaches_failed"] > 0:
+        print(f"\n  ⚠️  Low success rate ({success_rate:.0%}) detected — likely transient network/DNS issue")
+        print(f"  ⏳ Waiting {RETRY_DELAY_MINUTES} minutes before retrying {run_stats['coaches_failed']} failed schools...")
+
+        # Wait for network/DNS to stabilize
+        time.sleep(RETRY_DELAY_MINUTES * 60)
+
+        print(f"\n  🔄 Retrying {len(run_stats['failed_schools'])} failed schools...")
+        retry_success = 0
+        retry_failed = 0
+
+        for school in run_stats['failed_schools']:
+            name = school["name"]
+            url = school["coaches"]
+            print(f"  → {name} (retry)")
+            page, method = fetch_page(url)
+
+            if not page:
+                retry_failed += 1
+                update_school_stats(metrics, name, url, success=False, error="retry failed")
+                continue
+
+            # Success on retry!
+            retry_success += 1
+            run_stats["coaches_success"] += 1
+            run_stats["coaches_failed"] -= 1
+            run_stats["fetch_methods"][method] = run_stats["fetch_methods"].get(method, 0) + 1
+            update_school_stats(metrics, name, url, success=True, method=method)
+
+            result = page_hash((page, method))
+            if result:
+                new_hash, new_text = result
+                old_entry = baseline.get(name, {})
+                old_hash = old_entry.get("hash")
+                old_text = old_entry.get("text", "")
+
+                if old_hash and new_hash != old_hash:
+                    print(f"    [CHANGED] Analyzing with Ollama...")
+                    analysis = analyze_change(name, old_text, new_text)
+                    if analysis and not analysis.startswith("NO_CHANGE") and not analysis.startswith("ERROR"):
+                        school_changes.append({"school": name, "div": school["div"], "change": analysis, "url": url})
+                        print(f"    ⚡ {analysis}")
+                elif not old_hash:
+                    print(f"    [NEW] Baseline recorded")
+
+                baseline[name] = {"hash": new_hash, "text": new_text, "url": url, "checked": str(datetime.date.today())}
+
+            time.sleep(1)
+
+        final_rate = run_stats["coaches_success"] / run_stats["total"] if run_stats["total"] > 0 else 0
+        print(f"\n  ✅ Retry complete: {retry_success} recovered, {retry_failed} still failed")
+        print(f"  📊 Final success rate: {run_stats['coaches_success']}/{run_stats['total']} ({final_rate:.1%})")
+        success_rate = final_rate  # Update for metrics
 
     # ── 2. Camp discovery ────────────────────────────────────────────
     print("\n[2/4] Checking camps for TBD schools...")
@@ -616,12 +801,25 @@ def run_monitor():
 
     save_baseline(baseline)
 
+    # ── Record metrics and check for success rate alerts ─────────────
+    record_run_metrics(metrics, run_stats)
+    success_alert = get_success_rate_alert(metrics)
+
+    if success_alert:
+        print(f"\n⚠️  SUCCESS RATE ALERT: {success_alert['avg_rate']:.1%} (threshold: {success_alert['threshold']:.0%})")
+        print(f"   Persistent failures: {len(success_alert['failing_schools'])} schools")
+        for fail in success_alert['failing_schools'][:5]:
+            print(f"     • {fail}")
+
+    save_metrics(metrics)
+
     # ── Build and send Telegram report ───────────────────────────────
     total_alerts = len(school_changes) + len(camp_updates) + len(deadline_alerts) + len(roster_alerts)
 
-    if total_alerts == 0 and not new_schools_suggestion:
+    if total_alerts == 0 and not new_schools_suggestion and not success_alert:
         msg = (f"✅ *Weekly Check Complete* — {today.strftime('%b %d, %Y')}\n\n"
                f"No changes detected across {len(SCHOOLS)} target schools. All clear.\n\n"
+               f"Fetch success: {run_stats['coaches_success']}/{run_stats['total']} ({success_rate:.0%})\n\n"
                f"_@NoahAlert_Bot_")
         send_telegram(msg)
         print("\n✅ All clear — sent summary to Telegram")
@@ -657,7 +855,15 @@ def run_monitor():
         if new_schools_suggestion:
             lines.append(f"*🏫 New School Suggestions (Monthly)*\n{new_schools_suggestion}")
 
-        lines.append(f"\n_Checked {len(SCHOOLS)} schools — @NoahAlert_Bot_")
+        if success_alert:
+            lines.append(f"\n⚠️ *System Alert: Low Success Rate*")
+            lines.append(f"Recent fetch success: {success_alert['avg_rate']:.0%} (threshold: {success_alert['threshold']:.0%})")
+            if success_alert['failing_schools']:
+                lines.append(f"Persistent failures ({len(success_alert['failing_schools'])}):")
+                for fail in success_alert['failing_schools'][:5]:
+                    lines.append(f"  • {fail}")
+
+        lines.append(f"\n_Checked {len(SCHOOLS)} schools ({run_stats['coaches_success']}/{run_stats['total']} ok) — @NoahAlert_Bot_")
         send_telegram("\n".join(lines))
         print(f"\n📬 Sent alert: {total_alerts} items")
 
@@ -673,6 +879,48 @@ def setup():
         send_telegram("🤖 *NoahAlert Bot* is now active!\n\nYou'll receive weekly recruiting alerts for:\n• Coach/roster changes\n• Camp announcements\n• Scholarship deadlines\n• New school suggestions\n\nNext check runs on the weekly schedule.")
     else:
         print("❌ No message found. Make sure you messaged @NoahAlert_Bot first.")
+
+def show_metrics():
+    """Display success rate metrics and school statistics."""
+    metrics = load_metrics()
+    if not metrics.get("runs"):
+        print("No metrics data yet. Run the monitor first.")
+        return
+
+    print(f"\n{'='*70}")
+    print("Monitor Success Rate Metrics")
+    print(f"{'='*70}\n")
+
+    # Recent runs summary
+    print("Recent Runs (last 10):")
+    print(f"{'Date':<12} {'Success':>8} {'Failed':>7} {'Rate':>6}  {'Methods'}")
+    print("─" * 70)
+    for run in metrics["runs"][-10:]:
+        methods = ", ".join(f"{k}={v}" for k, v in run.get("fetch_methods", {}).items()) or "—"
+        print(f"{run['date']:<12} {run['coaches_success']:>8} {run['coaches_failed']:>7} {run['success_rate']:>6.1%}  {methods}")
+
+    # Overall stats
+    if len(metrics["runs"]) >= 3:
+        recent_avg = sum(r["success_rate"] for r in metrics["runs"][-3:]) / 3
+        print(f"\nRecent 3-run average: {recent_avg:.1%}")
+        if recent_avg < SUCCESS_RATE_THRESHOLD:
+            print(f"⚠️  Below threshold ({SUCCESS_RATE_THRESHOLD:.0%})")
+
+    # School failure stats
+    failing = [(name, stats) for name, stats in metrics["school_stats"].items()
+               if stats["consecutive_failures"] >= 2]
+    if failing:
+        failing.sort(key=lambda x: x[1]["consecutive_failures"], reverse=True)
+        print(f"\n{'─'*70}")
+        print(f"Schools with Persistent Failures ({len(failing)}):")
+        print(f"{'School':<30} {'Consecutive':>12} {'Last Success':<15} {'Error'}")
+        print("─" * 70)
+        for name, stats in failing[:15]:
+            last_ok = stats.get("last_success", "never")[:10]
+            err = (stats.get("last_error") or "")[:30]
+            print(f"{name:<30} {stats['consecutive_failures']:>12} {last_ok:<15} {err}")
+
+    print(f"\n{'='*70}\n")
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
@@ -690,5 +938,7 @@ if __name__ == "__main__":
     elif cmd == "roster-silent":
         verbose = "--verbose" in sys.argv
         run_roster_report(verbose=verbose, send_tg=False)
+    elif cmd == "metrics":
+        show_metrics()
     else:
         run_monitor()
