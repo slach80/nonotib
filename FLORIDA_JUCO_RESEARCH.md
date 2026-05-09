@@ -1,7 +1,8 @@
 # Florida JUCO Men's Soccer Research
 
 Research completed: May 7, 2026  
-**Status:** For future reference only — not adding to current recruiting list
+**Status:** Reference Only — Not Adding to Active Recruiting Targets  
+**Decision Date:** May 9, 2026
 
 ---
 

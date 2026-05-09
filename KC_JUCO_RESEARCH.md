@@ -1,15 +1,31 @@
 # Kansas City JUCO Men's Soccer Research
 
 Research completed: May 7, 2026  
-**Status:** Active — adding to recruiting target list
+**Status:** Reference Only — Not Adding to Active Recruiting Targets  
+**Decision Date:** May 9, 2026
 
 ---
 
-## Key Finding
+## Executive Summary
 
-✅ **3 confirmed JUCO men's soccer programs** within/near Kansas City metro with good academics and transfer pathways suitable for Noah.
+✅ **3 confirmed JUCO men's soccer programs** within/near Kansas City metro with good academics and transfer pathways.
 
-Unlike Florida (zero local options), Kansas has viable JUCO alternatives if needed.
+**Decision:** Keep as reference documentation only. **Not adding to active recruiting list.**
+
+**Rationale:**
+- Noah is college prep track (strong academics, SAT prep underway)
+- MLS Next Academy background = 4-year NCAA D1/D2/NAIA ready
+- Class of 2028 = 2+ years to secure 4-year commitments
+- JUCOs are stepping stones for students needing academic improvement or late bloomers
+- 28 existing 4-year targets (D1/D2/NAIA) match Noah's profile appropriately
+
+**When JUCOs Make Sense:**
+- If 4-year recruiting completely stalls (unlikely given profile)
+- Academic issues arise requiring remediation (not current situation)
+- Family needs cost savings (2 years CC cheaper, then transfer)
+- Late recruiting timeline (senior year, no 4-year offers)
+
+**Unlike Florida (zero local options), Kansas has viable JUCO alternatives if backup needed.**
 
 ---
 
