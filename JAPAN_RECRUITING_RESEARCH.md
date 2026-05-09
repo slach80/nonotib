@@ -63,12 +63,16 @@ Japanese university soccer presents a **high-quality but high-risk** alternative
 
 ### Application Process
 
+**⚠️ Competition Level:**
+MEXT is **highly competitive**. Official acceptance rates and quotas are **not publicly available**. Each embassy/consulate has its own quota that varies by country and year. Anecdotal reports suggest 1-5% global acceptance rate, though US applicants may have better odds than some Asian countries. Undergraduate slots are more limited than graduate programs.
+
 **Two Pathways:**
 
 1. **Embassy Recommendation** (primary route for US students)
    - Apply through Japanese Embassy in Washington DC or consulates
    - More competitive, direct path
    - Requires entrance exams (Japanese, English, Math, Science)
+   - **Chicago Consulate quota:** Not published (handles Midwest applications)
 
 2. **University Recommendation**
    - Apply directly to Japanese universities with MEXT quotas
