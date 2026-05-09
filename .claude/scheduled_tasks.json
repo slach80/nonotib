@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "id": "13758e6f",
+      "cron": "3 8 30 5 *",
+      "prompt": "Reminder: UMKC ID Session is in 2 weeks — June 13, 2026. Register at https://kansascitymenssoccer.totalcamps.com/shop/product/622952. Full day $325, half day $225. Check-in 8AM (morning) or 4:30PM (afternoon).",
+      "createdAt": 1777495299278,
+      "createdBySessionId": "3eed711f-e2e3-42dd-8f2a-eb290a6a1ace",
+      "createdByPid": 1443309,
+      "createdByProcStart": "17414285"
+    },
+    {
+      "id": "4afffc30",
+      "cron": "3 8 11 7 *",
+      "prompt": "Reminder: UMKC ID Session is in 2 weeks — July 25, 2026. Register at https://kansascitymenssoccer.totalcamps.com/shop/product/622967. Full day $325, half day $225. Check-in 8AM (morning) or 4:30PM (afternoon).",
+      "createdAt": 1777495299314,
+      "createdBySessionId": "3eed711f-e2e3-42dd-8f2a-eb290a6a1ace",
+      "createdByPid": 1443309,
+      "createdByProcStart": "17414285"
+    },
+    {
+      "id": "2cf1809e",
+      "cron": "7 9 5 1 *",
+      "prompt": "Review Japan MEXT scholarship application timeline for Noah (Class of 2028). Application deadline is May 2027 to Japanese Embassy. Check:\n1. Is Noah still interested in Japan as backup option?\n2. US college recruiting status (any D1/D2/NAIA offers yet?)\n3. If pursuing MEXT: prepare application materials (transcripts, recommendations, entrance exam prep)\n4. Contact Japanese Embassy Chicago for official 2027 application guidelines\n5. Update international.html page if plans change\n\nReference documents: JAPAN_RECRUITING_RESEARCH.md, international.html",
+      "createdAt": 1778332174433,
+      "createdBySessionId": "a77c183d-e248-4909-b571-ae119cc64732",
+      "createdByPid": 3360143,
+      "createdByProcStart": "87590793"
+    }
+  ]
+}
