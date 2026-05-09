@@ -1373,8 +1373,13 @@
       .nav-cta { padding: 7px 12px; font-size: 0.72rem; }
     }
     @media (max-width: 960px) {
+      :root {
+        --accent: #5a8a00;
+        --accent-dark: #3d5c00;
+      }
       .nav-links { display: none; }
-      .nav-cta { display: block; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
     }
     @media (max-width: 860px) {
       .reels-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1426,9 +1431,12 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: #0f1a2e;
+      background: #ffffff;
       border-radius: 2px;
       transition: all 0.25s;
+    }
+    #nav.scrolled .nav-hamburger span {
+      background: #0f1a2e;
     }
     .nav-mobile-menu {
       display: none;
@@ -1553,53 +1561,28 @@
 
 <!-- ═══ NAV ═══════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">NL<span>21</span></a>
+  <a href="#hero" class="nav-logo">NL<span>16</span></a>
   <ul class="nav-links">
-    <li class="nav-dropdown">
-      <a href="#stats">Noah</a>
-      <div class="nav-dropdown-menu">
-        <a href="#stats">Profile</a>
-        <a href="#journey">Journey</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#academics">Academics</a>
-        <a href="#contact">Contact</a>
-        <a href="#references">References</a>
-      </div>
-    </li>
-    <li class="nav-dropdown">
-      <a href="#schools">Recruiting</a>
-      <div class="nav-dropdown-menu">
-        <a href="#schools">Target Schools</a>
-        <a href="colleges.html">College Analysis</a>
-        <a href="map.html">College Map</a>
-        <a href="scholarships.html">Scholarships</a>
-        <a href="camps.html">ID Camps</a>
-        <a href="testprep.html">Test Prep</a>
-      </div>
-    </li>
+    <li><a href="#stats">Profile</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#academics">Academics</a></li>
+    <li><a href="#schools">Target Schools</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Recruit Me</a>
+  <a href="#contact" class="nav-cta">Contact</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mobile-menu" id="navMobileMenu">
-    <span class="mob-group-label">Noah</span>
     <a href="#stats">Profile</a>
     <a href="#journey">Journey</a>
     <a href="#highlights">Highlights</a>
     <a href="#academics">Academics</a>
-    <a href="testprep.html">Test Prep</a>
-    <a href="#references">References</a>
-    <span class="mob-group-label">Recruiting</span>
     <a href="#schools">Target Schools</a>
-    <a href="colleges.html">College Analysis</a>
-    <a href="map.html">College Map</a>
-    <a href="scholarships.html">Scholarships</a>
-    <a href="camps.html">ID Camps</a>
-    <a href="testprep.html">Test Prep</a>
-    <span class="mob-group-label">Connect</span>
-    <a href="#contact">Contact · Recruit Me</a>
+    <a href="#references">References</a>
+    <a href="#contact">Contact</a>
 </div>
 
 <!-- ═══ HERO ══════════════════════════════════════ -->
@@ -1743,7 +1726,7 @@
         <div class="tl-coach">
           <span class="coach-label">Coach</span>
           <span class="coach-name">John Sosa</span>
-          <span class="coach-title">U17/U19 Head Coach, Sporting City Soccer MLS Next AD · USSF B License</span>
+          <span class="coach-title">U16/U17 Head Coach, Sporting City Soccer MLS Next AD · USSF B License</span>
         </div>
         <div class="tl-coach-bio">
           Former KC Comets MASL pro (12 seasons, 2011–2024) · 2014 MISL Champion · U.S. Futsal National Team (2013 Four Nations Cup) · Former Head Coach Benedictine College (2018–2026) · UMKC Summit League MVP 2010
@@ -1764,9 +1747,10 @@
       <div class="tl-card">
         <div class="tl-year">May 23–31, 2026 — Upcoming</div>
         <div class="tl-org">MLS Next Cup — Salt Lake City, UT</div>
-        <div class="tl-desc">Competing with Sporting City Soccer 2010 (MLS Next Academy Division) at the MLS Next Cup national championship in Salt Lake City — the culminating event of the MLS Next season. U16 bracket: 32 teams, single elimination. Group and championship finals played at America First Field (Real Salt Lake's stadium). Hundreds of college coaches attend; eliminated teams compete in a dedicated Showcase bracket for college evaluation. Select matches streamed free on MLS YouTube.</div>
+        <div class="tl-desc">Competing with Sporting City Soccer 2010 (MLS Next Academy Division) at the MLS Next Cup national championship in Salt Lake City — the culminating event of the MLS Next season. <strong>Team earned the spot as finalists at the Kansas Regional Tournament.</strong> U16 bracket: 32 teams, single elimination. Group and championship finals played at America First Field (Real Salt Lake's stadium). Hundreds of college coaches attend; eliminated teams compete in a dedicated Showcase bracket for college evaluation. Select matches streamed free on MLS YouTube.</div>
         <div class="tl-badges">
           <span class="tl-badge">MLS Next Cup</span>
+          <span class="tl-badge">Kansas Regional Finalist</span>
           <span class="tl-badge">U16 · 32 Teams</span>
           <span class="tl-badge">Sporting City 2010</span>
           <span class="tl-badge neutral">Regional Athletic Complex · Salt Lake City, UT</span>
@@ -1781,7 +1765,7 @@
       <div class="tl-card">
         <div class="tl-year">2024 — Present</div>
         <div class="tl-org">Park Hill South Soccer</div>
-        <div class="tl-desc">Starting midfielder on the JV squad at Park Hill South High School. Jersey #16 in Missouri's Suburban Conference.</div>
+        <div class="tl-desc">Starting midfielder on the JV squad at Park Hill South High School. Jersey #21 in Missouri's Suburban Conference.</div>
         <div class="tl-coach">
           <span class="coach-label">Incoming HC</span>
           <span class="coach-name">Chris Lawson</span>
@@ -1794,7 +1778,7 @@
         </div>
         <div class="tl-badges">
           <span class="tl-badge">JV Starter</span>
-          <span class="tl-badge">Jersey #16</span>
+          <span class="tl-badge">Jersey #21</span>
           <span class="tl-badge neutral">Suburban Conference</span>
           <span class="tl-badge neutral">Kansas City, MO</span>
         </div>
@@ -1897,7 +1881,7 @@
     <div class="featured-video reveal">
       <div class="video-wrapper">
         <iframe
-          src="https://www.youtube.com/embed/HOVZYP0OLyo"
+          src="https://www.youtube.com/embed/w5TS3U1oOQk"
           title="Noah Lach MLS Next AD Highlights"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen>
@@ -1913,6 +1897,7 @@
   <!-- Taka.io Game Film -->
   <div class="reels-group">
     <h3 class="reels-group-header reveal">⚽ Taka.io — Full Match Film & Highlights</h3>
+    <p class="reveal" style="font-size: 0.85rem; color: var(--muted); margin: -10px 0 18px; font-style: italic;">Note: Taka.io requires a free account login to view full match film</p>
     <div class="reels-grid">
 
       <!-- Taka 1 -->
@@ -1976,8 +1961,8 @@
           <span class="reel-ball">⚽</span>
           <div class="reel-play-btn"><div class="play-tri"></div></div>
           <div class="reel-label">
-            <div class="reel-tag">MLS Next · Latest</div>
-            <div class="reel-caption">Recent match highlights — Sporting City</div>
+            <div class="reel-tag">MLS Next AD Kansas Regional</div>
+            <div class="reel-caption">Knuckleball score from long range</div>
           </div>
         </div>
         <div class="reel-info">
@@ -2270,71 +2255,68 @@
   <p class="sec-label reveal">Get In Touch</p>
   <h2 class="sec-title reveal">Contact &amp;<br>Recruit Me</h2>
 
-  <!-- Top row: contact info + form -->
-  <div class="contact-grid">
-    <div class="contact-left reveal">
-      <h3>Coaches &amp; Programs —<br>Let's Connect.</h3>
-      <p>
-        Noah is a sophomore (Class of 2028) actively exploring college soccer programs at the NCAA D1, D2, and NAIA level.
-        Available for campus visits, ID camps, and official visits. Reach out to start a conversation.
-      </p>
-      <div class="contact-links">
-        <a href="https://www.instagram.com/noahlach16/" target="_blank" rel="noopener" class="contact-link">
-          <span class="cl-icon">📷</span>
-          @noahlach16 on Instagram
+  <!-- Contact Info -->
+  <div class="contact-info-block reveal" style="max-width: 800px; margin: 0 auto;">
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #0f1a2e; margin-bottom: 18px; text-align: center;">Coaches &amp; Programs — Let's Connect</h3>
+    <p style="text-align: center; color: #3a4a6b; font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px;">
+      Noah is a sophomore (Class of 2028) actively exploring college soccer programs at the NCAA D1, D2, and NAIA level.
+      Available for campus visits, ID camps, and official visits.
+    </p>
+
+    <div style="background: var(--bg-card); border: 1px solid rgba(0,0,0,0.07); border-radius: var(--r); padding: 32px 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 32px;">
+      <h4 style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dark); margin: 0 0 20px;">Direct Contact</h4>
+      <div class="contact-links" style="display: flex; flex-direction: column; gap: 14px;">
+        <a href="mailto:noahlach@gmail.com" class="contact-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(74,122,0,0.05); border-radius: 8px; text-decoration: none; color: #0f1a2e; font-weight: 600; transition: all 0.2s;">
+          <span class="cl-icon" style="font-size: 1.3rem;">✉️</span>
+          <div>
+            <div style="font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px;">Email Noah</div>
+            <div style="font-size: 0.95rem;">noahlach@gmail.com</div>
+          </div>
         </a>
-        <a href="https://taka.io/soccer/athlete/68b7216db03c7582d7f1a37a" target="_blank" rel="noopener" class="contact-link">
-          <span class="cl-icon">🎥</span>
-          Game Film &amp; Upcoming Schedule — Taka.io
+        <a href="mailto:Rob.Zahl@sportingkc.com" class="contact-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(74,122,0,0.05); border-radius: 8px; text-decoration: none; color: #0f1a2e; font-weight: 600; transition: all 0.2s;">
+          <span class="cl-icon" style="font-size: 1.3rem;">⚽</span>
+          <div>
+            <div style="font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px;">Primary Coach Contact</div>
+            <div style="font-size: 0.95rem;">Rob Zahl — Sporting City MLS Next Director</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Rob.Zahl@sportingkc.com</div>
+          </div>
         </a>
-        <a href="https://my.sportsrecruits.com/athlete/noah_lach" target="_blank" rel="noopener" class="contact-link">
-          <span class="cl-icon">🏫</span>
-          Recruiting Profile — SportsRecruits
-        </a>
-        <a href="mailto:noahlach@gmail.com" class="contact-link">
-          <span class="cl-icon">✉️</span>
-          noahlach@gmail.com
-        </a>
-      </div>
-      <div class="avail-badge">
-        <span class="live-dot"></span>
-        Sophomore · Class of 2028 · Available for Visits
       </div>
     </div>
 
-    <div class="contact-form reveal reveal-d1">
-      <div class="form-row">
-        <div class="fg">
-          <label>Your Name</label>
-          <input type="text" placeholder="Coach Smith">
-        </div>
-        <div class="fg">
-          <label>School / Program</label>
-          <input type="text" placeholder="University of Tampa">
-        </div>
+    <div style="background: var(--bg-card); border: 1px solid rgba(0,0,0,0.07); border-radius: var(--r); padding: 32px 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+      <h4 style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dark); margin: 0 0 20px;">Recruiting Profiles &amp; Film</h4>
+      <div class="contact-links" style="display: flex; flex-direction: column; gap: 14px;">
+        <a href="https://my.sportsrecruits.com/athlete/noah_lach" target="_blank" rel="noopener" class="contact-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(15,26,46,0.03); border-radius: 8px; text-decoration: none; color: #0f1a2e; font-weight: 600; transition: all 0.2s;">
+          <span class="cl-icon" style="font-size: 1.3rem;">🏫</span>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem;">SportsRecruits Profile</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Full recruiting profile &amp; stats</div>
+          </div>
+          <span style="color: var(--accent-dark); font-size: 0.9rem;">↗</span>
+        </a>
+        <a href="https://taka.io/soccer/athlete/68b7216db03c7582d7f1a37a" target="_blank" rel="noopener" class="contact-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(15,26,46,0.03); border-radius: 8px; text-decoration: none; color: #0f1a2e; font-weight: 600; transition: all 0.2s;">
+          <span class="cl-icon" style="font-size: 1.3rem;">🎥</span>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem;">Taka.io Game Film</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Full match film &amp; upcoming schedule</div>
+          </div>
+          <span style="color: var(--accent-dark); font-size: 0.9rem;">↗</span>
+        </a>
+        <a href="https://www.instagram.com/noahlach16/" target="_blank" rel="noopener" class="contact-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: rgba(15,26,46,0.03); border-radius: 8px; text-decoration: none; color: #0f1a2e; font-weight: 600; transition: all 0.2s;">
+          <span class="cl-icon" style="font-size: 1.3rem;">📷</span>
+          <div style="flex: 1;">
+            <div style="font-size: 0.95rem;">@noahlach16 on Instagram</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">Highlights &amp; updates</div>
+          </div>
+          <span style="color: var(--accent-dark); font-size: 0.9rem;">↗</span>
+        </a>
       </div>
-      <div class="form-row">
-        <div class="fg">
-          <label>Email</label>
-          <input type="email" placeholder="coach@university.edu">
-        </div>
-        <div class="fg">
-          <label>Division Level</label>
-          <select>
-            <option value="">Select level…</option>
-            <option>NCAA D1</option>
-            <option>NCAA D2</option>
-            <option>NAIA</option>
-            <option>NJCAA</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="fg">
-        <label>Message</label>
-        <textarea placeholder="Tell us about your program, upcoming ID camps, or schedule a visit…"></textarea>
-      </div>
-      <button class="form-submit" type="submit">Send Message →</button>
+    </div>
+
+    <div class="avail-badge" style="margin-top: 28px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; background: rgba(74,122,0,0.08); border: 1px solid rgba(74,122,0,0.2); border-radius: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark);">
+      <span class="live-dot" style="width: 8px; height: 8px; background: #4a7a00; border-radius: 50%; animation: pulse 2s infinite;"></span>
+      Sophomore · Class of 2028 · Available for Visits
     </div>
   </div>
 </div>
@@ -2414,7 +2396,6 @@
         <div class="coach-card-role">Head Coach · Coerver Certified</div>
         <div class="coach-card-creds">Park University Alum · Former KC Kings Pro Indoor · JCCC Record Holder</div>
         <div class="coach-card-contacts">
-          <a href="tel:8169165513" class="coach-card-contact coach-card-link">📞 (816) 916-5513</a>
           <a href="mailto:jimmy.perez@kcfusion.com" class="coach-card-contact coach-card-link">✉ jimmy.perez@kcfusion.com</a>
         </div>
       </div>
@@ -2435,7 +2416,6 @@
         <div class="coach-card-role">Assistant Coach · USSF Licensed</div>
         <div class="coach-card-creds">KC Fusion long-term competitive staff · 2012 &amp; 2013 Boys teams</div>
         <div class="coach-card-contacts">
-          <a href="tel:9137446769" class="coach-card-contact coach-card-link">📞 (913) 744-6769</a>
           <a href="mailto:carlos.olivas@kcfusion.com" class="coach-card-contact coach-card-link">✉ carlos.olivas@kcfusion.com</a>
         </div>
       </div>
@@ -2445,7 +2425,7 @@
 
 <!-- ═══ FOOTER ════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">NL<span>21</span></div>
+  <div class="footer-logo">NL<span>16</span></div>
   <div class="footer-txt">Noah Lach · Class of 2028 · Kansas City, MO · MLS Next Academy Division</div>
 </footer>
 
@@ -2468,26 +2448,12 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el => observer.observe(el));
 
-  // Form submit (no backend — just UX feedback)
-  const form = document.querySelector('.contact-form');
-  const btn = form.querySelector('.form-submit');
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#4ade80';
-    btn.style.cursor = 'default';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-      btn.style.cursor = '';
-    }, 3000);
-  });
-
   // Hamburger menu
   const hamburger = document.getElementById('navHamburger');
   const mobileMenu = document.getElementById('navMobileMenu');
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileMenu.classList.toggle('open');
     });
     document.addEventListener('click', (e) => {

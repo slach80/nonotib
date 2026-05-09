@@ -45,7 +45,6 @@ SCHOOLS = [
     {"name": "Park University",            "div": "NAIA", "coaches": "https://parkathletics.com/sports/mens-soccer/coaches",       "roster": "https://parkathletics.com/sports/mens-soccer/roster"},
     {"name": "Drury University",           "div": "D2",   "coaches": "https://drurypanthers.com/sports/mens-soccer/coaches",       "roster": "https://drurypanthers.com/sports/mens-soccer/roster"},
     {"name": "Maryville University",       "div": "D2",   "coaches": "https://maryvillesaints.com/sports/mens-soccer/coaches",     "roster": "https://maryvillesaints.com/sports/mens-soccer/roster"},
-    {"name": "Missouri Western State",     "div": "D2",   "coaches": None,                                                         "roster": None},  # domain unresolvable
     {"name": "William Jewell College",     "div": "NAIA", "coaches": "https://jewellcardinals.com/sports/msoc/coaches",            "roster": "https://jewellcardinals.com/sports/msoc/roster"},
     {"name": "Truman State University",    "div": "D2",   "coaches": "https://trumanbulldogs.com/sports/msoc/coaches",             "roster": "https://trumanbulldogs.com/sports/msoc/roster"},
     {"name": "Southwest Baptist",          "div": "D2",   "coaches": "https://www.sbubearcats.com/sports/msoc/coaches",            "roster": "https://www.sbubearcats.com/sports/msoc/roster"},
