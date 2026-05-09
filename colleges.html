@@ -32,6 +32,8 @@
       --d3-bg:     rgba(100,50,200,0.09);
       --d1:        #b71c1c;
       --d1-bg:     rgba(183,28,28,0.08);
+      --juco:      #2d6a4f;
+      --juco-bg:   rgba(45,106,79,0.09);
 
       --high:      #4a7a00;
       --high-bg:   #e8f5e0;
@@ -254,6 +256,7 @@
     .div-badge.d2   { background: var(--d2-bg);   color: var(--d2);   border: 1px solid rgba(0,100,200,0.25); }
     .div-badge.d3   { background: var(--d3-bg);   color: var(--d3);   border: 1px solid rgba(100,50,200,0.25); }
     .div-badge.d1   { background: var(--d1-bg);   color: var(--d1);   border: 1px solid rgba(183,28,28,0.25); }
+    .div-badge.juco { background: var(--juco-bg); color: var(--juco); border: 1px solid rgba(45,106,79,0.25); }
     .cc-conf {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.7rem;
@@ -976,6 +979,10 @@
     <button class="fs-btn" data-filter="div" data-val="naia">
       <span class="fs-dot" style="background:var(--naia)"></span> NAIA
       <span class="fs-count" id="cnt-div-naia"></span>
+    </button>
+    <button class="fs-btn" data-filter="div" data-val="juco">
+      <span class="fs-dot" style="background:var(--juco)"></span> JUCO
+      <span class="fs-count" id="cnt-div-juco"></span>
     </button>
   </div>
 
