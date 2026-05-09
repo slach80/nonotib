@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan University Soccer Research — Noah Lach Recruiting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f4f6fb;
+      --bg-2: #eef1f8;
+      --bg-card: #ffffff;
+      --accent: #b8ff2e;
+      --accent-dark: #4a7a00;
+      --accent-lo: rgba(90,138,0,0.08);
+      --accent-md: rgba(90,138,0,0.2);
+      --text: #0f1a2e;
+      --muted: #6b7fa8;
+      --border: rgba(0,0,0,0.09);
+      --r: 10px;
+      --nav-h: 64px;
+      --japan: #c41e3a;
+      --japan-bg: rgba(196,30,58,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: #3a4a6b;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 200; height: var(--nav-h);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 60px); gap: 16px;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: #0f1a2e; text-decoration: none; }
+    .nav-logo span { color: #4a7a00; }
+    .nav-back { color: #6b7fa8; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: #0f1a2e; }
+    .nav-back::before { content: '←'; margin-right: 6px; }
+
+    /* ─── HEADER ─── */
+    .header {
+      padding: 56px clamp(18px, 5vw, 60px) 36px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .header-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--japan);
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.02em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .header-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .header-summary {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #3a4a6b;
+      max-width: 800px;
+      padding: 16px 20px;
+      background: var(--japan-bg);
+      border-left: 4px solid var(--japan);
+      border-radius: 6px;
+    }
+
+    /* ─── CONTENT ─── */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px clamp(18px, 5vw, 60px) 80px;
+    }
+
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .toc h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .toc ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px;
+    }
+    .toc li a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc li a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent-md);
+    }
+
+    h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin: 30px 0 12px;
+    }
+
+    h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 24px 0 10px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    a {
+      color: var(--accent-dark);
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul, ol {
+      margin: 16px 0 16px 24px;
+      font-size: 0.95rem;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    thead {
+      background: var(--bg-2);
+    }
+
+    th {
+      padding: 12px;
+      text-align: left;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .alert-box {
+      background: var(--accent-lo);
+      border: 1px solid var(--accent-md);
+      border-left: 4px solid var(--accent-dark);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .alert-box strong {
+      color: var(--accent-dark);
+    }
+
+    .warning-box {
+      background: rgba(255,193,7,0.08);
+      border: 1px solid rgba(255,193,7,0.3);
+      border-left: 4px solid #f57c00;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .info-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px 20px;
+      margin: 12px 0;
+    }
+
+    .contact-card h4 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: var(--bg-2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 0.9em;
+    }
+
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 30px clamp(18px, 5vw, 60px);
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .toc ul {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NL<span>16</span></a>
+  <a href="international.html" class="nav-back">Back to International</a>
+</nav>
+
+<div class="header">
+  <p class="header-label">🇯🇵 Complete Research Document</p>
+  <h1>Japan University Soccer Recruiting</h1>
+  <p class="header-meta">Research completed: May 8, 2026 | Status: Backup Option</p>
+  <div class="header-summary">
+    <strong>Executive Summary:</strong> Japanese university soccer presents a high-quality but high-risk alternative to US college recruiting. Competition level matches NCAA D1, MEXT scholarship provides full funding, and top universities offer English-taught programs. However, significant challenges exist: language barriers, cultural adjustment, limited international student-athlete precedent, and 1-year language preparatory program delaying soccer participation. <strong>Recommendation: Keep as Option B while pursuing US D1/D2/NAIA as primary path.</strong>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>Quick Navigation</h2>
+    <ul>
+      <li><a href="#targets">Top 3 Target Universities</a></li>
+      <li><a href="#mext">MEXT Scholarship</a></li>
+      <li><a href="#jasso">JASSO & Alternatives</a></li>
+      <li><a href="#universities">All 15 Universities</a></li>
+      <li><a href="#assessment">Realistic Assessment</a></li>
+      <li><a href="#strategy">Recommended Strategy</a></li>
+      <li><a href="#timeline">Application Timeline</a></li>
+      <li><a href="#financial">Financial Comparison</a></li>
+      <li><a href="#contacts">Contact Information</a></li>
+    </ul>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <section id="targets">
+    <h2>Quick Reference: Top 3 Target Universities</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>University</th>
+          <th>Soccer Level</th>
+          <th>Championships</th>
+          <th>English Programs</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Waseda University</strong></td>
+          <td>Elite</td>
+          <td>12 (most successful)</td>
+          <td>SILS (full English)</td>
+          <td>Elite soccer + English instruction</td>
+        </tr>
+        <tr>
+          <td><strong>University of Tsukuba</strong></td>
+          <td>Elite</td>
+          <td>9 (Mitoma pathway)</td>
+          <td>Multiple English programs</td>
+          <td>Sports science + competition</td>
+        </tr>
+        <tr>
+          <td><strong>Sophia University</strong></td>
+          <td>D1 Tokyo League</td>
+          <td>Active program</td>
+          <td>Multiple English faculties</td>
+          <td>Cultural immersion + support</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <p><strong>Competition Level:</strong> Top programs = NCAA D1 equivalent. 9 players from Japan's 2022 World Cup squad had university backgrounds. Strong J-League professional pathway.</p>
+    </div>
+  </section>
+
+  <!-- MEXT SCHOLARSHIP -->
+  <section id="mext">
+    <h2>MEXT Scholarship (Primary Funding Option)</h2>
+
+    <h3>Overview</h3>
+    <p><strong>What is MEXT?</strong> Japanese government scholarship administered by the Ministry of Education, Culture, Sports, Science and Technology. Established 1954, supported 65,000+ students from 160 countries. Japan's most prestigious international scholarship.</p>
+
+    <h4>Undergraduate Program Coverage</h4>
+    <ul>
+      <li><strong>Monthly stipend:</strong> ¥117,000 (~$800-900 USD)</li>
+      <li><strong>Tuition:</strong> FULLY COVERED at Japanese national universities</li>
+      <li><strong>Airfare:</strong> Round-trip Japan ↔ US covered</li>
+      <li><strong>Duration:</strong> 5 years total (1 year language prep + 4 years undergraduate)</li>
+      <li><strong>Total value:</strong> ~$50,000+ over 5 years</li>
+    </ul>
+
+    <h3>Eligibility</h3>
+
+    <div class="alert-box">
+      <p><strong>Age Requirement:</strong> Must be under 25 years old as of April 1 of enrollment year.<br>
+      <strong>Noah (Class of 2028, age ~18 at enrollment): ✅ QUALIFIES</strong></p>
+    </div>
+
+    <h4>Academic Requirements</h4>
+    <ul>
+      <li>12 years education completed (high school graduation)</li>
+      <li><strong>Recommended GPA:</strong> 2.3/3.0 or 3.0/4.0+ for competitiveness</li>
+      <li>Good academic standing</li>
+    </ul>
+
+    <h4>Japanese Language</h4>
+    <ul>
+      <li><strong>NO prior Japanese required</strong> for application</li>
+      <li>Mandatory 1-year preparatory program provided</li>
+      <li>Language training at Osaka University or Tokyo University of Foreign Studies</li>
+      <li>Eventually need JLPT N2 level for academic success</li>
+    </ul>
+
+    <h4>Athletic Participation</h4>
+    <div class="alert-box">
+      <p>✅ <strong>NO explicit restrictions</strong> on sports participation. MEXT scholars CAN play university soccer. Time commitment depends on academic rigor + team expectations.</p>
+    </div>
+
+    <h3>Application Process</h3>
+
+    <h4>Two Pathways:</h4>
+    <ol>
+      <li><strong>Embassy Recommendation</strong> (primary route for US students)
+        <ul>
+          <li>Apply through Japanese Embassy in Washington DC or consulates</li>
+          <li>More competitive, direct path</li>
+          <li>Requires entrance exams (Japanese, English, Math, Science)</li>
+        </ul>
+      </li>
+      <li><strong>University Recommendation</strong>
+        <ul>
+          <li>Apply directly to Japanese universities with MEXT quotas</li>
+          <li>Less common for US students without partnerships</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>Application Timeline for Class of 2028</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>May 2027</strong></td>
+          <td>Submit application to Japanese Embassy/Consulate</td>
+        </tr>
+        <tr>
+          <td><strong>June-Aug 2027</strong></td>
+          <td>Embassy screening, entrance examinations</td>
+        </tr>
+        <tr>
+          <td><strong>Sept-Oct 2027</strong></td>
+          <td>First-round results</td>
+        </tr>
+        <tr>
+          <td><strong>Nov 2027-Jan 2028</strong></td>
+          <td>Final selection, notification</td>
+        </tr>
+        <tr>
+          <td><strong>April 2028</strong></td>
+          <td>Depart for Japan</td>
+        </tr>
+        <tr>
+          <td><strong>April 2028-March 2029</strong></td>
+          <td>Year 1: Japanese language preparatory program</td>
+        </tr>
+        <tr>
+          <td><strong>April 2029</strong></td>
+          <td>Begin undergraduate studies at assigned university</td>
+        </tr>
+        <tr>
+          <td><strong>March 2033</strong></td>
+          <td>Graduate with bachelor's degree</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <p><strong>Important:</strong> Application submitted May 2027 = decision by early 2028 = doesn't conflict with US recruiting (offers typically decided March-April 2028)</p>
+    </div>
+
+    <h3>Where to Apply</h3>
+
+    <div class="contact-card">
+      <h4>Japanese Embassy Contact</h4>
+      <ul>
+        <li>Embassy of Japan, Washington DC</li>
+        <li>Consulate General of Japan, Chicago (closest to Kansas City)</li>
+        <li>Website: <a href="https://studyinjapan.go.jp" target="_blank">studyinjapan.go.jp</a></li>
+        <li>Contact embassy early 2027 for official application guidelines</li>
+      </ul>
+    </div>
+
+    <h4>Required Documents (typical):</h4>
+    <ul>
+      <li>Application forms</li>
+      <li>High school transcripts</li>
+      <li>Academic recommendations</li>
+      <li>Personal statement/essay</li>
+      <li>Entrance examination scores</li>
+    </ul>
+  </section>
+
+  <!-- JASSO & ALTERNATIVES -->
+  <section id="jasso">
+    <h2>JASSO & Alternative Scholarships</h2>
+
+    <h3>JASSO Programs</h3>
+
+    <div class="warning-box">
+      <p><strong>Key Finding:</strong> JASSO programs are <strong>supplemental only</strong>, not for full 4-year undergraduate degrees.</p>
+    </div>
+
+    <h4>Monbukagakusho Honors Scholarship (JASSO)</h4>
+    <ul>
+      <li>Monthly stipend: ¥48,000 (~$320 USD)</li>
+      <li>Duration: 1 academic year (April-March or October-March)</li>
+      <li>Requires: GPA 2.30+, JLPT N2 proficiency</li>
+      <li>Applied through university AFTER enrollment</li>
+      <li><strong>Use case:</strong> Extra funding while on MEXT or self-funded</li>
+    </ul>
+
+    <h4>Student Exchange Support Program (JASSO)</h4>
+    <ul>
+      <li>Monthly stipend: ¥80,000 (~$535 USD)</li>
+      <li>Duration: 8 days to 1 year</li>
+      <li>For exchange students under bilateral agreements</li>
+      <li><strong>Not suitable for full undergraduate degree</strong></li>
+    </ul>
+
+    <h3>Private Scholarships (JEES)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scholarship</th>
+          <th>Monthly Amount</th>
+          <th>Eligibility</th>
+          <th>Recipients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>JEES-Toyota Tsusho</td>
+          <td>¥100,000 (~$670)</td>
+          <td>3rd year+ undergrads</td>
+          <td>~15/year</td>
+        </tr>
+        <tr>
+          <td>Mitsubishi Corporation</td>
+          <td>¥120,000 (~$800)</td>
+          <td>Undergraduates</td>
+          <td>Varies</td>
+        </tr>
+        <tr>
+          <td>JEES-Lawson</td>
+          <td>¥130,000 (~$870)</td>
+          <td>Undergraduates</td>
+          <td>2/year</td>
+        </tr>
+        <tr>
+          <td>TAISEI</td>
+          <td>¥150,000 (~$1,000)</td>
+          <td>Engineering students</td>
+          <td>Varies</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Application:</strong> Most require nomination from designated schools (not direct application).</p>
+
+    <h3>Scholarship Comparison</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Monthly Stipend</th>
+          <th>Tuition</th>
+          <th>Duration</th>
+          <th>Japanese Required?</th>
+          <th>Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--accent-lo);">
+          <td><strong>MEXT</strong></td>
+          <td>¥117,000 (~$800)</td>
+          <td><strong>FULL</strong></td>
+          <td>5 years</td>
+          <td>No (training provided)</td>
+          <td>HIGH</td>
+        </tr>
+        <tr>
+          <td>JASSO Honors</td>
+          <td>¥48,000 (~$320)</td>
+          <td>NO</td>
+          <td>1 year</td>
+          <td>Yes (JLPT N2)</td>
+          <td>MEDIUM</td>
+        </tr>
+        <tr>
+          <td>JASSO Exchange</td>
+          <td>¥80,000 (~$535)</td>
+          <td>Varies</td>
+          <td>8 days - 1 year</td>
+          <td>No</td>
+          <td>LOW</td>
+        </tr>
+        <tr>
+          <td>JEES Private</td>
+          <td>¥100,000-150,000</td>
+          <td>NO</td>
+          <td>Varies</td>
+          <td>Varies</td>
+          <td>MEDIUM</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert-box">
+      <p><strong>Conclusion:</strong> MEXT is the ONLY truly full-funding option for 4-year undergraduate degrees. Other programs are supplemental.</p>
+    </div>
+  </section>
+
+  <!-- UNIVERSITIES -->
+  <section id="universities">
+    <h2>Japanese University Soccer Programs</h2>
+
+    <h3>Competition Level</h3>
+
+    <div class="info-box">
+      <h4>Comparison to US College Soccer:</h4>
+      <ul>
+        <li><strong>Top programs</strong> (Waseda, Tsukuba, Chuo) = NCAA Division I level</li>
+        <li><strong>Regional powerhouses</strong> = NCAA D2 level</li>
+        <li>9 players from Japan's 2022 World Cup squad had university backgrounds</li>
+        <li>Japan U-21 won 2026 AFC U-23 Asian Cup with university players</li>
+        <li>Direct pipeline to J-League professional clubs</li>
+      </ul>
+    </div>
+
+    <h4>Season Structure</h4>
+    <ul>
+      <li>League matches during academic year</li>
+      <li>Major summer training camps during breaks</li>
+      <li>All-Japan Championship tournament (24 teams, single elimination)</li>
+      <li>Regional leagues: Kanto (Tokyo), Kansai (Osaka/Kyoto), etc.</li>
+    </ul>
+
+    <h4>Practice Commitment</h4>
+    <ul>
+      <li>Intensive year-round training (similar to MLS Next Academy)</li>
+      <li>Summer camps utilize extended vacation periods</li>
+      <li>6 days/week typical for competitive programs</li>
+    </ul>
+
+    <h4>Professional Pathway</h4>
+    <ul>
+      <li><strong>Strong:</strong> University soccer is primary J-League feeder system</li>
+      <li>J-League clubs actively scout university players</li>
+      <li>Many players join J-League directly after graduation</li>
+      <li><strong>Notable:</strong> Kaoru Mitoma (Brighton & Hove Albion) played at University of Tsukuba</li>
+    </ul>
+
+    <h3>Top 15 University Programs</h3>
+
+    <h4>TIER 1: Elite Soccer + Established English Programs</h4>
+
+    <div class="info-box">
+      <h4>1. Waseda University (東京都 Tokyo)</h4>
+      <ul>
+        <li><strong>Championships:</strong> 12 national titles (most successful all-time)</li>
+        <li><strong>Soccer League:</strong> Kanto University Soccer League Division 1</li>
+        <li><strong>Also Won:</strong> Emperor's Cup 1964, 1967</li>
+        <li><strong>English Programs:</strong> School of International Liberal Studies (SILS) - fully English-taught</li>
+        <li><strong>International:</strong> 600,000+ alumni worldwide</li>
+        <li><strong>Ranking:</strong> #2 university brand in Japan, #196 globally (QS)</li>
+        <li><strong>Admissions:</strong> AO admissions for international students</li>
+        <li><strong>Website:</strong> <a href="https://www.waseda.jp/fire/sils/en/" target="_blank">waseda.jp/fire/sils/en/</a></li>
+        <li><strong>Best For:</strong> Elite soccer + full English instruction + prestigious academics</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h4>2. Sophia University (東京都 Tokyo)</h4>
+      <ul>
+        <li><strong>Soccer League:</strong> Division 1 Tokyo University Football Association</li>
+        <li><strong>English Programs:</strong> Multiple faculties (Liberal Arts, Global Studies, Green Engineering)</li>
+        <li><strong>International Focus:</strong> 9% international students from 77 countries</li>
+        <li><strong>Partners:</strong> 396 partner institutions</li>
+        <li><strong>Mission:</strong> "For Others, With Others" - strong international values</li>
+        <li><strong>Ranking:</strong> Top 3 private university with Waseda/Keio</li>
+        <li><strong>Website:</strong> <a href="https://www.sophia.ac.jp/eng/" target="_blank">sophia.ac.jp/eng/</a></li>
+        <li><strong>Best For:</strong> International student support + cultural immersion</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h4>3. University of Tsukuba (茨城県 Ibaraki)</h4>
+      <ul>
+        <li><strong>Championships:</strong> 9 national titles</li>
+        <li><strong>Location:</strong> Tsukuba (45 min from Tokyo by train)</li>
+        <li><strong>English Programs:</strong> Multiple bachelor's programs (Interdisciplinary Engineering, Global Issues, Japan-Expert)</li>
+        <li><strong>Sports Focus:</strong> School of Health & Physical Education</li>
+        <li><strong>Faculty:</strong> 70+ Olympic athletes on faculty</li>
+        <li><strong>Notable Alumni:</strong> Kaoru Mitoma (Brighton & Hove Albion, Japan national team)</li>
+        <li><strong>Status:</strong> Designated National University</li>
+        <li><strong>Website:</strong> <a href="https://www.tsukuba.ac.jp/en/" target="_blank">tsukuba.ac.jp/en/</a></li>
+        <li><strong>Best For:</strong> Combining elite soccer with sports science education, proven pathway to pro</li>
+      </ul>
+    </div>
+
+    <h4>TIER 2: Strong Soccer + Developing International Programs</h4>
+
+    <ul>
+      <li><strong>Keio University</strong> - 43 varsity teams, 1,908 international students (5.7%)</li>
+      <li><strong>Chuo University</strong> - 8 championships, Global Management programs, 235 partner universities</li>
+      <li><strong>Meiji University</strong> - 2023 champion, 100,000 applications/year, 270 Olympic alumni</li>
+    </ul>
+
+    <h4>TIER 3: Strong Soccer + Limited English (Japanese Required)</h4>
+
+    <ul>
+      <li><strong>Komazawa University</strong> - 7 championships</li>
+      <li><strong>Hosei University</strong> - Kanto D1, Top Global University</li>
+      <li><strong>Toyo University</strong> - 2024 champion (breakthrough win)</li>
+      <li><strong>Niigata Univ. Health/Welfare</strong> - 2024 finalist (emerging)</li>
+      <li><strong>Kyoto Sangyo University</strong> - 2023 finalist (Kansai League)</li>
+    </ul>
+
+    <p><em>See full details for all 15 universities in JAPAN_RECRUITING_RESEARCH.md</em></p>
+  </section>
+
+  <!-- ASSESSMENT -->
+  <section id="assessment">
+    <h2>Realistic Assessment & Cultural Considerations</h2>
+
+    <h3>Advantages for Noah</h3>
+    <ul>
+      <li>✅ <strong>Full Financial Support:</strong> MEXT covers everything (tuition, living, flights)</li>
+      <li>✅ <strong>Elite Soccer:</strong> Top programs match NCAA D1 level</li>
+      <li>✅ <strong>Professional Pathway:</strong> Strong pipeline to J-League</li>
+      <li>✅ <strong>Unique Experience:</strong> Bilingual (English/Japanese) + international résumé</li>
+      <li>✅ <strong>MLS Next Background:</strong> Would be impressive/unique in Japan</li>
+      <li>✅ <strong>Academic Prestige:</strong> Japanese national universities highly respected</li>
+      <li>✅ <strong>Less Commercialized:</strong> Focus on sport/development vs entertainment</li>
+    </ul>
+
+    <h3>Challenges & Red Flags</h3>
+    <ul>
+      <li>⚠️ <strong>Language Barrier:</strong> First year = full-time Japanese study, limited soccer</li>
+      <li>⚠️ <strong>Cultural Adjustment:</strong> Living independently in foreign country at age 18</li>
+      <li>⚠️ <strong>No Precedent:</strong> No evidence of successful international student-athletes in system</li>
+      <li>⚠️ <strong>Academic Rigor:</strong> MEXT is competitive, balancing soccer may be difficult</li>
+      <li>⚠️ <strong>Hierarchical Culture:</strong> Senpai/kohai system, year-round commitment, team social obligations</li>
+      <li>⚠️ <strong>Coach Authority:</strong> More absolute than US, less player input</li>
+      <li>⚠️ <strong>Team Integration:</strong> Requires Japanese fluency for full participation</li>
+      <li>⚠️ <strong>5-Year Commitment:</strong> Cannot easily transfer back to US system</li>
+    </ul>
+
+    <h3>Cultural Differences: Japanese vs US College Sports</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Japanese University</th>
+          <th>US NCAA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Competition Level</td>
+          <td>Top = D1 level</td>
+          <td>D1/D2/D3/NAIA tiers</td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>Primarily Japanese</td>
+          <td>English</td>
+        </tr>
+        <tr>
+          <td>Team Structure</td>
+          <td>Hierarchical (senpai/kohai)</td>
+          <td>More egalitarian</td>
+        </tr>
+        <tr>
+          <td>Practice Schedule</td>
+          <td>6 days/week, year-round</td>
+          <td>Seasonal with off-season</td>
+        </tr>
+        <tr>
+          <td>Academic Support</td>
+          <td>Limited for athletes</td>
+          <td>Structured athlete support</td>
+        </tr>
+        <tr>
+          <td>Recruiting</td>
+          <td>Direct contact only</td>
+          <td>Well-established recruiting</td>
+        </tr>
+        <tr>
+          <td>Scholarships</td>
+          <td>Academic (MEXT), not athletic</td>
+          <td>Athletic scholarships common</td>
+        </tr>
+        <tr>
+          <td>Professional Path</td>
+          <td>J-League (strong)</td>
+          <td>MLS (moderate)</td>
+        </tr>
+        <tr>
+          <td>International Players</td>
+          <td>Very rare</td>
+          <td>Common at all levels</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Timeline Comparison</h3>
+
+    <h4>MEXT Path:</h4>
+    <ul>
+      <li>2027: Apply (May)</li>
+      <li>2028: Depart Japan (April), language study begins</li>
+      <li>2029: Start undergraduate, join soccer team</li>
+      <li>2033: Graduate, join J-League or return to US</li>
+    </ul>
+
+    <h4>US College Path:</h4>
+    <ul>
+      <li>2027: Recruiting visits, offers</li>
+      <li>2028: Graduate HS, start college (August), play immediately</li>
+      <li>2032: Graduate, MLS draft or USL opportunities</li>
+    </ul>
+
+    <div class="warning-box">
+      <p><strong>Key Difference:</strong> MEXT delays soccer participation by 1 year (language prep).</p>
+    </div>
+  </section>
+
+  <!-- STRATEGY -->
+  <section id="strategy">
+    <h2>Recommended Strategy for Noah</h2>
+
+    <h3>Option A: US College Primary, Japan as Backup (Recommended)</h3>
+
+    <p><strong>Pursue both pathways simultaneously:</strong></p>
+
+    <h4>2026-2027 (Junior Year):</h4>
+    <ul>
+      <li>Focus on US recruiting (D1/D2/NAIA)</li>
+      <li>Begin basic Japanese language study (shows cultural interest)</li>
+      <li>Research MEXT scholarship requirements</li>
+      <li>Maintain strong GPA (3.0+)</li>
+    </ul>
+
+    <h4>Spring 2027:</h4>
+    <ul>
+      <li><strong>May 2027:</strong> Submit MEXT application to Japanese Embassy</li>
+      <li>Continue US recruiting visits</li>
+    </ul>
+
+    <h4>Fall 2027-Spring 2028 (Senior Year):</h4>
+    <ul>
+      <li>Finalize US college commitments (if desired)</li>
+      <li>Wait for MEXT results (notification by early 2028)</li>
+      <li><strong>Decision point:</strong> Compare US offers vs MEXT acceptance</li>
+    </ul>
+
+    <div class="alert-box">
+      <p><strong>Advantages:</strong> Dual options maximize flexibility. MEXT application doesn't interfere with US recruiting. Can make informed decision with all offers on table.</p>
+    </div>
+
+    <h3>Option B: Direct Japan Focus</h3>
+    <p><strong>Only recommended if:</strong></p>
+    <ul>
+      <li>Genuine passion for Japanese culture/language</li>
+      <li>Willing to commit 5 years abroad</li>
+      <li>Comfortable with gap year for language study</li>
+      <li>Not prioritizing fastest path to professional soccer</li>
+    </ul>
+
+    <h3>Option C: US College First, Japan Later</h3>
+    <p><strong>Most risk-averse approach:</strong></p>
+    <ul>
+      <li>2028-2030: US college soccer (freshman/sophomore years)</li>
+      <li>2030-2031: Junior year abroad at Japanese partner university</li>
+      <li>Experience Japanese soccer, build connections</li>
+      <li>2032: Return to US to complete degree OR pursue graduate school in Japan</li>
+    </ul>
+
+    <div class="info-box">
+      <p><strong>Advantages:</strong> Experience both systems. No long-term commitment to Japan. Maintains NCAA eligibility and US recruiting momentum.</p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <h2>Next Steps If Seriously Interested</h2>
+
+    <h3>Immediate Actions (Now - Fall 2026)</h3>
+    <ol>
+      <li><strong>Contact Japanese Embassy</strong>
+        <ul>
+          <li>Consulate General of Japan, Chicago (closest to Kansas City)</li>
+          <li>Website: <a href="https://studyinjapan.go.jp" target="_blank">studyinjapan.go.jp</a></li>
+          <li>Request MEXT 2027 application information</li>
+        </ul>
+      </li>
+      <li><strong>Begin Japanese Language Study</strong>
+        <ul>
+          <li>Online tutoring (iTalki, Preply)</li>
+          <li>Community college Japanese courses</li>
+          <li>Target: JLPT N5 by December 2026</li>
+        </ul>
+      </li>
+      <li><strong>Research Target Universities</strong>
+        <ul>
+          <li>Visit websites: Waseda SILS, Sophia, Tsukuba</li>
+          <li>Contact international admissions offices</li>
+          <li>Request English program brochures</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>Spring 2027 Actions</h3>
+    <ol start="4">
+      <li><strong>Submit MEXT Application (May 2027)</strong>
+        <ul>
+          <li>Complete all required forms</li>
+          <li>Entrance examinations (Japanese, English, Math, Science)</li>
+          <li>Academic recommendations</li>
+          <li>Personal statement emphasizing soccer + academics</li>
+        </ul>
+      </li>
+      <li><strong>Direct University Contact</strong>
+        <ul>
+          <li>Email soccer coaches at Waseda, Sophia, Tsukuba</li>
+          <li>Introduce yourself, express interest</li>
+          <li>Share highlight film + SportsRecruits profile</li>
+          <li>Ask about international student-athletes</li>
+        </ul>
+      </li>
+      <li><strong>Continue US Recruiting</strong>
+        <ul>
+          <li>Don't abandon US college options</li>
+          <li>Maintain relationships with US coaches</li>
+          <li>Keep all pathways open</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>Decision Point (Early 2028)</h3>
+    <ol start="7">
+      <li><strong>Evaluate Offers</strong>
+        <ul>
+          <li>MEXT acceptance/rejection (notification by Jan 2028)</li>
+          <li>US college scholarship offers (typically March-April 2028)</li>
+          <li>Financial comparison (MEXT fully funded vs US partial scholarships)</li>
+          <li>Soccer development comparison (Japanese university vs US NCAA)</li>
+        </ul>
+      </li>
+      <li><strong>Make Informed Decision</strong>
+        <ul>
+          <li>Consider: finances, soccer level, cultural fit, professional goals</li>
+          <li>Consult with family, coaches, mentors</li>
+          <li>Visit Japan if MEXT accepted (before final commitment)</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- FINANCIAL -->
+  <section id="financial">
+    <h2>Financial Comparison</h2>
+
+    <h3>MEXT Scholarship (Full Funding)</h3>
+
+    <div class="alert-box">
+      <p><strong>Total 5-Year Cost to Family: $0 to ~$500</strong></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Coverage</th>
+          <th>Family Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tuition</td>
+          <td>Fully covered by MEXT</td>
+          <td>$0</td>
+        </tr>
+        <tr>
+          <td>Monthly stipend</td>
+          <td>¥117,000 (~$800/month) provided</td>
+          <td>$0</td>
+        </tr>
+        <tr>
+          <td>Housing</td>
+          <td>Covered by stipend</td>
+          <td>$0</td>
+        </tr>
+        <tr>
+          <td>Airfare (round-trip)</td>
+          <td>Covered by MEXT</td>
+          <td>$0</td>
+        </tr>
+        <tr>
+          <td>Visa/immigration</td>
+          <td>Not covered</td>
+          <td>~$500</td>
+        </tr>
+        <tr>
+          <td>Health insurance</td>
+          <td>Covered by stipend</td>
+          <td>$0</td>
+        </tr>
+        <tr>
+          <td>Books/supplies</td>
+          <td>Covered by stipend</td>
+          <td>$0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Total MEXT Value:</strong> ~$50,000+ (tuition + stipend + flights over 5 years)</p>
+
+    <h3>US College Comparison</h3>
+
+    <h4>Example: D2 Partial Scholarship</h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+          <th>Scholarship (50%)</th>
+          <th>Family Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tuition (per year)</td>
+          <td>$35,000</td>
+          <td>$17,500</td>
+          <td>$17,500/year</td>
+        </tr>
+        <tr>
+          <td>Room & board</td>
+          <td>$12,000</td>
+          <td>Not covered</td>
+          <td>$12,000/year</td>
+        </tr>
+        <tr>
+          <td>Books/fees</td>
+          <td>$2,000</td>
+          <td>Not covered</td>
+          <td>$2,000/year</td>
+        </tr>
+        <tr>
+          <td><strong>Total per year</strong></td>
+          <td><strong>$49,000</strong></td>
+          <td><strong>$17,500</strong></td>
+          <td><strong>$31,500/year</strong></td>
+        </tr>
+        <tr style="background:var(--bg-2);">
+          <td><strong>4-year total</strong></td>
+          <td><strong>$196,000</strong></td>
+          <td><strong>$70,000</strong></td>
+          <td><strong>$126,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <p><strong>MEXT vs US D2 (50% scholarship):</strong> MEXT saves ~$126,000 over 4 years</p>
+      <p><strong>Note:</strong> If Noah receives full-ride US scholarship, financial comparison shifts. However, MEXT provides guaranteed full funding where US offers may be partial.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <h2>Contact Information</h2>
+
+    <h3>Japanese Government Resources</h3>
+
+    <div class="contact-card">
+      <h4>MEXT (Ministry of Education)</h4>
+      <ul>
+        <li>Study in Japan Portal: <a href="https://studyinjapan.go.jp" target="_blank">studyinjapan.go.jp</a></li>
+        <li>MEXT Scholarship Info: <a href="https://www.mext.go.jp" target="_blank">mext.go.jp</a> (English section)</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h4>Japanese Embassy/Consulates in US</h4>
+      <ul>
+        <li><strong>Embassy of Japan (Washington DC):</strong> <a href="https://www.us.emb-japan.go.jp" target="_blank">us.emb-japan.go.jp</a></li>
+        <li><strong>Consulate General (Chicago):</strong> <a href="https://www.chicago.us.emb-japan.go.jp" target="_blank">chicago.us.emb-japan.go.jp</a> (closest to Kansas City)</li>
+        <li><strong>Consulate General (San Francisco):</strong> <a href="https://www.sf.us.emb-japan.go.jp" target="_blank">sf.us.emb-japan.go.jp</a></li>
+        <li><strong>Consulate General (New York):</strong> <a href="https://www.ny.us.emb-japan.go.jp" target="_blank">newyork.us.emb-japan.go.jp</a></li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h4>JASSO (Japan Student Services Organization)</h4>
+      <ul>
+        <li>Website: <a href="https://www.jasso.go.jp/en" target="_blank">jasso.go.jp/en</a></li>
+        <li>EJU Exam: <a href="https://studyinjapan.go.jp/en/planning/by-style/exam/" target="_blank">studyinjapan.go.jp/en/planning/by-style/exam/</a></li>
+      </ul>
+    </div>
+
+    <h3>Target University Contacts</h3>
+
+    <div class="contact-card">
+      <h4>Waseda University</h4>
+      <ul>
+        <li>Website: <a href="https://www.waseda.jp/fire/sils/en/" target="_blank">waseda.jp/fire/sils/en/</a></li>
+        <li>Athletics: <a href="https://www.waseda.jp/sports/en/" target="_blank">waseda.jp/sports/en/</a></li>
+        <li>International Admissions: Contact through website portal</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h4>Sophia University</h4>
+      <ul>
+        <li>Website: <a href="https://www.sophia.ac.jp/eng/" target="_blank">sophia.ac.jp/eng/</a></li>
+        <li>Admissions: Contact international admissions office</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h4>University of Tsukuba</h4>
+      <ul>
+        <li>Website: <a href="https://www.tsukuba.ac.jp/en/" target="_blank">tsukuba.ac.jp/en/</a></li>
+        <li>Global Programs: <a href="https://global.tsukuba.ac.jp" target="_blank">global.tsukuba.ac.jp</a></li>
+        <li>Athletics: Contact through website</li>
+      </ul>
+    </div>
+
+    <h3>Language Proficiency Testing</h3>
+
+    <div class="contact-card">
+      <h4>JLPT (Japanese Language Proficiency Test)</h4>
+      <ul>
+        <li>Website: <a href="https://www.jlpt.jp/e/" target="_blank">jlpt.jp/e</a></li>
+        <li>US Test Sites: Major cities (NYC, LA, Chicago, SF, etc.)</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h4>EJU (Examination for Japanese University Admission)</h4>
+      <ul>
+        <li>Administered by JASSO</li>
+        <li>Register through study abroad portals</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FINAL RECOMMENDATION -->
+  <section>
+    <h2>Final Recommendation</h2>
+
+    <div class="alert-box">
+      <p><strong>Bottom Line:</strong> Japan offers elite soccer + full funding + unique cultural experience, but requires significant commitment (language, culture, 5 years). Best used as backup to US recruiting or for students genuinely passionate about Japan. MEXT application (May 2027) timeline allows Noah to pursue both US and Japan options simultaneously without conflict.</p>
+
+      <p style="margin-top:16px;"><strong>Recommended Strategy:</strong> Apply to MEXT in May 2027 while continuing US D1/D2/NAIA recruiting. Decision can be made in spring 2028 when all offers are on the table. This dual approach maximizes flexibility without forcing early commitment.</p>
+    </div>
+
+    <p style="margin-top:24px;"><a href="international.html">← Back to International Recruiting Overview</a></p>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Noah Lach — Class of 2028 Recruiting Portfolio</p>
+</footer>
+
+</body>
+</html>
