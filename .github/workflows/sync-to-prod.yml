@@ -1,0 +1,87 @@
+name: Sync Hero to Production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+
+jobs:
+  sync-to-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout nonotib (dev)
+        uses: actions/checkout@v4
+        with:
+          path: nonotib
+
+      - name: Checkout noahlach (prod)
+        uses: actions/checkout@v4
+        with:
+          repository: slach80/noahlach
+          token: ${{ secrets.PROD_SYNC_TOKEN }}
+          path: noahlach
+
+      - name: Transform index.html for production
+        run: |
+          cd nonotib
+
+          # Copy index.html to prod repo
+          cp index.html ../noahlach/index.html
+
+          cd ../noahlach
+
+          # Change jersey number from #21 to #16
+          sed -i 's/hero-ghost-num">21</hero-ghost-num">16</g' index.html
+          sed -i 's/NL<span>16<\/span>/NL<span>16<\/span>/g' index.html
+
+          # Remove "Recruiting" dropdown navigation
+          # Replace the recruiting dropdown with single-level nav links
+          sed -i '/<li class="nav-dropdown">/,/<\/li>/{
+            /<a href="colleges.html">Recruiting<\/a>/,/<\/div>/d
+          }' index.html
+
+          # Remove recruiting links from mobile menu
+          sed -i '/<span class="mob-group-label">Recruiting<\/span>/,/<span class="mob-group-label">Connect<\/span>/{
+            /<span class="mob-group-label">Recruiting<\/span>/d
+            /<a href="colleges.html">/d
+            /<a href="map.html">/d
+            /<a href="scholarships.html">/d
+            /<a href="camps.html">/d
+            /<a href="testprep.html">/d
+            /<a href="international.html">/d
+          }' index.html
+
+          # Remove "View In-Depth College Analysis" link at bottom
+          sed -i '/<a href="colleges.html" class="colleges-link/d' index.html
+
+          # Simplify nav-dropdown Noah section to simple links
+          # This removes the dropdown functionality, keeping just anchors
+          sed -i 's|<li class="nav-dropdown">|<li>|g' index.html
+          sed -i 's|<a href="index.html">Noah</a>|<a href="#stats">Profile</a></li><li><a href="#journey">Journey</a></li><li><a href="#highlights">Highlights</a></li><li><a href="#academics">Academics</a></li><li><a href="#references">References</a>|g' index.html
+          sed -i '/<div class="nav-dropdown-menu">/,/<\/div>/d' index.html
+
+      - name: Commit and push to production
+        run: |
+          cd noahlach
+
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add index.html
+            git commit -m "Auto-sync from dev: $(cd ../nonotib && git log -1 --format='%h - %s')"
+            git push origin main
+            echo "✅ Successfully synced to production"
+          fi
+
+      - name: Create sync log
+        if: success()
+        run: |
+          echo "Sync completed at $(date)" >> noahlach/sync.log
+          echo "Dev commit: $(cd nonotib && git log -1 --oneline)" >> noahlach/sync.log
+          echo "---" >> noahlach/sync.log

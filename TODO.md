@@ -16,13 +16,17 @@
 3. Install Apps Script and configure (update SportsRecruits URL, GPA, phone placeholders)
 4. Begin targeted outreach starting with HIGH roster window schools
 
-## Security / Access Control
-- `index.html` = public; all other pages need protection
-- Key decisions still open:
-  - Hosting: GitHub Pages vs. Netlify (Netlify recommended for server-side auth)
-  - Access model: single shared password vs. per-person links/tokens
-  - Audience: family only, or coaches too? Same access level or different?
-- Leading option: Netlify host-level password protection (free, true server-side, no code changes)
+## ~~Security / Access Control~~ ✅ COMPLETE (May 9, 2026)
+~~`index.html` = public; all other pages need protection~~
+- ✅ **Dev-Prod Pipeline Implemented**
+  - **Dev (nonotib):** Full recruiting site — family access via direct URL
+  - **Prod (noahlach):** Public hero page only — coaches view at slach80.github.io/noahlach
+  - **Auto-sync:** GitHub Action syncs `index.html` changes from dev → prod
+  - **Transformations:** Jersey #21 → #16, removes recruiting nav, simplifies menu
+  - **Rollback:** `./rollback-prod.sh` script in both repos
+  - **Manual sync:** `./sync-to-prod.sh` available if needed
+  - **Setup:** Requires GitHub Personal Access Token (see `DEV_PROD_PIPELINE.md`)
+- **Decision:** No password protection needed — separate repos serve different audiences
 
 ## ~~Coach Contact Research~~ ✅ COMPLETE (May 7-8, 2026)
 ~~Research and add direct coach emails/phones for schools~~
